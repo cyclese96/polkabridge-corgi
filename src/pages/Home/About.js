@@ -170,7 +170,7 @@ export default function About() {
           <Fade right>
             <div>
               <img
-                src="https://sanshuinu.finance/assets/images/sanshu-5.png"
+                src="images/corgibpolkabridge.png"
                 alt="explain"
                 className={classes.imageContainer}
               />

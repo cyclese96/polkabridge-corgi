@@ -111,7 +111,7 @@ export default function Features() {
         </div>{' '}
       </div>
       <Pulse>
-        <div className="text-center">Under development</div>
+
         <div className="text-center">
           {' '}
           <img src="/images/corgibnft.jpg" className={classes.image} />

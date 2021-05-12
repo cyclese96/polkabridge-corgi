@@ -90,36 +90,7 @@ export default function Team() {
           Our <strong className={classes.highlight}>Team</strong>
         </h4>
         <div className="mt-5 d-flex justify-content-center">
-          <Fade left>
-            <div className={classes.people}>
-              <img src="images/cyclese.png" alt="Cyclese" className={classes.avatar} />
-              <h6 className={classes.title}>Cyclese</h6>
-              <p className={classes.para}>CEO & Co-Founder </p>
-              <p className={classes.para}>Senior Blockchain Developer</p>
-              <Tooltip title="Telegram">
-                <a href="https://t.me/cyclese_polkabridge">
-                  <IconButton aria-label="Telegram">
-                    <Telegram className={classes.icon} />
-                  </IconButton>
-                </a>
-              </Tooltip>
-            </div>
-          </Fade>{' '}
-          <Fade right>
-            <div className={classes.people}>
-              <img src="images/zeph.png" alt="Zeph" className={classes.avatar} />
-              <h6 className={classes.title}>Zeph</h6>
-              <p className={classes.para}>Co-Founder </p>
-              <p className={classes.para}>UX/UI Designer</p>
-              <Tooltip title="Telegram">
-                <a href="https://t.me/zephwilliams">
-                  <IconButton aria-label="Telegram">
-                    <Telegram className={classes.icon} />
-                  </IconButton>
-                </a>
-              </Tooltip>
-            </div>
-          </Fade>
+
         </div>
       </div>
     </div>

@@ -167,7 +167,7 @@ export default function PrimarySearchAppBar() {
       <Divider />
       <List>
         {[
-          { name: 'Telegram', id: 'https://t.me/corgipolkabridge' },
+          { name: 'ToTheMoon', id: 'https://t.me/corgipolkabridge' },
           { name: 'PancakeSwap', id: 'https://exchange.pancakeswap.finance/#/swap?outputCurrency=0x1cfd6813a59d7b90c41dd5990ed99c3bf2eb8f55' },
           { name: 'Airdrop', id: 'https://forms.gle/2YQmUtTLD9GTBqWa7' },
         ].map((tab, index) => (
@@ -218,22 +218,18 @@ export default function PrimarySearchAppBar() {
                 Tokenomics
               </Typography>
             </Link>
-            {/* <a href="docs/whitepaper.pdf" style={{ textDecoration: 'none' }}>
-              <Typography className={classes.tabs} variant="body1">
-                Telegram <DotCircle />
-              </Typography>
-            </a> */}
+
 
             <div className={classes.sectionDesktop}>
               <div style={{ paddingRight: 10 }}>
                 <a href="https://t.me/corgipolkabridge">
                   {' '}
                   <Button variant="outlined" className={classes.buttonOutlined}>
-                    Telegram
+                    ToTheMoon
                   </Button>
                 </a>
               </div>
-              <CustomButton style={{ paddingRight: 10 }} title={'PancakeSwap'} link={'https://exchange.pancakeswap.finance/#/swap?outputCurrency=0x1cfd6813a59d7b90c41dd5990ed99c3bf2eb8f55'}></CustomButton>
+              <CustomButton title={'PancakeSwap'} link={'https://exchange.pancakeswap.finance/#/swap?outputCurrency=0x1cfd6813a59d7b90c41dd5990ed99c3bf2eb8f55'}></CustomButton>
               <CustomButton title={'Airdrop'} link={'https://forms.gle/2YQmUtTLD9GTBqWa7'}></CustomButton>
             </div>
           </div>
