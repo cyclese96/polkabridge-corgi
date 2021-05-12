@@ -150,12 +150,12 @@ export default function PrimarySearchAppBar() {
       onKeyDown={toggleDrawer(anchor, false)}>
       <List>
         {[
-          { name: 'Home', id: 'about' },
-          { name: 'About', id: 'how-it-works' },
-          { name: 'Features', id: 'pbt-token' },
+          { name: 'Home', id: 'header' },
+          { name: 'About', id: 'about' },
+          { name: 'Features', id: 'features' },
           // { name: 'Team', id: 'team' },
           { name: 'Roadmap', id: 'roadmap' },
-          { name: 'Tokenomics', id: 'exchange' },
+          { name: 'Tokenomics', id: 'tokenomics' },
         ].map((tab, index) => (
           <Link activeClass="active" to={tab.id} smooth={true} offset={0} duration={500} delay={0}>
             <ListItem button key={tab.name} onClick={toggleDrawer(anchor, false)}>
@@ -167,8 +167,8 @@ export default function PrimarySearchAppBar() {
       <Divider />
       <List>
         {[
-          { name: 'Farming', id: 'https://farm.polkabridge.org/' },
-          { name: 'Launchpad', id: 'https://launchpad.polkabridge.org/' },
+          { name: 'Telegram', id: 'https://farm.polkabridge.org/' },
+          { name: 'Pancakeswap', id: 'https://launchpad.polkabridge.org/' },
         ].map((tab, index) => (
           <a href={tab.id} className={classes.mobileLink}>
             <ListItem button key={tab.name}>
@@ -176,11 +176,11 @@ export default function PrimarySearchAppBar() {
             </ListItem>
           </a>
         ))}
-        <ListItem button>
+        {/* <ListItem button>
           <a href="docs/whitepaper.pdf" style={{ textDecoration: 'none' }}>
             <ListItemText primary={'Read Whitepaper'} className={classes.menuTitlePink} />
           </a>
-        </ListItem>
+        </ListItem> */}
       </List>
     </div>
   );
