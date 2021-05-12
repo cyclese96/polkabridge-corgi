@@ -45,15 +45,10 @@ export default function Home() {
         <Roadmap />
       </section>
 
-      {/* <section id="team">
-        <Team />
-      </section> */}
       <section id="exchange">
         <Listings />
       </section>
-      <section>
-        <SocialLinks />
-      </section>
+
       <section>
         <Footer />
       </section>
