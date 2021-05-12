@@ -77,6 +77,9 @@ const useStyles = makeStyles((theme) => ({
     fontColor: theme.palette.pbr.textLight,
     // marginTop: 25,
   },
+  highlight: {
+    color: theme.palette.pbr.primary,
+  }
 }));
 
 export default function Header() {
@@ -96,7 +99,7 @@ export default function Header() {
             <h5 className={classes.notice}>CORGIB Finance</h5>
             <h2>The NFT MarketPlace for Meme coins</h2>
             <p className={classes.subheading}>
-              CORGIB Finance is a fully decentralized, the first NFT MarketPlace for Meme tokens
+              CORGIB Finance is a fully decentralized, the first NFT MarketPlace for Meme tokens,  powered by  <strong className={classes.highlight}>PolkaBridge</strong>
             </p>
             <div>
               <CustomButton title={"Buy on PancakeSwap"}></CustomButton>
