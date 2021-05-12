@@ -37,16 +37,9 @@ export default function Home() {
       <section>
         <Tokenomics />
       </section>
-      <section>
-        <ReleaseSchedule />
-      </section>
 
       <section id="roadmap">
         <Roadmap />
-      </section>
-
-      <section id="exchange">
-        <Listings />
       </section>
 
       <section>
