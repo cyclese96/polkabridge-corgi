@@ -84,6 +84,12 @@ const useStyles = makeStyles((theme) => ({
     padding: 10,
     borderRadius: '7px',
     marginBottom: 10,
+
+    marginLeft: 10,
+    minWidth: 600,
+    [theme.breakpoints.down('sm')]: {
+      minWidth: 300,
+    },
   },
   imageContainer: {
     width: '100%',
@@ -95,10 +101,10 @@ const useStyles = makeStyles((theme) => ({
   roadmapWrapper: {
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center',
+    alignItems: 'start',
     [theme.breakpoints.down('sm')]: {
-      padding: 30,
-      width: '100%',
+      padding: 10,
+      width: '90%',
     },
   },
   roadmapContainer: {
@@ -108,16 +114,29 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: 10,
     width: 700,
     [theme.breakpoints.down('sm')]: {
-      padding: 30,
-      width: '100%',
+      padding: 10,
+      marginTop: -120,
+      width: '95%',
     },
   },
   cardHeader: {
     background: `linear-gradient(to bottom,#D9047C, #BF1088)`,
-
     borderRadius: 10,
     width: 850,
     height: 200,
+    [theme.breakpoints.down('sm')]: {
+      padding: 30,
+      width: '100%',
+    },
+  },
+  status: {
+    borderLeft: '2px solid #bdbdbd',
+    fontSize: 40,
+    color: 'green',
+
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
   },
 }));
 export default function Roadmap(props) {
@@ -136,56 +155,98 @@ export default function Roadmap(props) {
         <div className="d-flex flex-column align-items-center">
           <div className={classes.cardHeader}></div>
           <div className={classes.roadmapContainer}>
-            <h5>
+            <h5 style={{ paddingLeft: 10, paddingTop: 20 }}>
               <strong>Updates</strong>
+              <hr style={{ width: 100, height: 2 }} />
             </h5>
-            <hr style={{ width: 100, height: 2 }} />
+
             <div className={classes.roadmapWrapper}>
-              <div className={classes.focusContainer} style={{ backgroundColor: '#fcfcfc' }}>
-                <h6 className={classes.title}>Token Fair Launch</h6>
-                <p className={classes.para}>
-                  CORBIG will be listed on PANCAKESWAP at 3PM UTC, 13th May
-                </p>
+              <div className="d-flex justify-content-start">
+                <div className={classes.status}>
+                  <p style={{ marginLeft: -10 }}>•</p>
+                </div>
+                <div className={classes.focusContainer} style={{ backgroundColor: '#fcfcfc' }}>
+                  <h6 className={classes.title}>Token Fair Launch</h6>
+                  <p className={classes.para}>CORBIG will be listed on PANCAKESWAP at 3PM UTC, 13th May</p>
+                </div>
               </div>
-              <div className={classes.focusContainer} style={{ backgroundColor: '#fcfcfc' }}>
-                <h6 className={classes.title}>Safety</h6>
-                <p className={classes.para}>
-                  Liquidity will be locked for 2 month on Unicrypt<br />
-                  45% of all tokens will be burnt everyday<br />
-                  Team token has been locked
-                </p>
-              </div>
-              <div className={classes.focusContainer} style={{ backgroundColor: '#fcfcfc' }}>
-                <h6 className={classes.title}>Marketing Expansion</h6>
-                <p className={classes.para}>
-                  Influencers are on board<br />
-                  Community contribution & promotion contests<br />
-                  The shiling army is ready for TikTok | Instagram | YouTube promote<br />
-                  Finding partnership
-                </p>
-              </div>
-              <div className={classes.focusContainer} style={{ backgroundColor: '#fcfcfc' }}>
-                <h6 className={classes.title}>Open To The World</h6>
-                <p className={classes.para}>
-                  CoinGecko Listing<br />
-                  CoinMarketcap Listing<br />
-                  Tier-2 exchange Listing<br />
-                </p>
-              </div>
-              <div className={classes.focusContainer} style={{ backgroundColor: '#fcfcfc' }}>
-                <h6 className={classes.title}>Defi</h6>
-                <p className={classes.para}>
-                  Staking CORGIB on PolkaBridge<br />
-                  Farming CORGIB on PolkaBridge<br />
-                </p>
-              </div>
-              <div className={classes.focusContainer} style={{ backgroundColor: '#fcfcfc' }}>
-                <h6 className={classes.title}>Testnet</h6>
-                <p className={classes.para}>
-                  NFT MarketPlace Testnet
-                </p>
+              <div className="d-flex justify-content-start">
+                <div className={classes.status}>
+                  <p style={{ marginLeft: -10 }}>•</p>
+                </div>
+                <div className={classes.focusContainer} style={{ backgroundColor: '#fcfcfc' }}>
+                  <h6 className={classes.title}>Safety</h6>
+                  <p className={classes.para}>
+                    <ul>
+                      <li>Liquidity will be locked for 2 month on Unicrypt.</li>
+                      <li> 45% of all tokens will be burnt everyday.</li> <li> Team's token will be locked.</li>
+                    </ul>
+                  </p>
+                </div>
               </div>
 
+              <div className="d-flex justify-content-start">
+                <div className={classes.status}>
+                  <p style={{ marginLeft: -10 }}>•</p>
+                </div>
+
+                <div className={classes.focusContainer} style={{ backgroundColor: '#fcfcfc' }}>
+                  <h6 className={classes.title}>Marketing Expansion</h6>
+                  <p className={classes.para}>
+                    <ul>
+                      <li>Influencers are on-board.</li>
+                      <li> Community contribution & promotion contests.</li>
+                      <li> The shiling army is ready for TikTok | Instagram | YouTube promotions.</li>
+                      <li> Finding partnership.</li>{' '}
+                    </ul>
+                  </p>
+                </div>
+              </div>
+
+              <div className="d-flex justify-content-start">
+                <div className={classes.status}>
+                  <p style={{ marginLeft: -10 }}>•</p>
+                </div>
+
+                <div className={classes.focusContainer} style={{ backgroundColor: '#fcfcfc' }}>
+                  <h6 className={classes.title}>Open To The World</h6>
+                  <p className={classes.para}>
+                    <ul>
+                      <li> CoinGecko Listing.</li>
+                      <li> CoinMarketcap Listing.</li>
+                      <li> Tier-2 exchange Listing.</li>
+                    </ul>
+                  </p>
+                </div>
+              </div>
+
+              <div className="d-flex justify-content-start">
+                <div className={classes.status}>
+                  <p style={{ marginLeft: -10 }}>•</p>
+                </div>
+
+                <div className={classes.focusContainer} style={{ backgroundColor: '#fcfcfc' }}>
+                  <h6 className={classes.title}>Defi</h6>
+                  <p className={classes.para}>
+                    <ul>
+                      <li> Staking CORGIB on PolkaBridge.</li>
+                      <li> Farming CORGIB on PolkaBridge.</li>
+                      <li> Tier-2 exchange Listing.</li>
+                    </ul>
+                  </p>
+                </div>
+              </div>
+
+              <div className="d-flex justify-content-start">
+                <div className={classes.status}>
+                  <p style={{ marginLeft: -10 }}>•</p>
+                </div>
+
+                <div className={classes.focusContainer} style={{ backgroundColor: '#fcfcfc' }}>
+                  <h6 className={classes.title}>Testnet</h6>
+                  <p className={classes.para}>NFT MarketPlace Testnet</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>

@@ -7,6 +7,9 @@ const useStyles = makeStyles((theme) => ({
     padding: '50px 50px 10px 50px',
     height: '100%',
     backgroundColor: theme.palette.pbr.primary,
+    [theme.breakpoints.down('sm')]: {
+      padding: '20px 20px 20px 20px',
+    },
   },
 
   para: {
@@ -18,6 +21,11 @@ const useStyles = makeStyles((theme) => ({
     paddingBottom: 10,
     textAlign: 'left',
     width: 500,
+    [theme.breakpoints.down('sm')]: {
+      width: '100%',
+      paddingTop: 5,
+      paddingBottom: 5,
+    },
   },
 
   highlight: {
@@ -35,7 +43,7 @@ export default function Footer() {
 
   return (
     <div className={classes.background}>
-      <div className="container ">
+      <div className="container">
         <div>
           <h3 style={{ textAlign: 'left', color: 'white' }}>
             <img src="corgi.png" alt="logo" height="40px" /> CORGIB
@@ -47,7 +55,7 @@ export default function Footer() {
       </div>
       <SocialLinks /> <hr style={{ color: '#000000', height: 1 }} />
       <div className="text-center">
-        <p>
+        <p style={{ fontSize: 13 }}>
           Copyright 2021 <span className={classes.highlight}>CORGIB Of PolkaBridge</span>. All Rights Reserved.
         </p>
       </div>
