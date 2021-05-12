@@ -68,7 +68,7 @@ export default function SocialLinks() {
         </div>
         <div className={classes.iconWrapper}>
           <Tooltip title="Telegram">
-            <a href="https://t.me/polkabridgegroup">
+            <a href="https://t.me/corgipolkabridge">
               <IconButton aria-label="Telegram">
                 <Telegram className={classes.icon} />
               </IconButton>

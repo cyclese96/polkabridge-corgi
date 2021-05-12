@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
   title: {
     display: 'none',
     color: 'black',
-    fontSize: 26,
+    fontSize: 18,
 
     [theme.breakpoints.up('md')]: {
       display: 'block',
@@ -190,7 +190,7 @@ export default function PrimarySearchAppBar() {
       <AppBar position="fixed" style={{ background: 'white', boxShadow: 'none', height: 70 }}>
         <Toolbar className="d-flex justify-content-evenly ">
           <Typography className={classes.title} variant="h6" noWrap>
-            <img src="corgi.png" alt="logo" height="50px" /> CORGI
+            <img src="corgi.png" alt="logo" height="50px" /> Corgi of PolkaBridge
           </Typography>
           <div className="d-flex justify-content-end align-items-center">
             <Link activeClass="active" to="header" smooth={true} offset={0} duration={500} delay={0}>
@@ -236,7 +236,7 @@ export default function PrimarySearchAppBar() {
           </div>
           <div className={classes.sectionMobile}>
             <div style={{ color: 'white' }}>
-              <img src="corgi.png" alt="logo" height="50px" /> CORGI
+              <img src="corgi.png" alt="logo" height="50px" /> Corgi of PolkaBridge
             </div>
 
             <div>

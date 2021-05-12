@@ -97,7 +97,7 @@ export default function Features() {
       {' '}
       <div>
         <h6 className={classes.heading}>
-          <strong className={classes.highlight}>Corgib</strong> features
+          <strong className={classes.highlight}>Corgib</strong> NFT Marketplace
         </h6>
         <div className="d-flex justify-content-center ">
           <p className={classes.para}>Our features on point - So much to offer</p>
