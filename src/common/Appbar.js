@@ -193,18 +193,18 @@ export default function PrimarySearchAppBar() {
             <img src="corgi.png" alt="logo" height="50px" /> CORGI
           </Typography>
           <div className="d-flex justify-content-end align-items-center">
-            <Link activeClass="active" to="about" smooth={true} offset={0} duration={500} delay={0}>
+            <Link activeClass="active" to="header" smooth={true} offset={0} duration={500} delay={0}>
               <Typography className={classes.tabs} variant="body1" noWrap>
                 Home
               </Typography>
             </Link>
-            <Link activeClass="active" to="how-it-works" smooth={true} offset={0} duration={500} delay={0}>
+            <Link activeClass="active" to="about" smooth={true} offset={0} duration={500} delay={0}>
               <Typography className={classes.tabs} variant="body1" noWrap>
                 About
               </Typography>
             </Link>
 
-            <Link activeClass="active" to="pbt-token" smooth={true} offset={0} duration={500} delay={0}>
+            <Link activeClass="active" to="features" smooth={true} offset={0} duration={500} delay={0}>
               <Typography className={classes.tabs} variant="body1">
                 Features
               </Typography>
@@ -214,7 +214,7 @@ export default function PrimarySearchAppBar() {
                 Roadmap
               </Typography>
             </Link>
-            <Link activeClass="active" to="exchange" smooth={true} offset={0} duration={500} delay={0}>
+            <Link activeClass="active" to="tokenomics" smooth={true} offset={0} duration={500} delay={0}>
               <Typography className={classes.tabs} variant="body1">
                 Tokenomics
               </Typography>

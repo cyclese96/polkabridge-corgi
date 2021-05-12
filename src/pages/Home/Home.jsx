@@ -18,9 +18,9 @@ export default function Home() {
       <section id="header">
         <Header />
       </section>
-      <section id="partnerships">
+      {/* <section id="partnerships">
         <Partnerships />
-      </section>
+      </section> */}
       <hr style={{ color: '#e9e9e9' }} />
       <section id="about">
         <About />
@@ -28,13 +28,8 @@ export default function Home() {
       <section id="features">
         <Features />
       </section>
-      <section id="how-it-works">
-        <HowItWorks />
-      </section>
-      <section id="pbt-token">
-        <PBRToken />
-      </section>
-      <section>
+
+      <section id="tokenomics">
         <Tokenomics />
       </section>
 

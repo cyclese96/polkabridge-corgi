@@ -90,23 +90,23 @@ export default function Tokenomics() {
                   Locking
                 </h4>
               </div>
-              <div className={classes.focusContainer}>
+              <div className={classes.focusContainer} style={{ backgroundColor: '#fcfcfc' }}>
                 <h6 className={classes.title}>30% - Airdrop</h6>
                 <p className={classes.para}>
                   30% of the total token will be distrubuted through airdrop campaign, scheduled from 13-18 May.
                 </p>
               </div>
-              <div className={classes.focusContainer}>
+              <div className={classes.focusContainer} style={{ backgroundColor: '#fcfcfc' }}>
                 <h6 className={classes.title}>20% - Pancakeswap Liquidity</h6>
                 <p className={classes.para}>20% of the total token will be used to provide liquidity at Pancakeswap.</p>
               </div>
-              <div className={classes.focusContainer}>
+              <div className={classes.focusContainer} style={{ backgroundColor: '#fcfcfc' }}>
                 <h6 className={classes.title}>45% - Reserve Burning</h6>
                 <p className={classes.para}>
                   45% of the total token will be reserved for burning event with schedule of 1% per day.
                 </p>
               </div>
-              <div className={classes.focusContainer}>
+              <div className={classes.focusContainer} style={{ backgroundColor: '#fcfcfc' }}>
                 <h6 className={classes.title}>5% - Team</h6>
                 <p className={classes.para}>
                   5% of the total token will be reserved for the team with vesting of 1% per 100 days.

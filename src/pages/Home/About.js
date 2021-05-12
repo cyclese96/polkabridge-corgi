@@ -99,10 +99,10 @@ export default function About() {
           <h6 className={classes.heading}>
             What is <strong className={classes.highlight}>CORGI?</strong>
           </h6>
-          <p className={classes.para}>We are a part of the newly emerging Inu family!</p>
+          <p className={classes.para}>We are a part of the newly emerging Tiger family!</p>
 
           <Fade left>
-            <div className="d-flex justify-content-center mt-3">
+            {/* <div className="d-flex justify-content-center mt-3">
               <div className={classes.focusContainer}>
                 <h6 className={classes.title}>Decentralized</h6>
                 <p className={classes.para}>Fully control your own crypto. Tokens trade wallet-to-wallet.</p>
@@ -132,13 +132,17 @@ export default function About() {
                 className={classes.button}>
                 <Receipt className={classes.icon} /> Learn More
               </Button>
-            </div>
+            </div> */}
           </Fade>
         </div>
         <div className="col-md-6">
           <Fade right>
             <div>
-              <img src="images/about.png" alt="explain" className={classes.imageContainer} />
+              <img
+                src="https://sanshuinu.finance/assets/images/sanshu-6.png"
+                alt="explain"
+                className={classes.imageContainer}
+              />
             </div>
           </Fade>
         </div>

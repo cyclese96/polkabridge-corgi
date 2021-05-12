@@ -24,8 +24,9 @@ const useStyles = makeStyles((theme) => ({
   header: {
     height: '80vh',
     width: 'auto',
-    background: `linear-gradient(0deg, rgba(255, 255, 255, 0.9), rgba(233, 233, 233, 0.99) ),url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSAl2T6kWLUzalYEALVytfVGJPuyw9eQ_wYHrvHv1r5xQrn8qebMgwudwpZNsQyXrtJM_M&usqp=CAU")`,
-    backgroundSize: 'contain',
+    background: `linear-gradient(0deg, rgba(255, 255, 255, 0.8), rgba(233, 233, 233, 1) ),url("https://img.freepik.com/free-vector/variety-cute-shapes-abstract-background_23-2148544989.jpg?size=626&ext=jpg&ga=GA1.2.1991903213.1616889600")`,
+    backgroundSize: 'cover',
+    backgroundPosition: 'center center',
     [theme.breakpoints.up('sm')]: {
       height: '85vh',
     },

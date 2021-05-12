@@ -150,12 +150,14 @@ export default function Roadmap(props) {
     <div className={classes.background}>
       <div>
         <h6 className={classes.heading}>
-          PolkaBridge <strong className={classes.highlight}>RoadMap</strong>
+          Corbig <strong className={classes.highlight}>RoadMap</strong>
         </h6>
-        <p className={classes.para}>Fundamentally strong and visionary project with strong foundation.</p>
+
+        <p className={classes.para}>Our Corbig Walk (Q2/2021).</p>
       </div>
       <Fade top>
-        <div className="mt-5">
+        <div className="text-center">Under development</div>
+        {/* <div className="mt-5">
           <div className="row g-0 align-items-center ">
             <div className="col-2 col-md-1">
               {' '}
@@ -327,6 +329,7 @@ export default function Roadmap(props) {
             </div>
           </div>
         </div>
+      */}
       </Fade>
     </div>
   );
