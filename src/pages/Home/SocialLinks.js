@@ -75,41 +75,6 @@ export default function SocialLinks() {
             </a>
           </Tooltip>
         </div>
-
-        <div className={classes.iconWrapper}>
-          <Tooltip title="Github">
-            <a href="https://github.com/cyclese96">
-              <IconButton aria-label="Github">
-                <GitHub className={classes.icon} />
-              </IconButton>
-            </a>
-          </Tooltip>
-        </div>
-
-        {/* <div className={classes.iconWrapper}>
-          <Tooltip title="Discord">
-            <a href="https://discord.gg/G3NDrcq6GW">
-              <IconButton aria-label="Discord">
-                <img
-                  src="images/discord.png"
-                  height="25px"
-                  width="25px"
-                  style={{ opacity: 0.6, marginTop: 5 }}
-                  alt="discord"
-                />
-              </IconButton>
-            </a>
-          </Tooltip>
-        </div> */}
-        <div className={classes.iconWrapper}>
-          <Tooltip title="Email">
-            <a href="mailto:support@polkabridge.org">
-              <IconButton aria-label="Email">
-                <Email className={classes.icon} />
-              </IconButton>
-            </a>
-          </Tooltip>
-        </div>
       </div>
     </div>
   );

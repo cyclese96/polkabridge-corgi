@@ -87,7 +87,9 @@ export default function Header() {
               <p className={classes.subheading}>
                 CORGIB is fully decentralized, and all decisions are made by the community.
               </p>
-              <CustomButton title={'Buy on Pancakeswap'}></CustomButton>
+              <CustomButton
+                title={'Buy on Pancakeswap'}
+                link={'https://bscscan.com/address/0x1cfd6813a59d7b90c41dd5990ed99c3bf2eb8f55'}></CustomButton>
             </div>
           </div>
         </div>

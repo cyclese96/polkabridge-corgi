@@ -167,7 +167,7 @@ export default function PrimarySearchAppBar() {
       <Divider />
       <List>
         {[
-          { name: 'Telegram', id: 'https://farm.polkabridge.org/' },
+          { name: 'Telegram', id: 'https://t.me/corgipolkabridge' },
           { name: 'Pancakeswap', id: 'https://launchpad.polkabridge.org/' },
         ].map((tab, index) => (
           <a href={tab.id} className={classes.mobileLink}>
@@ -227,9 +227,12 @@ export default function PrimarySearchAppBar() {
 
             <div className={classes.sectionDesktop}>
               <div style={{ paddingRight: 10 }}>
-                <Button variant="outlined" className={classes.buttonOutlined}>
-                  Telegram
-                </Button>
+                <a href="https://t.me/corgipolkabridge">
+                  {' '}
+                  <Button variant="outlined" className={classes.buttonOutlined}>
+                    Telegram
+                  </Button>
+                </a>
               </div>
               <CustomButton title={'Pancake Swap'} link={'https://farm.polkabridge.org'}></CustomButton>
             </div>
