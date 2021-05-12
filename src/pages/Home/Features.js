@@ -97,10 +97,10 @@ export default function Features() {
       {' '}
       <div>
         <h6 className={classes.heading}>
-          <strong className={classes.highlight}>Corgib</strong> NFT Marketplace
+          <strong className={classes.highlight}>CORGIB</strong> NFT Marketplace
         </h6>
         <div className="d-flex justify-content-center ">
-          <p className={classes.para}>Our features on point - So much to offer</p>
+          <p className={classes.para}>CORGIB MarketPlace - Where you can create, buy and sell meme NFT</p>
         </div>{' '}
       </div>
       <Pulse>

@@ -127,10 +127,10 @@ export default function Roadmap(props) {
     <div className={classes.background}>
       <div>
         <h6 className={classes.heading}>
-          Corbig <strong className={classes.highlight}>RoadMap</strong>
+          CORGIB <strong className={classes.highlight}>RoadMap</strong>
         </h6>
 
-        <p className={classes.subheading}>Our Corbig Walk (Q2/2021).</p>
+        <p className={classes.subheading}>Our CORGIB Walk (Q2/2021).</p>
       </div>
       <Fade top>
         <div className="d-flex flex-column align-items-center">
@@ -144,45 +144,48 @@ export default function Roadmap(props) {
               <div className={classes.focusContainer} style={{ backgroundColor: '#fcfcfc' }}>
                 <h6 className={classes.title}>Token Fair Launch</h6>
                 <p className={classes.para}>
-                  CORBIG bep20 token available at PANCAKESWAP DEX Initial Liquidity provided.
+                  CORBIG will be listed on PANCAKESWAP at 3PM UTC, 13th May
                 </p>
               </div>
               <div className={classes.focusContainer} style={{ backgroundColor: '#fcfcfc' }}>
-                <h6 className={classes.title}>Token Fair Launch</h6>
+                <h6 className={classes.title}>Safety</h6>
                 <p className={classes.para}>
-                  CORBIG bep20 token available at PANCAKESWAP DEX Initial Liquidity provided.
+                  Liquidity will be locked for 2 month on Unicrypt<br />
+                  45% of all tokens will be burnt everyday<br />
+                  Team token has been locked
                 </p>
               </div>
               <div className={classes.focusContainer} style={{ backgroundColor: '#fcfcfc' }}>
-                <h6 className={classes.title}>Token Fair Launch</h6>
+                <h6 className={classes.title}>Marketing Expansion</h6>
                 <p className={classes.para}>
-                  CORBIG bep20 token available at PANCAKESWAP DEX Initial Liquidity provided.
+                  Influencers are on board<br />
+                  Community contribution & promotion contests<br />
+                  The shiling army is ready for TikTok | Instagram | YouTube promote<br />
+                  Finding partnership
                 </p>
               </div>
               <div className={classes.focusContainer} style={{ backgroundColor: '#fcfcfc' }}>
-                <h6 className={classes.title}>Token Fair Launch</h6>
+                <h6 className={classes.title}>Open To The World</h6>
                 <p className={classes.para}>
-                  CORBIG bep20 token available at PANCAKESWAP DEX Initial Liquidity provided.
+                  CoinGecko Listing<br />
+                  CoinMarketcap Listing<br />
+                  Tier-2 exchange Listing<br />
                 </p>
               </div>
               <div className={classes.focusContainer} style={{ backgroundColor: '#fcfcfc' }}>
-                <h6 className={classes.title}>Token Fair Launch</h6>
+                <h6 className={classes.title}>Defi</h6>
                 <p className={classes.para}>
-                  CORBIG bep20 token available at PANCAKESWAP DEX Initial Liquidity provided.
+                  Staking CORGIB on PolkaBridge<br />
+                  Farming CORGIB on PolkaBridge<br />
                 </p>
               </div>
               <div className={classes.focusContainer} style={{ backgroundColor: '#fcfcfc' }}>
-                <h6 className={classes.title}>Token Fair Launch</h6>
+                <h6 className={classes.title}>Testnet</h6>
                 <p className={classes.para}>
-                  CORBIG bep20 token available at PANCAKESWAP DEX Initial Liquidity provided.
+                  NFT MarketPlace Testnet
                 </p>
               </div>
-              <div className={classes.focusContainer} style={{ backgroundColor: '#fcfcfc' }}>
-                <h6 className={classes.title}>Token Fair Launch</h6>
-                <p className={classes.para}>
-                  CORBIG bep20 token available at PANCAKESWAP DEX Initial Liquidity provided.
-                </p>
-              </div>
+
             </div>
           </div>
         </div>
