@@ -38,18 +38,17 @@ export default function Footer() {
       <div className="container ">
         <div>
           <h3 style={{ textAlign: 'left', color: 'white' }}>
-            <img src="corgi.png" alt="logo" height="40px" /> CORGI
+            <img src="corgi.png" alt="logo" height="40px" /> CORGIB
           </h3>
           <p className={classes.para}>
-            Sanshu Inu Finance is a fully decentralized, transactions network where all decisions are made by the
-            community.
+            CORGIB Finance is a fully decentralized, the first NFT MarketPlace for Meme tokens
           </p>
         </div>
       </div>
       <SocialLinks /> <hr style={{ color: '#000000', height: 1 }} />
       <div className="text-center">
         <p>
-          Copyright 2021 <span className={classes.highlight}>Corgi Finance</span>. All Rights Reserved.
+          Copyright 2021 <span className={classes.highlight}>CORGIB Of PolkaBridge</span>. All Rights Reserved.
         </p>
       </div>
     </div>

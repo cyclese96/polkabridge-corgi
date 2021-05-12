@@ -96,11 +96,10 @@ export default function Header() {
             <h5 className={classes.notice}>CORGIB Finance</h5>
             <h2>The NFT MarketPlace for Meme coins</h2>
             <p className={classes.subheading}>
-              CORGIB is fully decentralized, and all decisions are made by the
-              community.
+              CORGIB Finance is a fully decentralized, the first NFT MarketPlace for Meme tokens
             </p>
             <div>
-              <CustomButton title={"Buy on uniswap"}></CustomButton>
+              <CustomButton title={"Buy on PancakeSwap"}></CustomButton>
             </div>
           </div>
         </div>
