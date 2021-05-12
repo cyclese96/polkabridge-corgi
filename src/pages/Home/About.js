@@ -156,8 +156,9 @@ export default function About() {
                 What is <strong className={classes.highlight}>CORGIB?</strong>
               </h6>
               <p className={classes.para}>
-                We are a part of the newly emerging Tiger family!
+                CORGIB is not just a Meme coin, but also an NFT Marketplace where users can create NFT memes and trade on the Marketplace.
               </p>
+              <p>CORGIB is a community product of <a href="https://polkabridge.org" target="_blank">PolkaBridge</a>, fairlaunch and bring value to PBR investors.</p>
 
               <CustomButton
                 className={classes.button}
@@ -178,54 +179,18 @@ export default function About() {
         </div>
       </section>
 
-      <section>
-        <div className={classes.background2}>
-          <Fade right>
-            <div>
-              <img
-                src="https://sanshuinu.finance/assets/images/sanshu-4.png"
-                alt="explain"
-                className={classes.imageContainer}
-              />
-            </div>
-          </Fade>
 
-          <div className={classes.textContainer}>
-            <Fade left>
-              <h3 className={classes.number}>2</h3>
-              <h6 className={classes.heading}>
-                A fully{" "}
-                <strong className={classes.highlight}>
-                  deflationary token
-                </strong>{" "}
-                that appreciates every single transaction
-              </h6>
-              <p className={classes.para}>
-                We are a part of the newly emerging Tiger family!
-              </p>
-
-              <CustomButton
-                className={classes.button}
-                title={"See all features"}
-              ></CustomButton>
-            </Fade>
-          </div>
-        </div>
-      </section>
 
       <section>
         <div className={classes.background}>
           <div className={classes.textContainer}>
             <Fade left>
-              <h3 className={classes.number}>3</h3>
+              <h3 className={classes.number}>2</h3>
               <h6 className={classes.heading}>
                 Why choose us?{" "}
-                <strong className={classes.highlight}>CORGIB?</strong> is fully
-                decentralized, had a fair launch and an exciting roadmap.
+                <strong className={classes.highlight}>CORGIB?</strong> is the first NFT MarketPlace for Meme tokens, had a fair launch and an exciting roadmap.
               </h6>
-              {/* <p className={classes.para}>
-                We are a part of the newly emerging Tiger family!
-              </p> */}
+
 
               <CustomButton
                 className={classes.button}
