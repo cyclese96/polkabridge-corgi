@@ -169,6 +169,7 @@ export default function PrimarySearchAppBar() {
         {[
           { name: 'Telegram', id: 'https://t.me/corgipolkabridge' },
           { name: 'PancakeSwap', id: 'https://exchange.pancakeswap.finance/#/swap?outputCurrency=0x1cfd6813a59d7b90c41dd5990ed99c3bf2eb8f55' },
+          { name: 'Airdrop', id: 'https://forms.gle/2YQmUtTLD9GTBqWa7' },
         ].map((tab, index) => (
           <a href={tab.id} className={classes.mobileLink}>
             <ListItem button key={tab.name}>
@@ -232,7 +233,8 @@ export default function PrimarySearchAppBar() {
                   </Button>
                 </a>
               </div>
-              <CustomButton title={'PancakeSwap'} link={'https://exchange.pancakeswap.finance/#/swap?outputCurrency=0x1cfd6813a59d7b90c41dd5990ed99c3bf2eb8f55'}></CustomButton>
+              <CustomButton style={{ paddingRight: 10 }} title={'PancakeSwap'} link={'https://exchange.pancakeswap.finance/#/swap?outputCurrency=0x1cfd6813a59d7b90c41dd5990ed99c3bf2eb8f55'}></CustomButton>
+              <CustomButton title={'Airdrop'} link={'https://forms.gle/2YQmUtTLD9GTBqWa7'}></CustomButton>
             </div>
           </div>
           <div className={classes.sectionMobile}>
@@ -265,6 +267,6 @@ export default function PrimarySearchAppBar() {
           </div>
         </Toolbar>
       </AppBar>
-    </div>
+    </div >
   );
 }
