@@ -11,6 +11,7 @@ import Listings from './Listings';
 import Tokenomics from './Tokenomics';
 import ReleaseSchedule from './ReleaseSchedule';
 import Header from './Header';
+import HowToBuy from './HowToBuy';
 
 export default function Home() {
   return (
@@ -36,7 +37,9 @@ export default function Home() {
       <section id="roadmap">
         <Roadmap />
       </section>
-
+      <section id="roadmap">
+        <HowToBuy />
+      </section>
       <section>
         <Footer />
       </section>
