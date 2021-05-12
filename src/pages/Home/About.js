@@ -146,13 +146,18 @@ export default function About() {
   const classes = useStyles();
 
   return (
-    <div className={classes.background}>
-      <div className="row g-0 mt-3">
-        <div className="col-md-6">
-          <h6 className={classes.heading}>
-            What is <strong className={classes.highlight}>CORGIB?</strong>
-          </h6>
-          <p className={classes.para}>We are a part of the newly emerging Tiger family!</p>
+    <>
+      <section>
+        <div className={classes.background}>
+          <div className={classes.textContainer}>
+            <Fade left>
+              <h3 className={classes.number}>1</h3>
+              <h6 className={classes.heading}>
+                What is <strong className={classes.highlight}>CORGIB?</strong>
+              </h6>
+              <p className={classes.para}>
+                We are a part of the newly emerging Tiger family!
+              </p>
 
               <CustomButton
                 className={classes.button}
@@ -215,7 +220,7 @@ export default function About() {
               <h3 className={classes.number}>3</h3>
               <h6 className={classes.heading}>
                 Why choose us?{" "}
-                <strong className={classes.highlight}>CORGI?</strong> is fully
+                <strong className={classes.highlight}>CORGIB?</strong> is fully
                 decentralized, had a fair launch and an exciting roadmap.
               </h6>
               {/* <p className={classes.para}>
