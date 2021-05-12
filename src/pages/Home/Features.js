@@ -88,6 +88,13 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: 'wrap',
     justifyContent: 'center',
   },
+  image: {
+    width: '60%',
+    borderRadius: 10,
+    [theme.breakpoints.down('md')]: {
+      width: '100%',
+    },
+  },
 }));
 
 export default function Features() {
@@ -105,73 +112,10 @@ export default function Features() {
       </div>
       <Pulse>
         <div className="text-center">Under development</div>
-        {/* <div className="mt-5">
-          <div className="row g-0">
-            <div className="col-md-4 col-sm-12 text-center">
-              <div>
-                <CompareArrows className={classes.circle} color="secondary" fontSize="large" />
-              </div>
-
-              <h6 className={classes.featureHeading}>AMM</h6>
-              <p className={classes.featureText}>
-                A cutting-edge AMM, which redistributes earnings to pools and capitalizes on user slippages.
-              </p>
-            </div>
-
-            <div className="col-md-4 col-sm-12 text-center">
-              <div className="text-center">
-                <LocalFlorist className={classes.circle} color="secondary" fontSize="large" />
-              </div>
-
-              <h6 className={classes.featureHeading}>Farming</h6>
-              <p className={classes.featureText}>
-                Earn 90% of transaction fees by providing liquidity to liquidity pools.
-              </p>
-            </div>
-
-            <div className="col-md-4 col-sm-12 text-center">
-              <div className="text-center">
-                <ShutterSpeed className={classes.circle} color="secondary" fontSize="large" />
-              </div>
-
-              <h6 className={classes.featureHeading}>Launchpad</h6>
-              <p className={classes.featureText}>Participate in IDOs of good and fundamentally strong projects.</p>
-            </div>
-          </div>
+        <div className="text-center">
+          {' '}
+          <img src="/images/corgibnft.jpg" className={classes.image} />
         </div>
-        <div className="mt-5">
-          <div className="row g-0">
-            <div className="col-md-4 col-sm-12 text-center">
-              <div className="text-center">
-                <Receipt className={classes.circle} color="secondary" fontSize="large" />
-              </div>
-
-              <h6 className={classes.featureHeading}>Lending</h6>
-              <p className={classes.featureText}>Borrowing and depositing funds is made simple and easy</p>
-            </div>
-
-            <div className="col-md-4 col-sm-12 text-center">
-              <div className="text-center">
-                <AccountTree className={classes.circle} color="secondary" fontSize="large" />
-              </div>
-
-              <h6 className={classes.featureHeading}>Prediction</h6>
-              <p className={classes.featureText}>
-                Participate in predicting the market and receive rewards for being correct
-              </p>
-            </div>
-
-            <div className="col-md-4 col-sm-12 text-center">
-              <div className="text-center">
-                <HowToVote className={classes.circle} color="secondary" fontSize="large" />
-              </div>
-
-              <h6 className={classes.featureHeading}>Governance</h6>
-              <p className={classes.featureText}>Reserve tokens and participate in voting for our future projects.</p>
-            </div>
-          </div>
-        </div>
-      */}
       </Pulse>
     </div>
   );
