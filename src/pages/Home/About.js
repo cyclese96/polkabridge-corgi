@@ -97,7 +97,7 @@ export default function About() {
       <div className="row g-0 mt-3">
         <div className="col-md-6">
           <h6 className={classes.heading}>
-            What is <strong className={classes.highlight}>CORGI?</strong>
+            What is <strong className={classes.highlight}>CORGIB?</strong>
           </h6>
           <p className={classes.para}>We are a part of the newly emerging Tiger family!</p>
 
