@@ -150,7 +150,6 @@ export default function PrimarySearchAppBar() {
       onKeyDown={toggleDrawer(anchor, false)}>
       <List>
         {[
-
           { name: 'About', id: 'about' },
           { name: 'Features', id: 'features' },
           // { name: 'Team', id: 'team' },
@@ -168,7 +167,10 @@ export default function PrimarySearchAppBar() {
       <List>
         {[
           { name: 'ToTheMoon', id: 'https://t.me/corgipolkabridge' },
-          { name: 'PancakeSwap', id: 'https://exchange.pancakeswap.finance/#/swap?outputCurrency=0x1cfd6813a59d7b90c41dd5990ed99c3bf2eb8f55' },
+          {
+            name: 'PancakeSwap',
+            id: 'https://exchange.pancakeswap.finance/#/swap?outputCurrency=0x1cfd6813a59d7b90c41dd5990ed99c3bf2eb8f55',
+          },
           { name: 'Airdrop', id: 'https://forms.gle/2YQmUtTLD9GTBqWa7' },
         ].map((tab, index) => (
           <a href={tab.id} className={classes.mobileLink}>
@@ -194,9 +196,7 @@ export default function PrimarySearchAppBar() {
             <img src="corgi.png" alt="logo" height="50px" /> Corgi of PolkaBridge
           </Typography>
           <div className="d-flex justify-content-end align-items-center">
-            <Link activeClass="active" to="header" smooth={true} offset={0} duration={500} delay={0}>
-
-            </Link>
+            <Link activeClass="active" to="header" smooth={true} offset={0} duration={500} delay={0}></Link>
             <Link activeClass="active" to="about" smooth={true} offset={0} duration={500} delay={0}>
               <Typography className={classes.tabs} variant="body1" noWrap>
                 About
@@ -219,18 +219,27 @@ export default function PrimarySearchAppBar() {
               </Typography>
             </Link>
 
-
             <div className={classes.sectionDesktop}>
               <div style={{ paddingRight: 10 }}>
                 <a href="https://t.me/corgipolkabridge">
                   {' '}
                   <Button variant="outlined" className={classes.buttonOutlined}>
-                    ToTheMoon
+                    To The Moon
                   </Button>
                 </a>
               </div>
-              <CustomButton title={'PancakeSwap'} link={'https://exchange.pancakeswap.finance/#/swap?outputCurrency=0x1cfd6813a59d7b90c41dd5990ed99c3bf2eb8f55'}></CustomButton>
-              <CustomButton title={'Airdrop'} link={'https://forms.gle/2YQmUtTLD9GTBqWa7'}></CustomButton>
+              <div style={{ paddingRight: 10 }}>
+                {' '}
+                <CustomButton
+                  title={'PancakeSwap'}
+                  link={
+                    'https://exchange.pancakeswap.finance/#/swap?outputCurrency=0x1cfd6813a59d7b90c41dd5990ed99c3bf2eb8f55'
+                  }></CustomButton>
+              </div>
+              <div>
+                {' '}
+                <CustomButton title={'Airdrop'} link={'https://forms.gle/2YQmUtTLD9GTBqWa7'}></CustomButton>
+              </div>
             </div>
           </div>
           <div className={classes.sectionMobile}>
@@ -263,6 +272,6 @@ export default function PrimarySearchAppBar() {
           </div>
         </Toolbar>
       </AppBar>
-    </div >
+    </div>
   );
 }

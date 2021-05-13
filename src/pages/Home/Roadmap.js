@@ -138,6 +138,15 @@ const useStyles = makeStyles((theme) => ({
     flexDirection: 'column',
     justifyContent: 'center',
   },
+  statusUndone: {
+    borderLeft: '2px solid #bdbdbd',
+    fontSize: 40,
+    color: '#bdbdbd',
+
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'center',
+  },
 }));
 export default function Roadmap(props) {
   const classes = useStyles();
@@ -204,7 +213,7 @@ export default function Roadmap(props) {
               </div>
 
               <div className="d-flex justify-content-start">
-                <div className={classes.status}>
+                <div className={classes.statusUndone}>
                   <p style={{ marginLeft: -10 }}>•</p>
                 </div>
 
@@ -221,7 +230,7 @@ export default function Roadmap(props) {
               </div>
 
               <div className="d-flex justify-content-start">
-                <div className={classes.status}>
+                <div className={classes.statusUndone}>
                   <p style={{ marginLeft: -10 }}>•</p>
                 </div>
 
@@ -238,7 +247,7 @@ export default function Roadmap(props) {
               </div>
 
               <div className="d-flex justify-content-start">
-                <div className={classes.status}>
+                <div className={classes.statusUndone}>
                   <p style={{ marginLeft: -10 }}>•</p>
                 </div>
 
