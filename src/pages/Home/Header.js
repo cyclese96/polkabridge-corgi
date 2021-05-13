@@ -37,17 +37,23 @@ const useStyles = makeStyles((theme) => ({
   headerContainer: {
     height: '100%',
     display: 'flex',
-    justifyContent: 'center',
+    justifyContent: 'space-around',
     alignItems: 'center',
     // flexWrap: "wrap",
     paddingTop: 100,
+    paddingLeft:100,
+    paddingRight:100,
     [theme.breakpoints.down('md')]: {
-      paddingTop: 300,
-      flexDirection: 'column-reverse',
+      paddingTop: 100,
+      paddingLeft:10,
+      paddingRight:10,
+      flexDirection: 'column',
     },
     [theme.breakpoints.down('xs')]: {
       paddingTop: 100,
-      flexDirection: 'column-reverse',
+      paddingLeft:10,
+      paddingRight:10,
+      flexDirection: 'column',
     },
   },
   imageContainer: {
