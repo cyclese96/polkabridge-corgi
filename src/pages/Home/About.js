@@ -191,19 +191,15 @@ export default function About() {
         <div className="row">
           <div className="col-md-6">
             {' '}
-            <Fade right>
+            <Fade left>
               <div>
-                <img
-                  src="https://sanshuinu.finance/assets/images/sanshu-6.png"
-                  alt="explain"
-                  className={classes.imageContainer}
-                />
+                <img src="/images/why.png" alt="explain" className={classes.imageContainer} />
               </div>
             </Fade>
           </div>
           <div className="col-md-6">
             {' '}
-            <Fade left>
+            <Fade right>
               <h3 className={classes.number}>2</h3>
               <h6 className={classes.heading}>
                 Why choose <strong className={classes.highlight}>CORGIB?</strong>

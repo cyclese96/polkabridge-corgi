@@ -194,12 +194,14 @@ export default function PrimarySearchAppBar() {
     <div className={classes.grow}>
       <AppBar position="fixed" style={{ background: 'white', boxShadow: 'none', height: 70 }}>
         <Toolbar className="d-flex justify-content-evenly ">
-          <div className="d-flex flex-row  justify-content-start align-items-center">
-            <div style={{ paddingTop: 5 }}>
-              <img src="corgi.png" alt="logo" height="55px" />{' '}
-            </div>{' '}
-            <div style={{ fontWeight: 600, color: '#e65100', fontSize: 20, letterSpacing: '-1px', paddingTop: 5 }}>
-              Corgi of PolkaBridge
+          <div className={classes.title}>
+            <div className="d-flex flex-row  justify-content-start align-items-center">
+              <div style={{ paddingTop: 5 }}>
+                <img src="corgi.png" alt="logo" height="55px" />{' '}
+              </div>{' '}
+              <div style={{ fontWeight: 600, color: '#e65100', fontSize: 20, letterSpacing: '-1px', paddingTop: 5 }}>
+                Corgi of PolkaBridge
+              </div>
             </div>
           </div>
           <div className="d-flex justify-content-end align-items-center">
