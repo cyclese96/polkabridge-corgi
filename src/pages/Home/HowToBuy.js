@@ -117,10 +117,10 @@ export default function HowToBuy() {
             </div>
             <div className="col-md-7">
               <div className={classes.focusContainer} style={{ backgroundColor: '#fcfcfc' }}>
-                <h6 className={classes.containerTitle}>3. Step: Connect to PancakeSwap</h6>
+                <h6 className={classes.containerTitle}>3. Step: Go to PancakeSwap</h6>
                 <p className={classes.containerText}>
-                  Go to pancakeswap.finance and click the "Exchange" button. When Metamask asks for your signature, go
-                  ahead and sign it.
+                  Go to <a href="https://exchange.pancakeswap.finance/#/swap?outputCurrency=0x1cfd6813a59d7b90c41dd5990ed99c3bf2eb8f55" target="_blank">PancakeSwap</a> and click the "Approve" button (for the first time). Go
+                  ahead and when transaction finish, click "Swap".
                 </p>
               </div>
             </div>

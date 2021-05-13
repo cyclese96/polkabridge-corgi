@@ -171,7 +171,7 @@ export default function Roadmap(props) {
 
             <div className={classes.roadmapWrapper}>
               <div className="d-flex justify-content-start">
-                <div className={classes.status}>
+                <div className={classes.statusUndone}>
                   <p style={{ marginLeft: -10 }}>•</p>
                 </div>
                 <div className={classes.focusContainer} style={{ backgroundColor: '#fcfcfc' }}>
@@ -180,7 +180,7 @@ export default function Roadmap(props) {
                 </div>
               </div>
               <div className="d-flex justify-content-start">
-                <div className={classes.status}>
+                <div className={classes.statusUndone}>
                   <p style={{ marginLeft: -10 }}>•</p>
                 </div>
                 <div className={classes.focusContainer} style={{ backgroundColor: '#fcfcfc' }}>
@@ -195,7 +195,7 @@ export default function Roadmap(props) {
               </div>
 
               <div className="d-flex justify-content-start">
-                <div className={classes.status}>
+                <div className={classes.statusUndone}>
                   <p style={{ marginLeft: -10 }}>•</p>
                 </div>
 
