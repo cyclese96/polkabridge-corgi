@@ -41,18 +41,18 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'center',
     // flexWrap: "wrap",
     paddingTop: 100,
-    paddingLeft:100,
-    paddingRight:100,
+    paddingLeft: 100,
+    paddingRight: 100,
     [theme.breakpoints.down('md')]: {
       paddingTop: 100,
-      paddingLeft:10,
-      paddingRight:10,
+      paddingLeft: 10,
+      paddingRight: 10,
       flexDirection: 'column',
     },
     [theme.breakpoints.down('xs')]: {
       paddingTop: 100,
-      paddingLeft:10,
-      paddingRight:10,
+      paddingLeft: 10,
+      paddingRight: 10,
       flexDirection: 'column',
     },
   },
@@ -104,7 +104,7 @@ export default function Header() {
             <h2 className={classes.heading}>The NFT MarketPlace for Meme coins</h2>
             <p className={classes.subheading}>
               CORGIB Finance is a fully decentralized, the first NFT MarketPlace for Meme tokens, powered by{' '}
-              <strong className={classes.highlight}>PolkaBridge</strong>
+              <strong className={classes.highlight}>PolkaBridge</strong>.
             </p>
             <div>
               <CustomButton

@@ -150,8 +150,8 @@ export default function About() {
     <div className={classes.background}>
       <div className="container" style={{ minHeight: 500 }}>
         {' '}
-        <div className="row">
-          <div className="col-md-6">
+        <div className="row g-0 flex-column-reverse flex-md-row">
+          <div className="col-md-6 col-sm-12 col-sm-push-4">
             {' '}
             <Fade left>
               <h3 className={classes.number}>1</h3>
@@ -162,21 +162,21 @@ export default function About() {
                 CORGIB is not just a Meme coin, but also an NFT Marketplace where users can create NFT memes and trade
                 on the Marketplace.
               </p>
-              <p>
+              <p className={classes.para}>
                 CORGIB is a community product of{' '}
                 <a href="https://polkabridge.org" target="_blank">
                   PolkaBridge
                 </a>
-                , fairlaunch and bring value to PBR investors.
+                , aims to give fairlaunch and to bring value to PBR investors.
               </p>
               <Link activeClass="active" to={'tokenomics'}>
                 <Button variant="contained" className={classes.buttonMain}>
-                  Find out more
+                  Check Tokenomics
                 </Button>
               </Link>
             </Fade>
           </div>
-          <div className="col-md-6">
+          <div className="col-md-6 col-sm-12 col-sm-pull-4">
             {' '}
             <Fade right>
               <div>
@@ -205,11 +205,15 @@ export default function About() {
                 Why choose <strong className={classes.highlight}>CORGIB?</strong>
               </h6>
               <p className={classes.para}>
-                CORGIB is the first NFT MarketPlace for Meme tokens, had a fair launch and an exciting roadmap.
+                CORGIB is the first NFT MarketPlace for Meme tokens, has a fair launch mechanism with an exciting
+                roadmap.
+              </p>
+              <p className={classes.para}>
+                CORGIB has powerful tokenomics & locking schedule with 45% reserve for daily token burning.
               </p>
               <Link activeClass="active" to={'roadmap'}>
                 <Button variant="contained" className={classes.buttonMain}>
-                  View our roadmap
+                  View Roadmap
                 </Button>
               </Link>
             </Fade>

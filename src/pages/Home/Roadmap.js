@@ -176,7 +176,9 @@ export default function Roadmap(props) {
                 </div>
                 <div className={classes.focusContainer} style={{ backgroundColor: '#fcfcfc' }}>
                   <h6 className={classes.title}>Token Fair Launch</h6>
-                  <p className={classes.para}>CORBIG will be listed on PANCAKESWAP at 3PM UTC, 13th May</p>
+                  <p className={classes.para}>
+                    CORBIG will be listed on PANCAKESWAP at <strong>3PM UTC, 13th May</strong>.
+                  </p>
                 </div>
               </div>
               <div className="d-flex justify-content-start">
@@ -188,7 +190,8 @@ export default function Roadmap(props) {
                   <p className={classes.para}>
                     <ul>
                       <li>Liquidity will be locked for 2 month on Unicrypt.</li>
-                      <li> 45% of all tokens will be burnt everyday.</li> <li> Team's token will be locked.</li>
+                      <li> 45% of all tokens will be reserved and burnt 1% everyday.</li>{' '}
+                      <li> Team's token will be locked.</li>
                     </ul>
                   </p>
                 </div>
@@ -206,7 +209,7 @@ export default function Roadmap(props) {
                       <li>Influencers are on-board.</li>
                       <li> Community contribution & promotion contests.</li>
                       <li> The shiling army is ready for TikTok | Instagram | YouTube promotions.</li>
-                      <li> Finding partnership.</li>{' '}
+                      <li> Partnerships & Collaborations.</li>{' '}
                     </ul>
                   </p>
                 </div>
@@ -223,7 +226,7 @@ export default function Roadmap(props) {
                     <ul>
                       <li> CoinGecko Listing.</li>
                       <li> CoinMarketcap Listing.</li>
-                      <li> Tier-2 exchange Listing.</li>
+                      <li> Other Tier-2 exchange Listing.</li>
                     </ul>
                   </p>
                 </div>
@@ -253,7 +256,7 @@ export default function Roadmap(props) {
 
                 <div className={classes.focusContainer} style={{ backgroundColor: '#fcfcfc' }}>
                   <h6 className={classes.title}>Testnet</h6>
-                  <p className={classes.para}>NFT MarketPlace Testnet</p>
+                  <p className={classes.para}>NFT MarketPlace Testnet.</p>
                 </div>
               </div>
             </div>
