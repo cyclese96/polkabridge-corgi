@@ -129,6 +129,9 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 500,
     fontSize: '1.1vw',
   },
+  highlight: {
+    color: theme.palette.pbr.primary,
+  },
 }));
 
 export default function PrimarySearchAppBar() {
@@ -168,7 +171,7 @@ export default function PrimarySearchAppBar() {
       <Divider />
       <List>
         {[
-          { name: 'ToTheMoon', id: 'https://t.me/corgipolkabridge' },
+          { name: 'To The Moon', id: 'https://t.me/corgipolkabridge' },
           {
             name: 'PancakeSwap',
             id: 'https://exchange.pancakeswap.finance/#/swap?outputCurrency=0x1cfd6813a59d7b90c41dd5990ed99c3bf2eb8f55',
@@ -199,8 +202,8 @@ export default function PrimarySearchAppBar() {
               <div style={{ paddingTop: 5 }}>
                 <img src="corgi.png" alt="logo" height="55px" />{' '}
               </div>{' '}
-              <div style={{ fontWeight: 600, color: '#e65100', fontSize: 20, letterSpacing: '-1px', paddingTop: 5 }}>
-                Corgi of PolkaBridge
+              <div style={{ fontWeight: 600, color: '#000000', fontSize: 20, letterSpacing: '-1px', paddingTop: 5 }}>
+                Corgi of <span className={classes.highlight}>PolkaBridge</span>
               </div>
             </div>
           </div>
@@ -256,8 +259,8 @@ export default function PrimarySearchAppBar() {
               <div style={{ paddingTop: 5 }}>
                 <img src="corgi.png" alt="logo" height="55px" />{' '}
               </div>{' '}
-              <div style={{ fontWeight: 600, color: '#e65100', fontSize: 20, letterSpacing: '-1px', paddingTop: 5 }}>
-                Corgi of PolkaBridge
+              <div style={{ fontWeight: 600, color: '#000000', fontSize: 20, letterSpacing: '-1px', paddingTop: 5 }}>
+                Corgi of <span className={classes.highlight}>PolkaBridge</span>
               </div>
             </div>
 
