@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
   },
   title: {
     display: 'none',
-    color: 'black',
+    color: '#e65100',
     fontSize: 18,
 
     [theme.breakpoints.up('md')]: {
@@ -70,6 +70,8 @@ const useStyles = makeStyles((theme) => ({
   },
   menuIcon: {
     color: '#212121',
+
+    marginTop: 10,
   },
   list: {
     width: '250px',
@@ -192,9 +194,14 @@ export default function PrimarySearchAppBar() {
     <div className={classes.grow}>
       <AppBar position="fixed" style={{ background: 'white', boxShadow: 'none', height: 70 }}>
         <Toolbar className="d-flex justify-content-evenly ">
-          <Typography className={classes.title} variant="h6" noWrap>
-            <img src="corgi.png" alt="logo" height="50px" /> Corgi of PolkaBridge
-          </Typography>
+          <div className="d-flex flex-row  justify-content-start align-items-center">
+            <div style={{ paddingTop: 5 }}>
+              <img src="corgi.png" alt="logo" height="55px" />{' '}
+            </div>{' '}
+            <div style={{ fontWeight: 600, color: '#e65100', fontSize: 20, letterSpacing: '-1px', paddingTop: 5 }}>
+              Corgi of PolkaBridge
+            </div>
+          </div>
           <div className="d-flex justify-content-end align-items-center">
             <Link activeClass="active" to="header" smooth={true} offset={0} duration={500} delay={0}></Link>
             <Link activeClass="active" to="about" smooth={true} offset={0} duration={500} delay={0}>
@@ -238,25 +245,32 @@ export default function PrimarySearchAppBar() {
               </div>
               <div>
                 {' '}
-                <CustomButton title={'Airdrop'} link={'https://forms.gle/2YQmUtTLD9GTBqWa7'}></CustomButton>
+                <CustomButton title={'Get Airdrop'} link={'https://forms.gle/2YQmUtTLD9GTBqWa7'}></CustomButton>
               </div>
             </div>
           </div>
           <div className={classes.sectionMobile}>
-            <div style={{ color: 'white' }}>
-              <img src="corgi.png" alt="logo" height="50px" /> Corgi of PolkaBridge
+            <div className="d-flex flex-row  justify-content-start align-items-center">
+              <div style={{ paddingTop: 5 }}>
+                <img src="corgi.png" alt="logo" height="55px" />{' '}
+              </div>{' '}
+              <div style={{ fontWeight: 600, color: '#e65100', fontSize: 20, letterSpacing: '-1px', paddingTop: 5 }}>
+                Corgi of PolkaBridge
+              </div>
             </div>
 
             <div>
               {['right'].map((anchor) => (
                 <React.Fragment key={anchor}>
-                  <IconButton
-                    aria-label="Menu"
-                    aria-haspopup="true"
-                    className={classes.menuIcon}
-                    onClick={toggleDrawer(anchor, true)}>
-                    <MenuIcon />
-                  </IconButton>
+                  <div>
+                    <IconButton
+                      aria-label="Menu"
+                      aria-haspopup="true"
+                      className={classes.menuIcon}
+                      onClick={toggleDrawer(anchor, true)}>
+                      <MenuIcon style={{ fontSize: 28 }} />
+                    </IconButton>
+                  </div>
 
                   <SwipeableDrawer
                     anchor={anchor}

@@ -42,7 +42,7 @@ const useStyles = makeStyles((theme) => ({
   },
   icon: {
     fontSize: 24,
-    color: '#e5e5e5',
+    color: '#ffffff',
     '&:hover': {
       color: '#000000',
     },

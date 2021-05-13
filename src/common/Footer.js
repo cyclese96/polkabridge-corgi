@@ -13,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   para: {
-    fontWeight: 500,
+    fontWeight: 400,
     verticalAlign: 'baseline',
     letterSpacing: '-0.8px',
     margin: 0,
@@ -23,6 +23,8 @@ const useStyles = makeStyles((theme) => ({
     width: 500,
     [theme.breakpoints.down('sm')]: {
       width: '100%',
+      fontWeight: 500,
+
       paddingTop: 5,
       paddingBottom: 5,
     },
@@ -36,6 +38,12 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 16,
     marginRight: 7,
     color: '#ffffff',
+  },
+  copyright: {
+    fontSize: 14,
+    [theme.breakpoints.down('sm')]: {
+      fontSize: 13,
+    },
   },
 }));
 export default function Footer() {
@@ -55,7 +63,7 @@ export default function Footer() {
       </div>
       <SocialLinks /> <hr style={{ color: '#000000', height: 1 }} />
       <div className="text-center">
-        <p style={{ fontSize: 13 }}>
+        <p className={classes.copyright}>
           Copyright 2021 <span className={classes.highlight}>CORGIB Of PolkaBridge</span>. All Rights Reserved.
         </p>
       </div>
