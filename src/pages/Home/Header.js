@@ -91,7 +91,7 @@ export default function Header() {
       <div className={classes.header}>
         <div className={classes.headerContainer}>
           <Pulse>
-            <img src="images/sanshu_party.png" alt="" className={classes.imageContainer} />
+            <img src="images/corgiparty.png" alt="" className={classes.imageContainer} />
           </Pulse>
           <div className={classes.textContainer}>
             <h5 className={classes.notice}>CORGIB Finance</h5>
