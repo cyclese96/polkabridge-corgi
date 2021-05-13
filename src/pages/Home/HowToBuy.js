@@ -31,7 +31,7 @@ const useStyles = makeStyles((theme) => ({
     width: 120,
     [theme.breakpoints.down('sm')]: {
       marginTop: 30,
-      width: '100%',
+      width: 120,
     },
   },
   focusContainer: {

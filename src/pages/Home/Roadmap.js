@@ -120,9 +120,9 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   cardHeader: {
-    background: `linear-gradient(to bottom,#D9047C, #BF1088)`,
+    background: `linear-gradient(to bottom,#D9047C, purple)`,
     borderRadius: 10,
-    width: 850,
+    width: 900,
     height: 200,
     [theme.breakpoints.down('sm')]: {
       padding: 30,
