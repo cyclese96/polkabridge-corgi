@@ -99,6 +99,16 @@ export default function Partnerships() {
           </div>
         </div>
       </div>
+      <div className={classes.listingsWrapper}>
+        <div className="mt-3 row g-0 text-center">
+          <div className="col-6 col-md-3">
+            <a href="https://unilend.finance/">
+              <img src="images/unilend.png" alt="logo" className={classes.imageWrapper} />
+            </a>
+          </div>
+
+        </div>
+      </div>
     </div>
   );
 }

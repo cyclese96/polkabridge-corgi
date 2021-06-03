@@ -109,7 +109,7 @@ export default function Tokenomics() {
               <div className={classes.focusContainer} style={{ backgroundColor: '#fcfcfc' }}>
                 <h6 className={classes.title}>5% - Team</h6>
                 <p className={classes.para}>
-                  5% of the total token will be reserved for the team with vesting of 1% per 100 days.
+                  5% of the total token will be reserved for the team
                 </p>
               </div>
             </Fade>

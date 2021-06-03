@@ -59,7 +59,7 @@ export default function SocialLinks() {
       <div className="d-flex justify-content-start ">
         <div className={classes.iconWrapper}>
           <Tooltip title="Twitter" aria-label="add1">
-            <a href="https://twitter.com/realpolkabridge">
+            <a href="https://twitter.com/corgibofficial">
               <IconButton aria-label="Twitter">
                 <Twitter className={classes.icon} />
               </IconButton>

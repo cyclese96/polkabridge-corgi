@@ -176,7 +176,7 @@ export default function PrimarySearchAppBar() {
             name: 'PancakeSwap',
             id: 'https://exchange.pancakeswap.finance/#/swap?outputCurrency=0x1cfd6813a59d7b90c41dd5990ed99c3bf2eb8f55',
           },
-          { name: 'Airdrop', id: 'https://forms.gle/2YQmUtTLD9GTBqWa7' },
+          { name: 'Price Chart', id: 'https://poocoin.app/tokens/0x1cfd6813a59d7b90c41dd5990ed99c3bf2eb8f55' },
         ].map((tab, index) => (
           <a href={tab.id} className={classes.mobileLink}>
             <ListItem button key={tab.name}>
@@ -250,7 +250,7 @@ export default function PrimarySearchAppBar() {
               </div>
               <div>
                 {' '}
-                <CustomButton title={'Get Airdrop'} link={'https://forms.gle/2YQmUtTLD9GTBqWa7'}></CustomButton>
+                <CustomButton title={'Price Chart'} link={'https://poocoin.app/tokens/0x1cfd6813a59d7b90c41dd5990ed99c3bf2eb8f55'}></CustomButton>
               </div>
             </div>
           </div>

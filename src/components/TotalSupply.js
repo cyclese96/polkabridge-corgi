@@ -1,6 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
-export default function Supply() {
-  return 24804044600000;
+export default function TotalSupply() {
+  return 55000000000000;
 }
