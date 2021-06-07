@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import Appbar from './common/Appbar';
+import GameAppbar from './common/GameAppbar';
 import Home from './pages/Home/Home';
 import './App.css';
 import { ThemeProvider } from '@material-ui/core/styles';
@@ -22,7 +23,7 @@ export default function App() {
           </Route>
           <Route exact path="/play">
             <Fragment>
-              <Appbar />
+              <GameAppbar />
               <Play />
             </Fragment>
           </Route>

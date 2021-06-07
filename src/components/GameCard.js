@@ -56,6 +56,7 @@ const useStyles = makeStyles((theme) => ({
   countryName: {
     color: 'white',
     textAlign: 'center',
+    fontSize: 18,
   },
   vs: {
     fontSize: 32,
@@ -72,7 +73,7 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'center',
   },
   buttonWin: {
-    borderRadius: '10px',
+    borderRadius: '30px',
     background: `linear-gradient(to bottom,#81c784, #2e7d32)`,
     lineHeight: '24px',
     verticalAlign: 'baseline',
@@ -82,14 +83,14 @@ const useStyles = makeStyles((theme) => ({
     color: '#ffffff',
     padding: '12px 16px 12px 16px',
     fontWeight: 600,
-    fontSize: 24,
+    fontSize: 20,
     textTransform: 'none',
     [theme.breakpoints.down('sm')]: {
-      fontSize: 18,
+      fontSize: 16,
     },
   },
   buttonLose: {
-    borderRadius: '10px',
+    borderRadius: '30px',
     background: `linear-gradient(to bottom,#ef5350, #d32f2f)`,
     lineHeight: '24px',
     verticalAlign: 'baseline',
@@ -99,14 +100,14 @@ const useStyles = makeStyles((theme) => ({
     color: '#ffffff',
     padding: '12px 16px 12px 16px',
     fontWeight: 600,
-    fontSize: 24,
+    fontSize: 20,
     textTransform: 'none',
     [theme.breakpoints.down('sm')]: {
-      fontSize: 18,
+      fontSize: 16,
     },
   },
   buttonDraw: {
-    borderRadius: '10px',
+    borderRadius: '30px',
     background: `linear-gradient(to bottom,#ffb74d, #f57c00)`,
     lineHeight: '24px',
     verticalAlign: 'baseline',
@@ -116,10 +117,10 @@ const useStyles = makeStyles((theme) => ({
     color: '#ffffff',
     padding: '12px 16px 12px 16px',
     fontWeight: 600,
-    fontSize: 24,
+    fontSize: 20,
     textTransform: 'none',
     [theme.breakpoints.down('sm')]: {
-      fontSize: 18,
+      fontSize: 16,
     },
   },
   buttonWrapper: {
@@ -128,7 +129,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function GameCard() {
+export default function GameCard({ item }) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
 
@@ -140,26 +141,27 @@ export default function GameCard() {
       <div className="d-flex justify-content-center">
         <div className={classes.card}>
           <div className="mt-3 mb-5">
-            <p className={classes.date}>12th June,2021</p>
+            <p className={classes.date}>{item.date}</p>
 
             <div className="d-flex justify-content-center align-items-center">
               {' '}
               <div className={classes.flagWrapper}>
-                <img src="https://www.countryflags.io/tr/shiny/64.png" className={classes.flag} />
-                <p className={classes.countryName}>1. Italy</p>
+                <img src={item.team1.image} className={classes.flag} />
+                <p className={classes.countryName}>1. {item.team1.name}</p>
               </div>{' '}
               <div>
                 <h6 className={classes.vs}>Vs</h6>
               </div>
               <div className={classes.flagWrapper}>
-                <img src="https://www.countryflags.io/it/shiny/64.png" className={classes.flag} />
-                <p className={classes.countryName}>2. England</p>
+                <img src={item.team2.image} className={classes.flag} />
+                <p className={classes.countryName}>2. {item.team2.name}</p>
               </div>{' '}
             </div>
           </div>{' '}
-          <div>
+          <div className="d-flex flex-column justify-content-center align-items-center">
             {' '}
-            <p className={classes.countryName}>Predict and Win</p>
+            <h4 className={classes.countryName}>Predict and Win</h4>
+            <hr style={{ width: 100, backgroundColor: 'white', height: 1, marginTop: 0 }} />
           </div>
           <div className="d-flex justify-content-center">
             <div className={classes.buttonWrapper}>
