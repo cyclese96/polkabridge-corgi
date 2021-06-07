@@ -6,7 +6,8 @@ import { ThemeProvider } from '@material-ui/core/styles';
 import { theme } from './theme';
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Supply from './components/Supply';
-import TotalSupply from './components/TotalSupply'
+import TotalSupply from './components/TotalSupply';
+import Play from './pages/Play/Play';
 
 export default function App() {
   return (
@@ -17,6 +18,12 @@ export default function App() {
             <Fragment>
               <Appbar />
               <Home />
+            </Fragment>
+          </Route>
+          <Route exact path="/play">
+            <Fragment>
+              <Appbar />
+              <Play />
             </Fragment>
           </Route>
           <Route exact path="/api/cirsupply">
