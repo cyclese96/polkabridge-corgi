@@ -93,7 +93,7 @@ export default function Header() {
 
         {gameCards.map((singleCard) => {
           return (
-            <div className="mb-3">
+            <div className="pb-3">
               <GameCard item={singleCard} />
             </div>
           );
