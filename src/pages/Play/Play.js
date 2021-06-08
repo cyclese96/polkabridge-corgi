@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   header: {
-    height: '100%',
+    minHeight: '95vh',
     width: 'auto',
     background: `linear-gradient(0deg, rgba(0, 0, 0, 0.8), rgba(3, 3, 3, 0.7) ),url("https://wallpaperaccess.com/full/1884497.jpg")`,
     backgroundSize: 'cover',
@@ -71,11 +71,17 @@ export default function Header() {
   };
 
   let gameCards = [];
-  if (matches.length !== 0) {
+  if (matches.length !== 0 && value === 0) {
     gameCards = matches.filter((match) => {
       return Date.now() < new Date(match.date);
     });
   }
+  if (matches.length !== 0 && value === 1) {
+    gameCards = matches.filter((match) => {
+      return Date.now() > new Date(match.date);
+    });
+  }
+
   return (
     <section>
       <div className={classes.header}>
