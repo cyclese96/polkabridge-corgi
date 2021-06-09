@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
@@ -8,6 +8,7 @@ import EventNote from '@material-ui/icons/EventNote';
 import { Button } from '@material-ui/core';
 import GameCard from '../../components/GameCard';
 import matches from './../../data/matches';
+import { getTotalBetAmount, getTotalBetAmountByResult, getTotalParticipants } from './../../actions/SmartActions';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,7 +20,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   header: {
-    minHeight: '95vh',
+    overflowY: 'scroll',
+    height: '95vh',
     width: 'auto',
     background: `linear-gradient(0deg, rgba(0, 0, 0, 0.8), rgba(3, 3, 3, 0.7) ),url("https://wallpaperaccess.com/full/1884497.jpg")`,
     backgroundSize: 'cover',
@@ -70,6 +72,15 @@ export default function Header() {
     setValue(newValue);
   };
 
+  useEffect(() => {
+    // async function asyncFn() {
+    //   const mid = 1;
+    //   let totalBetAMount = await getTotalBetAmount(mid);
+    //   console.log('Total Bet Amount: ' + totalBetAMount);
+    // }
+    // asyncFn();
+  }, []);
+
   let gameCards = [];
   if (matches.length !== 0 && value === 0) {
     gameCards = matches.filter((match) => {
@@ -97,10 +108,10 @@ export default function Header() {
           </div>
         </div>
 
-        {gameCards.map((singleCard) => {
+        {gameCards.map((singleCard, index) => {
           return (
             <div className="pb-3">
-              <GameCard item={singleCard} />
+              <GameCard item={singleCard} index={index} key={index} />
             </div>
           );
         })}

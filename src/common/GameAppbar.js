@@ -155,29 +155,12 @@ export default function PrimarySearchAppBar() {
       onKeyDown={toggleDrawer(anchor, false)}>
       <List>
         {[
-          { name: 'About', id: 'about' },
-          { name: 'Features', id: 'features' },
-          // { name: 'Team', id: 'team' },
-          { name: 'Roadmap', id: 'roadmap' },
-          { name: 'Tokenomics', id: 'tokenomics' },
-        ].map((tab, index) => (
-          <Link activeClass="active" to={tab.id} smooth={true} offset={0} duration={500} delay={0}>
-            <ListItem button key={tab.name} onClick={toggleDrawer(anchor, false)}>
-              <ListItemText primary={tab.name} className={classes.menuTitle} />
-            </ListItem>
-          </Link>
-        ))}
-      </List>
-      <Divider />
-      <List>
-        {[
           { name: 'To The Moon', id: 'https://t.me/corgipolkabridge' },
           { name: 'Predict & Win', id: '/play' },
           {
             name: 'PancakeSwap',
             id: 'https://exchange.pancakeswap.finance/#/swap?outputCurrency=0x1cfd6813a59d7b90c41dd5990ed99c3bf2eb8f55',
           },
-          { name: 'Price Chart', id: 'https://poocoin.app/tokens/0x1cfd6813a59d7b90c41dd5990ed99c3bf2eb8f55' },
         ].map((tab, index) => (
           <a href={tab.id} className={classes.mobileLink}>
             <ListItem button key={tab.name}>
@@ -185,19 +168,18 @@ export default function PrimarySearchAppBar() {
             </ListItem>
           </a>
         ))}
-        {/* <ListItem button>
-          <a href="docs/whitepaper.pdf" style={{ textDecoration: 'none' }}>
-            <ListItemText primary={'Read Whitepaper'} className={classes.menuTitlePink} />
-          </a>
-        </ListItem> */}
       </List>
     </div>
   );
 
+  const connectWallet = () => {
+    console.log('Connected');
+  };
+
   return (
     <div className={classes.grow}>
       <AppBar position="static" style={{ background: 'white', boxShadow: 'none', height: 70 }}>
-        <Toolbar className="d-flex justify-content-evenly ">
+        <Toolbar className="d-flex justify-content-between px-5">
           <div className={classes.title}>
             <div className="d-flex flex-row  justify-content-start align-items-center">
               <div style={{ paddingTop: 5 }}>
@@ -210,52 +192,18 @@ export default function PrimarySearchAppBar() {
           </div>
           <div className="d-flex justify-content-end align-items-center">
             <Link activeClass="active" to="header" smooth={true} offset={0} duration={500} delay={0}></Link>
-            <Link activeClass="active" to="about" smooth={true} offset={0} duration={500} delay={0}>
-              <Typography className={classes.tabs} variant="body1" noWrap>
-                About
-              </Typography>
-            </Link>
-
-            <Link activeClass="active" to="features" smooth={true} offset={0} duration={500} delay={0}>
-              <Typography className={classes.tabs} variant="body1">
-                Features
-              </Typography>
-            </Link>
-            <Link activeClass="active" to="roadmap" smooth={true} offset={0} duration={500} delay={0}>
-              <Typography className={classes.tabs} variant="body1">
-                Roadmap
-              </Typography>
-            </Link>
-            <Link activeClass="active" to="tokenomics" smooth={true} offset={0} duration={500} delay={0}>
-              <Typography className={classes.tabs} variant="body1">
-                Tokenomics
-              </Typography>
-            </Link>
 
             <div className={classes.sectionDesktop}>
               <div style={{ paddingRight: 10 }}>
-                <a href="https://t.me/corgipolkabridge">
-                  {' '}
-                  <Button variant="outlined" className={classes.buttonOutlined}>
-                    To The Moon
-                  </Button>
-                </a>
-              </div>
-              <div style={{ paddingRight: 10 }}>
                 {' '}
-                <CustomButton
-                  title={'PancakeSwap'}
-                  link={
-                    'https://exchange.pancakeswap.finance/#/swap?outputCurrency=0x1cfd6813a59d7b90c41dd5990ed99c3bf2eb8f55'
-                  }></CustomButton>
+                <Button variant="outlined" className={classes.buttonOutlined} onClick={connectWallet}>
+                  Connect Wallet
+                </Button>
               </div>
-              <div>
-                {' '}
-                <CustomButton
-                  title={'Price Chart'}
-                  link={'https://poocoin.app/tokens/0x1cfd6813a59d7b90c41dd5990ed99c3bf2eb8f55'}></CustomButton>
+
+              {/* <div>
                 <CustomButton title={'Play & Win'} link={'/play'}></CustomButton>
-              </div>
+              </div> */}
             </div>
           </div>
           <div className={classes.sectionMobile}>

@@ -1,11 +1,16 @@
-import React, { Fragment } from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
-import TrendingUp from '@material-ui/icons/TrendingUp';
-import EventNote from '@material-ui/icons/EventNote';
 import { Button } from '@material-ui/core';
+import {
+  getTotalBetAmount,
+  getTotalBetAmountByResult,
+  getTotalParticipants,
+  isBet,
+  checkApproved,
+  approveAmount,
+} from './../actions/SmartActions';
+import tokenConnection from './../utils/tokenConnection';
+import constants from './../utils/constants';
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -72,69 +77,114 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 700,
     textAlign: 'center',
   },
-  buttonWin: {
-    borderRadius: '30px',
-    background: `linear-gradient(to bottom,#81c784, #2e7d32)`,
+  button: {
+    borderRadius: '10px',
+    background: `linear-gradient(to bottom,#D9047C, #BF1088)`,
     lineHeight: '24px',
     verticalAlign: 'baseline',
     letterSpacing: '-1px',
-
-    marginTop: 15,
+    margin: 0,
+    marginTop: 5,
     color: '#ffffff',
     padding: '12px 16px 12px 16px',
     fontWeight: 600,
-    fontSize: 20,
+    fontSize: 18,
     textTransform: 'none',
     [theme.breakpoints.down('sm')]: {
       fontSize: 16,
     },
   },
-  buttonLose: {
-    borderRadius: '30px',
-    background: `linear-gradient(to bottom,#ef5350, #d32f2f)`,
-    lineHeight: '24px',
-    verticalAlign: 'baseline',
-    letterSpacing: '-1px',
 
-    marginTop: 15,
-    color: '#ffffff',
-    padding: '12px 16px 12px 16px',
-    fontWeight: 600,
-    fontSize: 20,
-    textTransform: 'none',
-    [theme.breakpoints.down('sm')]: {
-      fontSize: 16,
-    },
-  },
-  buttonDraw: {
-    borderRadius: '30px',
-    background: `linear-gradient(to bottom,#ffb74d, #f57c00)`,
-    lineHeight: '24px',
-    verticalAlign: 'baseline',
-    letterSpacing: '-1px',
-
-    marginTop: 15,
-    color: '#ffffff',
-    padding: '12px 16px 12px 16px',
-    fontWeight: 600,
-    fontSize: 20,
-    textTransform: 'none',
-    [theme.breakpoints.down('sm')]: {
-      fontSize: 16,
-    },
-  },
   buttonWrapper: {
     textAlign: 'center',
-    width: 140,
+    width: 180,
   },
 }));
 
-export default function GameCard({ item }) {
+export default function GameCard({ item, index }) {
   const classes = useStyles();
-  const [value, setValue] = React.useState(0);
+  const [betAmount, setBetAmount] = useState(0);
+  const [participants, setParticipants] = useState(0);
+  const [actualCase, setActualCase] = useState(0);
+  const [loading, setLoading] = useState(false);
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
+  useEffect(() => {
+    async function asyncFn() {
+      const mid = index;
+      const userAddress = '0x9D7117a07fca9F22911d379A9fd5118A5FA4F448';
+      let totalBetAmount = await getTotalBetAmount(mid);
+      let totalParticipants = await getTotalParticipants(mid);
+      let betObject = await isBet(mid, userAddress);
+
+      setBetAmount(parseInt(totalBetAmount));
+      setParticipants(totalParticipants);
+
+      if (parseInt(betObject.amountBet) > 0) {
+        console.log('Already Bet');
+
+        setActualCase(0);
+      } else {
+        // Check approve
+        let approved = await checkApproved(userAddress);
+
+        if (approved) {
+          console.log('Approved');
+
+          setActualCase(1);
+        } else {
+          console.log('Not Approved');
+
+          setActualCase(2);
+        }
+      }
+    }
+    asyncFn();
+  }, []);
+
+  const approveFn = async () => {
+    setLoading(true);
+    const userAddress = '0x9D7117a07fca9F22911d379A9fd5118A5FA4F448';
+
+    const response = await new Promise((resolve, reject) => {
+      tokenConnection.methods
+        .approve(constants.contractAddress, '999999999999999999999999999999999999')
+        .send({ from: userAddress }, function (error, transactionHash) {
+          if (transactionHash) {
+            resolve(transactionHash);
+          } else {
+            console.log('Rejected by user!');
+            setLoading(false);
+
+            reject();
+          }
+        })
+        .on('receipt', async function (receipt) {
+          let approved = await checkApproved(userAddress);
+
+          if (approved) {
+            console.log('Approved');
+
+            setActualCase(1);
+          } else {
+            console.log('Not Approved');
+
+            setActualCase(2);
+          }
+          setLoading(false);
+        });
+    });
+    console.log(response);
+    return response;
+
+    //let res = await approveAmount(userAddress).then((res) => {});
+  };
+
+  const betFn = async () => {
+    console.log('Bet here');
+  };
+
+  const claimFn = async () => {
+    console.log('Claim here');
   };
   return (
     <section>
@@ -142,7 +192,6 @@ export default function GameCard({ item }) {
         <div className={classes.card}>
           <div className="mt-3 mb-5">
             <p className={classes.date}>{item.date}</p>
-
             <div className="d-flex justify-content-center align-items-center">
               {' '}
               <div className={classes.flagWrapper}>
@@ -163,27 +212,60 @@ export default function GameCard({ item }) {
             <h4 className={classes.countryName}>Predict and Win</h4>
             <hr style={{ width: 100, backgroundColor: 'white', height: 1, marginTop: 0 }} />
           </div>
-          <div className="d-flex justify-content-center">
-            <div className={classes.buttonWrapper}>
-              <Button variant="contained" className={classes.buttonWin}>
-                Win
-              </Button>
+          {actualCase === 0 && (
+            <div className="d-flex justify-content-center">
+              <div className={classes.buttonWrapper}>
+                <Button variant="contained" color="primary" className={classes.button} onClick={claimFn}>
+                  Claim Reward
+                </Button>
+              </div>
             </div>
-            <div className={classes.buttonWrapper}>
-              <Button variant="contained" className={classes.buttonDraw}>
-                Draw
-              </Button>
+          )}
+          {actualCase === 1 && (
+            <div className="d-flex justify-content-center">
+              <div className={classes.buttonWrapper}>
+                <Button variant="contained" className={classes.button} onClick={() => betFn(0)}>
+                  Win
+                </Button>
+              </div>
+              <div className={classes.buttonWrapper}>
+                <Button variant="contained" className={classes.button} onClick={() => betFn(1)}>
+                  Draw
+                </Button>
+              </div>
+              <div className={classes.buttonWrapper}>
+                <Button variant="contained" className={classes.button} onClick={() => betFn(2)}>
+                  Win
+                </Button>
+              </div>
             </div>
-            <div className={classes.buttonWrapper}>
-              <Button variant="contained" className={classes.buttonLose}>
-                Win
-              </Button>
+          )}
+          {actualCase === 2 && (
+            <div className="d-flex justify-content-center">
+              <div className={classes.buttonWrapper}>
+                <Button variant="contained" className={classes.button} onClick={approveFn}>
+                  Approve
+                </Button>
+              </div>
             </div>
-          </div>
+          )}
           <div className="mt-3">
             <p className={classes.countryName}>
-              Total Participants: <strong>5480</strong>
+              Total Participants: <strong>{participants}</strong>
             </p>
+          </div>
+          <div className="mt-3">
+            <div className="d-flex justify-content-evenly align-items-center">
+              <p className={classes.countryName}>
+                {item.team1.name}: <strong>{betAmount}</strong>
+              </p>
+              <p className={classes.countryName}>
+                Draw: <strong>{betAmount}</strong>
+              </p>
+              <p className={classes.countryName}>
+                {item.team2.name}: <strong>{betAmount} </strong>
+              </p>
+            </div>
           </div>
         </div>
       </div>
