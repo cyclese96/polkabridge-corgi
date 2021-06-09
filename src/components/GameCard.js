@@ -104,9 +104,18 @@ const useStyles = makeStyles((theme) => ({
 export default function GameCard({ item, index }) {
   const classes = useStyles();
   const [betAmount, setBetAmount] = useState(0);
+  const [userAddress, setUserAddress] = useState('');
   const [participants, setParticipants] = useState(0);
   const [actualCase, setActualCase] = useState(0);
   const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    let userAddress = localStorage.getItem('userAddress');
+    if (userAddress) {
+      setUserAddress(userAddress);
+    } else {
+      setActualCase(3);
+    }
+  }, []);
 
   useEffect(() => {
     async function asyncFn() {
@@ -188,87 +197,91 @@ export default function GameCard({ item, index }) {
   };
   return (
     <section>
-      <div className="d-flex justify-content-center">
-        <div className={classes.card}>
-          <div className="mt-3 mb-5">
-            <p className={classes.date}>{item.date}</p>
-            <div className="d-flex justify-content-center align-items-center">
+      {actualCase === 3 ? (
+        <div>Connect Wallet</div>
+      ) : (
+        <div className="d-flex justify-content-center">
+          <div className={classes.card}>
+            <div className="mt-3 mb-5">
+              <p className={classes.date}>{item.date}</p>
+              <div className="d-flex justify-content-center align-items-center">
+                {' '}
+                <div className={classes.flagWrapper}>
+                  <img src={item.team1.image} className={classes.flag} />
+                  <p className={classes.countryName}>1. {item.team1.name}</p>
+                </div>{' '}
+                <div>
+                  <h6 className={classes.vs}>Vs</h6>
+                </div>
+                <div className={classes.flagWrapper}>
+                  <img src={item.team2.image} className={classes.flag} />
+                  <p className={classes.countryName}>2. {item.team2.name}</p>
+                </div>{' '}
+              </div>
+            </div>{' '}
+            <div className="d-flex flex-column justify-content-center align-items-center">
               {' '}
-              <div className={classes.flagWrapper}>
-                <img src={item.team1.image} className={classes.flag} />
-                <p className={classes.countryName}>1. {item.team1.name}</p>
-              </div>{' '}
-              <div>
-                <h6 className={classes.vs}>Vs</h6>
-              </div>
-              <div className={classes.flagWrapper}>
-                <img src={item.team2.image} className={classes.flag} />
-                <p className={classes.countryName}>2. {item.team2.name}</p>
-              </div>{' '}
+              <h4 className={classes.countryName}>Predict and Win</h4>
+              <hr style={{ width: 100, backgroundColor: 'white', height: 1, marginTop: 0 }} />
             </div>
-          </div>{' '}
-          <div className="d-flex flex-column justify-content-center align-items-center">
-            {' '}
-            <h4 className={classes.countryName}>Predict and Win</h4>
-            <hr style={{ width: 100, backgroundColor: 'white', height: 1, marginTop: 0 }} />
-          </div>
-          {actualCase === 0 && (
-            <div className="d-flex justify-content-center">
-              <div className={classes.buttonWrapper}>
-                <Button variant="contained" color="primary" className={classes.button} onClick={claimFn}>
-                  Claim Reward
-                </Button>
+            {actualCase === 0 && (
+              <div className="d-flex justify-content-center">
+                <div className={classes.buttonWrapper}>
+                  <Button variant="contained" color="primary" className={classes.button} onClick={claimFn}>
+                    Claim Reward
+                  </Button>
+                </div>
               </div>
-            </div>
-          )}
-          {actualCase === 1 && (
-            <div className="d-flex justify-content-center">
-              <div className={classes.buttonWrapper}>
-                <Button variant="contained" className={classes.button} onClick={() => betFn(0)}>
-                  Win
-                </Button>
+            )}
+            {actualCase === 1 && (
+              <div className="d-flex justify-content-center">
+                <div className={classes.buttonWrapper}>
+                  <Button variant="contained" className={classes.button} onClick={() => betFn(0)}>
+                    Win
+                  </Button>
+                </div>
+                <div className={classes.buttonWrapper}>
+                  <Button variant="contained" className={classes.button} onClick={() => betFn(1)}>
+                    Draw
+                  </Button>
+                </div>
+                <div className={classes.buttonWrapper}>
+                  <Button variant="contained" className={classes.button} onClick={() => betFn(2)}>
+                    Win
+                  </Button>
+                </div>
               </div>
-              <div className={classes.buttonWrapper}>
-                <Button variant="contained" className={classes.button} onClick={() => betFn(1)}>
-                  Draw
-                </Button>
+            )}
+            {actualCase === 2 && (
+              <div className="d-flex justify-content-center">
+                <div className={classes.buttonWrapper}>
+                  <Button variant="contained" className={classes.button} onClick={approveFn}>
+                    Approve
+                  </Button>
+                </div>
               </div>
-              <div className={classes.buttonWrapper}>
-                <Button variant="contained" className={classes.button} onClick={() => betFn(2)}>
-                  Win
-                </Button>
-              </div>
-            </div>
-          )}
-          {actualCase === 2 && (
-            <div className="d-flex justify-content-center">
-              <div className={classes.buttonWrapper}>
-                <Button variant="contained" className={classes.button} onClick={approveFn}>
-                  Approve
-                </Button>
-              </div>
-            </div>
-          )}
-          <div className="mt-3">
-            <p className={classes.countryName}>
-              Total Participants: <strong>{participants}</strong>
-            </p>
-          </div>
-          <div className="mt-3">
-            <div className="d-flex justify-content-evenly align-items-center">
+            )}
+            <div className="mt-3">
               <p className={classes.countryName}>
-                {item.team1.name}: <strong>{betAmount}</strong>
+                Total Participants: <strong>{participants}</strong>
               </p>
-              <p className={classes.countryName}>
-                Draw: <strong>{betAmount}</strong>
-              </p>
-              <p className={classes.countryName}>
-                {item.team2.name}: <strong>{betAmount} </strong>
-              </p>
+            </div>
+            <div className="mt-3">
+              <div className="d-flex justify-content-evenly align-items-center">
+                <p className={classes.countryName}>
+                  {item.team1.name}: <strong>{betAmount}</strong>
+                </p>
+                <p className={classes.countryName}>
+                  Draw: <strong>{betAmount}</strong>
+                </p>
+                <p className={classes.countryName}>
+                  {item.team2.name}: <strong>{betAmount} </strong>
+                </p>
+              </div>
             </div>
           </div>
         </div>
-      </div>
+      )}
     </section>
   );
 }

@@ -1,20 +1,22 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
-import Typography from '@material-ui/core/Typography';
+
 import MenuIcon from '@material-ui/icons/Menu';
-import DotCircle from '../components/DotCircle';
-import CustomButton from './CustomButton';
+
 import clsx from 'clsx';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import List from '@material-ui/core/List';
-import Divider from '@material-ui/core/Divider';
+
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { Link } from 'react-scroll';
 import { Button } from '@material-ui/core';
+import { authUser, signOutUser } from './../actions/authActions';
+import { checkCorrectNetwork, checkWalletAvailable } from './../actions/web3Actions';
+import web3 from './../web';
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -175,6 +177,33 @@ export default function PrimarySearchAppBar() {
   const connectWallet = () => {
     console.log('Connected');
   };
+
+  useEffect(() => {
+    //Events to detect changes in account or network.
+    if (window.ethereum !== undefined) {
+      window.ethereum.on('accountsChanged', function (accounts) {
+        web3.eth.requestAccounts().then((accounts) => {
+          const accountAddress = accounts[0];
+          authUser(accountAddress);
+
+          window.location.reload();
+        });
+      });
+      window.ethereum.on('networkChanged', async function (networkId) {
+        let networkStatus = await checkCorrectNetwork();
+
+        if (networkStatus) {
+          web3.eth.requestAccounts().then((accounts) => {
+            const accountAddress = accounts[0];
+            authUser(accountAddress);
+          });
+        } else {
+          console.log('Calling Signout');
+          signOutUser();
+        }
+      });
+    }
+  }, []);
 
   return (
     <div className={classes.grow}>
