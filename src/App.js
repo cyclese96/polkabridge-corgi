@@ -9,6 +9,8 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Supply from './components/Supply';
 import TotalSupply from './components/TotalSupply';
 import Play from './pages/Play/Play';
+import Footer from './common/Footer';
+import BetFooter from './common/BetFooter';
 
 export default function App() {
   return (
@@ -25,6 +27,7 @@ export default function App() {
             <Fragment>
               <GameAppbar />
               <Play />
+              <BetFooter />
             </Fragment>
           </Route>
           <Route exact path="/api/cirsupply">

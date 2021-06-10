@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
   },
   header: {
     overflowY: 'scroll',
-    height: '95vh',
+    height: '85vh',
     width: 'auto',
     background: `linear-gradient(0deg, rgba(0, 0, 0, 0.8), rgba(3, 3, 3, 0.7) ),url("images/corgibbg.jpg")`,
     backgroundSize: 'cover',
@@ -71,11 +71,31 @@ export default function Header() {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
   const [actualCase, setActualCase] = React.useState(0);
+  const [games, setGames] = React.useState([]);
 
   const handleChange = (event, newValue) => {
+    updateMatches(newValue);
     setValue(newValue);
   };
+  const updateMatches = (newValue) => {
+    let gameCards = [];
+    if (matches.length !== 0 && newValue === 0) {
+      gameCards = matches.filter((match) => {
+        let d = new Date();
+        let matchDate1 = new Date(match.date);
+        return d.toUTCString() > matchDate1.toUTCString();
+      });
+    }
+    if (matches.length !== 0 && newValue === 1) {
+      gameCards = matches.filter((match) => {
+        let d = new Date();
+        let matchDate2 = new Date(match.date);
 
+        return d.toUTCString() < matchDate2.toUTCString();
+      });
+    }
+    setGames(gameCards);
+  };
   const conditionValidity = async () => {
     let walletAvailable = await checkWalletAvailable();
     if (walletAvailable) {
@@ -107,25 +127,8 @@ export default function Header() {
   };
   useEffect(() => {
     conditionValidity();
+    updateMatches(0);
   }, [localStorage.getItem('userAddress')]);
-
-  let gameCards = [];
-  if (matches.length !== 0 && value === 0) {
-    gameCards = matches.filter((match) => {
-      let d = new Date();
-      let matchDate = new Date(match.date);
-
-      return d.toUTCString() > matchDate.toUTCString();
-    });
-  }
-  if (matches.length !== 0 && value === 1) {
-    gameCards = matches.filter((match) => {
-      let d = new Date();
-      let matchDate = new Date(match.date);
-
-      return d.toUTCString() < matchDate.toUTCString();
-    });
-  }
 
   return (
     <section>
@@ -159,14 +162,14 @@ export default function Header() {
                 <h6 className={classes.heading}>Play and Win</h6>
                 <Paper square className={classes.root}>
                   <Tabs value={value} onChange={handleChange} indicatorColor="secondary" textColor="primary" centered>
-                    <Tab icon={<TrendingUp />} label="Active Matches" />
-                    <Tab icon={<EventNote />} label="Ended Ended" />
+                    <Tab label="Active Matches" />
+                    <Tab label="Ended Ended" />
                   </Tabs>
                 </Paper>
               </div>
             </div>
 
-            {gameCards.map((singleCard, index) => {
+            {games.map((singleCard, index) => {
               return (
                 <div className="pb-3">
                   <GameCard item={singleCard} index={index} key={index} />
