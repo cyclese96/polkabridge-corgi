@@ -21,7 +21,7 @@ export default function App() {
               <Home />
             </Fragment>
           </Route>
-          <Route exact path="/play">
+          <Route exact path="/bet">
             <Fragment>
               <GameAppbar />
               <Play />

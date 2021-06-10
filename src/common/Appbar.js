@@ -24,12 +24,12 @@ const useStyles = makeStyles((theme) => ({
     marginRight: theme.spacing(2),
   },
   title: {
-    display: 'none',
+    display: 'block',
     color: '#e65100',
     fontSize: 18,
 
     [theme.breakpoints.down('md')]: {
-      display: 'block',
+      display: 'none',
     },
   },
   tabs: {
@@ -172,7 +172,7 @@ export default function PrimarySearchAppBar() {
       <List>
         {[
           { name: 'To The Moon', id: 'https://t.me/corgipolkabridge' },
-          { name: 'Predict & Win', id: '/play' },
+          { name: 'Predict & Win', id: '/bet' },
           {
             name: 'PancakeSwap',
             id: 'https://exchange.pancakeswap.finance/#/swap?outputCurrency=0x1cfd6813a59d7b90c41dd5990ed99c3bf2eb8f55',
@@ -249,12 +249,15 @@ export default function PrimarySearchAppBar() {
                     'https://exchange.pancakeswap.finance/#/swap?outputCurrency=0x1cfd6813a59d7b90c41dd5990ed99c3bf2eb8f55'
                   }></CustomButton>
               </div>
-              <div>
+              <div style={{ paddingRight: 10 }}>
                 {' '}
                 <CustomButton
                   title={'Price Chart'}
                   link={'https://poocoin.app/tokens/0x1cfd6813a59d7b90c41dd5990ed99c3bf2eb8f55'}></CustomButton>
-                <CustomButton title={'Play & Win'} link={'/play'}></CustomButton>
+              </div>
+              <div>
+                {' '}
+                <CustomButton title={'Play & Win'} link={'/bet'}></CustomButton>
               </div>
             </div>
           </div>

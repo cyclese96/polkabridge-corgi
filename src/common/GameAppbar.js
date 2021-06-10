@@ -9,7 +9,7 @@ import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import { Link } from 'react-scroll';
+import { Link } from 'react-router-dom';
 import { Button } from '@material-ui/core';
 import { authUser, signOutUser } from './../actions/authActions';
 import { checkCorrectNetwork, checkWalletAvailable } from './../actions/web3Actions';
@@ -243,9 +243,11 @@ export default function PrimarySearchAppBar() {
               <div style={{ paddingTop: 5 }}>
                 <img src="corgi.png" alt="logo" height="55px" />{' '}
               </div>{' '}
-              <div style={{ fontWeight: 600, color: '#000000', fontSize: 20, letterSpacing: '-1px', paddingTop: 5 }}>
-                Corgi of <span className={classes.highlight}>PolkaBridge</span>
-              </div>
+              <Link to="/">
+                <div style={{ fontWeight: 600, color: '#000000', fontSize: 20, letterSpacing: '-1px', paddingTop: 5 }}>
+                  Corgi of <span className={classes.highlight}>PolkaBridge</span>
+                </div>
+              </Link>
             </div>
           </div>
           <div className="d-flex justify-content-end align-items-center">
