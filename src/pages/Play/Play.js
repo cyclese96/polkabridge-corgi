@@ -112,12 +112,18 @@ export default function Header() {
   let gameCards = [];
   if (matches.length !== 0 && value === 0) {
     gameCards = matches.filter((match) => {
-      return Date.now() < new Date(match.date);
+      let d = new Date();
+      let matchDate = new Date(match.date);
+
+      return d.toUTCString() > matchDate.toUTCString();
     });
   }
   if (matches.length !== 0 && value === 1) {
     gameCards = matches.filter((match) => {
-      return Date.now() > new Date(match.date);
+      let d = new Date();
+      let matchDate = new Date(match.date);
+
+      return d.toUTCString() < matchDate.toUTCString();
     });
   }
 
