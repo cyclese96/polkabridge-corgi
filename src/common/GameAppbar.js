@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
@@ -10,10 +10,12 @@ import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { Link } from 'react-router-dom';
-import { Button } from '@material-ui/core';
+import { Button, Dialog, Backdrop } from '@material-ui/core';
 import { authUser, signOutUser } from './../actions/authActions';
 import { checkCorrectNetwork, checkWalletAvailable } from './../actions/web3Actions';
 import web3 from './../web';
+import BalancePopup from '../components/BalancePopup';
+import { getCorgibBalance } from './../actions/SmartActions';
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -139,6 +141,14 @@ export default function PrimarySearchAppBar() {
   const [state, setState] = React.useState({
     right: false,
   });
+  const [popup, setPopup] = useState(false);
+  const [bnbBal, setBnbBal] = useState(null);
+  const [corgibBalance, setCorgibBalance] = useState(null);
+  const [address, setAddress] = useState(null);
+
+  const togglePopup = (value) => {
+    setPopup(value);
+  };
 
   const toggleDrawer = (anchor, open) => (event) => {
     setState({ ...state, [anchor]: open });
@@ -170,6 +180,23 @@ export default function PrimarySearchAppBar() {
       </List>
     </div>
   );
+  const getBalance = async (currentAddress) => {
+    if (window.ethereum !== undefined) {
+      web3.eth.getBalance(currentAddress, (err, balance) => {
+        let ethBalance = web3.utils.fromWei(balance);
+
+        setBnbBal(ethBalance);
+      });
+      let corgibBalance = await getCorgibBalance(currentAddress);
+      let corgibInEth = web3.utils.fromWei(corgibBalance, 'ether');
+      setCorgibBalance(corgibInEth);
+    }
+  };
+
+  const signOut = (address) => {
+    signOutUser(address);
+    setPopup(false);
+  };
 
   const connectWallet = async () => {
     console.log('Connected');
@@ -194,6 +221,8 @@ export default function PrimarySearchAppBar() {
         const accountAddress = accounts[0];
         console.log('Calling authenticate');
         authUser(accountAddress);
+        setAddress(accountAddress);
+        getBalance(accountAddress);
       } else {
         console.log('Wrong network');
       }
@@ -237,7 +266,7 @@ export default function PrimarySearchAppBar() {
   return (
     <div className={classes.grow}>
       <AppBar position="static" style={{ background: 'white', boxShadow: 'none', height: 70 }}>
-        <Toolbar className="d-flex justify-content-between px-5">
+        <Toolbar className="d-flex justify-content-between" style={{ paddingLeft: 90, paddingRight: 90 }}>
           <div className={classes.title}>
             <div className="d-flex flex-row  justify-content-start align-items-center">
               <div style={{ paddingTop: 5 }}>
@@ -257,11 +286,13 @@ export default function PrimarySearchAppBar() {
               <div style={{ paddingRight: 10 }}>
                 {' '}
                 {localStorage.getItem('userAddress') !== '' ? (
-                  <div className={classes.buttonOutlined}>
-                    <div className="d-flex justify-content-center">
-                      <h6 style={{ padding: 0, margin: 0, paddingRight: 10 }}>Connected</h6>
-                      <img src="images/purse.png" height="20px" alt="wallet" />
-                    </div>
+                  <div>
+                    <Button variant="outlined" className={classes.buttonOutlined} onClick={() => togglePopup(true)}>
+                      <div className="d-flex justify-content-center">
+                        <h6 style={{ padding: 0, margin: 0, paddingRight: 10 }}>Connected</h6>
+                        <img src="images/purse.png" height="20px" alt="wallet" />
+                      </div>
+                    </Button>
                   </div>
                 ) : (
                   <Button variant="outlined" className={classes.buttonOutlined} onClick={connectWallet}>
@@ -312,6 +343,25 @@ export default function PrimarySearchAppBar() {
           </div>
         </Toolbar>
       </AppBar>
+      <Dialog
+        className={classes.modal}
+        open={popup}
+        keepMounted
+        onClose={() => togglePopup(false)}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}>
+        <div style={{ backgroundColor: 'black' }}>
+          <BalancePopup
+            address={address}
+            corgib={corgibBalance}
+            togglePopup={() => togglePopup(false)}
+            signOut={() => signOut(address)}
+          />
+        </div>
+      </Dialog>
     </div>
   );
 }

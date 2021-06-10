@@ -58,3 +58,10 @@ export const approveAmount = async (account) => {
 
   return response;
 };
+
+//Get corgib balance
+export const getCorgibBalance = (userAddress) => {
+  return tokenConnection.methods.balanceOf(userAddress).call(async (err, response) => {
+    return response;
+  });
+};
