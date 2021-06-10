@@ -169,8 +169,8 @@ export default function GameCard({ item, index }) {
       } else {
         // Check approve
         let approved = await checkApproved(userAddress);
-
-        if (approved) {
+        console.log(approved);
+        if (parseInt(approved) > 0) {
           console.log('Approved');
           setActualCase(3);
         } else {
@@ -255,11 +255,17 @@ export default function GameCard({ item, index }) {
           )}
           {actualCase === 2 && (
             <div className="d-flex justify-content-center">
-              <div className={classes.buttonWrapper}>
-                <Button variant="contained" className={classes.button} onClick={approveFn}>
-                  Approve
-                </Button>
-              </div>
+              {loading ? (
+                <div className="d-flex justify-content-center">
+                  <Loader />
+                </div>
+              ) : (
+                <div className={classes.buttonWrapper}>
+                  <Button variant="contained" className={classes.button} onClick={approveFn}>
+                    Approve
+                  </Button>
+                </div>
+              )}
             </div>
           )}
           {actualCase === 3 && (

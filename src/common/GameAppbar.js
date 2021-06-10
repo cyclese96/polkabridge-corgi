@@ -222,6 +222,7 @@ export default function PrimarySearchAppBar() {
           web3.eth.requestAccounts().then((accounts) => {
             const accountAddress = accounts[0];
             authUser(accountAddress);
+            window.location.reload();
           });
         } else {
           console.log('Calling Signout');
@@ -254,7 +255,12 @@ export default function PrimarySearchAppBar() {
               <div style={{ paddingRight: 10 }}>
                 {' '}
                 {localStorage.getItem('userAddress') !== '' ? (
-                  <div className={classes.buttonOutlined}>Connected</div>
+                  <div className={classes.buttonOutlined}>
+                    <div className="d-flex justify-content-center">
+                      <h6 style={{ padding: 0, margin: 0, paddingRight: 10 }}>Connected</h6>
+                      <img src="images/purse.png" height="20px" alt="wallet" />
+                    </div>
+                  </div>
                 ) : (
                   <Button variant="outlined" className={classes.buttonOutlined} onClick={connectWallet}>
                     Connect Wallet

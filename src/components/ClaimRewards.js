@@ -27,13 +27,23 @@ const useStyles = makeStyles((theme) => ({
 export default function ClaimRewards({ mid }) {
   const classes = useStyles();
   const [matchInfo, setMatchInfo] = useState({});
+  const [enableClaim, setEnableClaim] = useState(false);
 
   useEffect(() => {
     async function callMatchInfo() {
       console.log('Use effect');
-      let matchInfo = 10;
-      //let matchInfo = await getMatchInfo(mid);
+      // let matchInfo = 10;
+      let matchInfo = await getMatchInfo(mid);
+      let resultDeclared = parseInt(matchInfo[5]);
+      setMatchInfo(matchInfo);
+      if (resultDeclared > 0) {
+        console.log('Result declared');
+        setEnableClaim(true);
+      } else {
+        console.log('Result not declared');
 
+        setEnableClaim(false);
+      }
       console.log(matchInfo);
     }
     callMatchInfo();
@@ -43,9 +53,17 @@ export default function ClaimRewards({ mid }) {
   };
   return (
     <div className="text-center">
-      <Button variant="contained" color="primary" className={classes.button} onClick={claimFn}>
-        Claim Rewards
-      </Button>
+      {enableClaim ? (
+        <Button variant="contained" color="primary" className={classes.button} onClick={claimFn}>
+          Claim Rewards
+        </Button>
+      ) : (
+        <div>
+          <Button variant="contained" color="primary" className={classes.button}>
+            Result TBA
+          </Button>
+        </div>
+      )}
     </div>
   );
 }
