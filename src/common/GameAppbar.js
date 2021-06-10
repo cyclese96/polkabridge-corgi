@@ -3,13 +3,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import IconButton from '@material-ui/core/IconButton';
-
 import MenuIcon from '@material-ui/icons/Menu';
-
 import clsx from 'clsx';
 import SwipeableDrawer from '@material-ui/core/SwipeableDrawer';
 import List from '@material-ui/core/List';
-
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { Link } from 'react-scroll';
@@ -174,9 +171,38 @@ export default function PrimarySearchAppBar() {
     </div>
   );
 
-  const connectWallet = () => {
+  const connectWallet = async () => {
     console.log('Connected');
+    if (window.ethereum !== undefined) {
+      const networkStatus = await checkCorrectNetwork();
+      if (networkStatus) {
+        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+        const accountAddress = accounts[0];
+        authUser(accountAddress);
+      } else {
+        console.log('Only support BSC network');
+      }
+    } else {
+      console.log('Install metamask first!');
+    }
   };
+  useEffect(async () => {
+    if (window.ethereum !== undefined) {
+      const networkStatus = await checkCorrectNetwork();
+      if (networkStatus) {
+        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+        const accountAddress = accounts[0];
+        console.log('Calling authenticate');
+        authUser(accountAddress);
+      } else {
+        console.log('Wrong network');
+      }
+    }
+  }, [localStorage.getItem('userAddress')]);
+
+  // useEffect(() => {
+  //   window.location.reload();
+  // }, [localStorage.getItem('userAddress')]);
 
   useEffect(() => {
     //Events to detect changes in account or network.
@@ -199,11 +225,13 @@ export default function PrimarySearchAppBar() {
           });
         } else {
           console.log('Calling Signout');
+
           signOutUser();
+          window.location.reload();
         }
       });
     }
-  }, []);
+  }, [localStorage.getItem('userAddress')]);
 
   return (
     <div className={classes.grow}>
@@ -225,9 +253,13 @@ export default function PrimarySearchAppBar() {
             <div className={classes.sectionDesktop}>
               <div style={{ paddingRight: 10 }}>
                 {' '}
-                <Button variant="outlined" className={classes.buttonOutlined} onClick={connectWallet}>
-                  Connect Wallet
-                </Button>
+                {localStorage.getItem('userAddress') !== '' ? (
+                  <div className={classes.buttonOutlined}>Connected</div>
+                ) : (
+                  <Button variant="outlined" className={classes.buttonOutlined} onClick={connectWallet}>
+                    Connect Wallet
+                  </Button>
+                )}
               </div>
 
               {/* <div>

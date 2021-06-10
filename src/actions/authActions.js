@@ -7,5 +7,5 @@ export const authUser = (address) => {
 };
 
 export const signOutUser = () => {
-  localStorage.setItem('userAddress', '');
+  localStorage.removeItem('userAddress');
 };

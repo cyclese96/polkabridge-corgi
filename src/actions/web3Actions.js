@@ -25,7 +25,7 @@ export const checkCorrectNetwork = async () => {
     return res;
   });
   //console.log(chainID);
-  if (chainID === 56) {
+  if (chainID === parseInt(constants.network_id)) {
     //console.log('BSC');
     return true;
   } else {

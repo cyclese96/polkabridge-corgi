@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Button } from '@material-ui/core';
+import { Button, Slide, Dialog, Backdrop } from '@material-ui/core';
 import {
   getTotalBetAmount,
   getTotalBetAmountByResult,
@@ -10,7 +10,16 @@ import {
   approveAmount,
 } from './../actions/SmartActions';
 import tokenConnection from './../utils/tokenConnection';
+import contractConnection from './../utils/connection';
 import constants from './../utils/constants';
+import BetPopup from './BetPopup';
+import Loader from './Loader';
+import web3 from './../web';
+import ClaimRewards from './ClaimRewards';
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -106,8 +115,19 @@ export default function GameCard({ item, index }) {
   const [betAmount, setBetAmount] = useState(0);
   const [userAddress, setUserAddress] = useState('');
   const [participants, setParticipants] = useState(0);
+
+  const [teamBetAmounts, setTeamBetAmounts] = useState({ team1: 0, draw: 0, team2: 0 });
   const [actualCase, setActualCase] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [popup, setPopup] = useState(false);
+  const [choice, setChoice] = useState(0);
+
+  const togglePopup = (value, choice) => {
+    console.log(value, choice);
+    setPopup(value);
+    setChoice(choice);
+  };
+
   useEffect(() => {
     let userAddress = localStorage.getItem('userAddress');
     if (userAddress) {
@@ -120,40 +140,52 @@ export default function GameCard({ item, index }) {
   useEffect(() => {
     async function asyncFn() {
       const mid = index;
-      const userAddress = '0x9D7117a07fca9F22911d379A9fd5118A5FA4F448';
+      //Get accounts
+      const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+      let userAddress = accounts[0];
       let totalBetAmount = await getTotalBetAmount(mid);
+      let betAmount1 = await getTotalBetAmountByResult(mid, 1);
+      let betAmount2 = await getTotalBetAmountByResult(mid, 2);
+      let betAmount3 = await getTotalBetAmountByResult(mid, 3);
+      let betAmountTemp1 = web3.utils.fromWei(betAmount1.toString(), 'ether');
+      let betAmountTemp2 = web3.utils.fromWei(betAmount2.toString(), 'ether');
+      let betAmountTemp3 = web3.utils.fromWei(betAmount3.toString(), 'ether');
+
+      let teamAmount = {
+        team1: betAmountTemp1 / 1000000000,
+        draw: betAmountTemp2 / 1000000000,
+        team2: betAmountTemp3 / 1000000000,
+      };
+      setTeamBetAmounts(teamAmount);
+      console.log(teamAmount);
       let totalParticipants = await getTotalParticipants(mid);
       let betObject = await isBet(mid, userAddress);
 
       setBetAmount(parseInt(totalBetAmount));
       setParticipants(totalParticipants);
-
       if (parseInt(betObject.amountBet) > 0) {
         console.log('Already Bet');
-
-        setActualCase(0);
+        setActualCase(1);
       } else {
         // Check approve
         let approved = await checkApproved(userAddress);
 
         if (approved) {
           console.log('Approved');
-
-          setActualCase(1);
+          setActualCase(3);
         } else {
           console.log('Not Approved');
-
           setActualCase(2);
         }
       }
     }
     asyncFn();
-  }, []);
+  }, [localStorage.getItem('userAddress')]);
 
   const approveFn = async () => {
     setLoading(true);
-    const userAddress = '0x9D7117a07fca9F22911d379A9fd5118A5FA4F448';
-
+    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+    let userAddress = accounts[0];
     const response = await new Promise((resolve, reject) => {
       tokenConnection.methods
         .approve(constants.contractAddress, '999999999999999999999999999999999999')
@@ -163,17 +195,14 @@ export default function GameCard({ item, index }) {
           } else {
             console.log('Rejected by user!');
             setLoading(false);
-
             reject();
           }
         })
         .on('receipt', async function (receipt) {
           let approved = await checkApproved(userAddress);
-
           if (approved) {
             console.log('Approved');
-
-            setActualCase(1);
+            setActualCase(3);
           } else {
             console.log('Not Approved');
 
@@ -188,100 +217,105 @@ export default function GameCard({ item, index }) {
     //let res = await approveAmount(userAddress).then((res) => {});
   };
 
-  const betFn = async () => {
-    console.log('Bet here');
-  };
-
-  const claimFn = async () => {
-    console.log('Claim here');
-  };
   return (
     <section>
-      {actualCase === 3 ? (
-        <div>Connect Wallet</div>
-      ) : (
-        <div className="d-flex justify-content-center">
-          <div className={classes.card}>
-            <div className="mt-3 mb-5">
-              <p className={classes.date}>{item.date}</p>
-              <div className="d-flex justify-content-center align-items-center">
-                {' '}
-                <div className={classes.flagWrapper}>
-                  <img src={item.team1.image} className={classes.flag} />
-                  <p className={classes.countryName}>1. {item.team1.name}</p>
-                </div>{' '}
-                <div>
-                  <h6 className={classes.vs}>Vs</h6>
-                </div>
-                <div className={classes.flagWrapper}>
-                  <img src={item.team2.image} className={classes.flag} />
-                  <p className={classes.countryName}>2. {item.team2.name}</p>
-                </div>{' '}
-              </div>
-            </div>{' '}
-            <div className="d-flex flex-column justify-content-center align-items-center">
+      <div className="d-flex justify-content-center">
+        <div className={classes.card}>
+          <div className="mt-3 mb-5">
+            <p className={classes.date}>{item.date}</p>
+            <div className="d-flex justify-content-center align-items-center">
               {' '}
-              <h4 className={classes.countryName}>Predict and Win</h4>
-              <hr style={{ width: 100, backgroundColor: 'white', height: 1, marginTop: 0 }} />
+              <div className={classes.flagWrapper}>
+                <img src={item.team1.image} className={classes.flag} />
+                <p className={classes.countryName}>1. {item.team1.name}</p>
+              </div>{' '}
+              <div>
+                <h6 className={classes.vs}>Vs</h6>
+              </div>
+              <div className={classes.flagWrapper}>
+                <img src={item.team2.image} className={classes.flag} />
+                <p className={classes.countryName}>2. {item.team2.name}</p>
+              </div>{' '}
             </div>
-            {actualCase === 0 && (
-              <div className="d-flex justify-content-center">
-                <div className={classes.buttonWrapper}>
-                  <Button variant="contained" color="primary" className={classes.button} onClick={claimFn}>
-                    Claim Reward
-                  </Button>
-                </div>
+          </div>{' '}
+          <div className="d-flex flex-column justify-content-center align-items-center">
+            {' '}
+            <h4 className={classes.countryName}>Predict and Win</h4>
+            <hr style={{ width: 100, backgroundColor: 'white', height: 1, marginTop: 0 }} />
+          </div>
+          {actualCase === 0 && (
+            <div className="d-flex justify-content-center">
+              <Loader />
+            </div>
+          )}
+          {actualCase === 1 && (
+            <div className="d-flex justify-content-center">
+              <ClaimRewards mid={index} />
+            </div>
+          )}
+          {actualCase === 2 && (
+            <div className="d-flex justify-content-center">
+              <div className={classes.buttonWrapper}>
+                <Button variant="contained" className={classes.button} onClick={approveFn}>
+                  Approve
+                </Button>
               </div>
-            )}
-            {actualCase === 1 && (
-              <div className="d-flex justify-content-center">
-                <div className={classes.buttonWrapper}>
-                  <Button variant="contained" className={classes.button} onClick={() => betFn(0)}>
-                    Win
-                  </Button>
-                </div>
-                <div className={classes.buttonWrapper}>
-                  <Button variant="contained" className={classes.button} onClick={() => betFn(1)}>
-                    Draw
-                  </Button>
-                </div>
-                <div className={classes.buttonWrapper}>
-                  <Button variant="contained" className={classes.button} onClick={() => betFn(2)}>
-                    Win
-                  </Button>
-                </div>
+            </div>
+          )}
+          {actualCase === 3 && (
+            <div className="d-flex justify-content-center">
+              <div className={classes.buttonWrapper}>
+                <Button variant="contained" className={classes.button} onClick={() => togglePopup(true, 1)}>
+                  Win
+                </Button>
               </div>
-            )}
-            {actualCase === 2 && (
-              <div className="d-flex justify-content-center">
-                <div className={classes.buttonWrapper}>
-                  <Button variant="contained" className={classes.button} onClick={approveFn}>
-                    Approve
-                  </Button>
-                </div>
+              <div className={classes.buttonWrapper}>
+                <Button variant="contained" className={classes.button} onClick={() => togglePopup(true, 2)}>
+                  Draw
+                </Button>
               </div>
-            )}
-            <div className="mt-3">
+              <div className={classes.buttonWrapper}>
+                <Button variant="contained" className={classes.button} onClick={() => togglePopup(true, 3)}>
+                  Win
+                </Button>
+              </div>
+            </div>
+          )}
+          <div className="mt-3">
+            <p className={classes.countryName}>
+              Total Participants: <strong>{participants}</strong>
+            </p>
+          </div>
+          <div className="mt-3">
+            <div className="d-flex justify-content-evenly align-items-center">
               <p className={classes.countryName}>
-                Total Participants: <strong>{participants}</strong>
+                {item.team1.name}: <strong>{teamBetAmounts.team1}B</strong>
               </p>
-            </div>
-            <div className="mt-3">
-              <div className="d-flex justify-content-evenly align-items-center">
-                <p className={classes.countryName}>
-                  {item.team1.name}: <strong>{betAmount}</strong>
-                </p>
-                <p className={classes.countryName}>
-                  Draw: <strong>{betAmount}</strong>
-                </p>
-                <p className={classes.countryName}>
-                  {item.team2.name}: <strong>{betAmount} </strong>
-                </p>
-              </div>
+              <p className={classes.countryName}>
+                Draw: <strong>{teamBetAmounts.draw}B</strong>
+              </p>
+              <p className={classes.countryName}>
+                {item.team2.name}: <strong>{teamBetAmounts.team2}B </strong>
+              </p>
             </div>
           </div>
         </div>
-      )}
+      </div>
+      <Dialog
+        className={classes.modal}
+        open={popup}
+        TransitionComponent={Transition}
+        keepMounted
+        onClose={() => togglePopup(false)}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        BackdropProps={{
+          timeout: 500,
+        }}>
+        <div style={{ backgroundColor: 'black' }}>
+          <BetPopup index={index} choice={choice} />
+        </div>
+      </Dialog>{' '}
     </section>
   );
 }

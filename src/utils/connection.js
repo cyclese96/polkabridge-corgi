@@ -5,7 +5,7 @@ const contractConstant = {
   rpcUrl: constants.network_address,
   chainId: 97, // Smart Chain - Testnet chain id
   api: 'V3X7VF8MVXS2P3XE457J5A5W5FEX8Z1FQK',
-  contractAddress: '0xcba3cE4Ce6489437DC4aE760Fe747D07dFB3cc6A',
+  contractAddress: '0x624B06b8452C9bdB8d558b591bF1B6825a133937',
   abi: [
     {
       inputs: [{ internalType: 'contract PolkaBridgeMemeToken', name: '_tokenAddress', type: 'address' }],
@@ -54,6 +54,20 @@ const contractConstant = {
       inputs: [],
       name: 'devPercent',
       outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
+      stateMutability: 'view',
+      type: 'function',
+    },
+    {
+      inputs: [{ internalType: 'uint256', name: '_mid', type: 'uint256' }],
+      name: 'getMatchInfo',
+      outputs: [
+        { internalType: 'uint256', name: '', type: 'uint256' },
+        { internalType: 'uint256', name: '', type: 'uint256' },
+        { internalType: 'uint256', name: '', type: 'uint256' },
+        { internalType: 'uint256', name: '', type: 'uint256' },
+        { internalType: 'uint256', name: '', type: 'uint256' },
+        { internalType: 'uint256', name: '', type: 'uint256' },
+      ],
       stateMutability: 'view',
       type: 'function',
     },

@@ -34,9 +34,18 @@ export const isBet = (mid, address) => {
   });
 };
 
+//READ getMatchInfo
+//RETURNS object
+export const getMatchInfo = (mid) => {
+  return contractConnection.methods.getMatchInfo(mid).call((err, response) => {
+    return response;
+  });
+};
+
 //Check approved or not
 export const checkApproved = (userAddress) => {
   return tokenConnection.methods.allowance(userAddress, constants.contractAddress).call((err, response) => {
+    console.log('allowance: ' + response);
     return response;
   });
 };
@@ -46,6 +55,6 @@ export const approveAmount = async (account) => {
   const response = await tokenConnection.methods
     .approve(constants.contractAddress, '999999999999999999999999999999999999')
     .send({ from: account });
-  console.log(response);
+
   return response;
 };
