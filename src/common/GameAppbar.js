@@ -23,6 +23,16 @@ const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
   },
+  toolbar: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    paddingLeft: 90,
+    paddingRight: 90,
+    [theme.breakpoints.down('md')]: {
+      paddingLeft: 10,
+      paddingRight: 10,
+    },
+  },
   menuButton: {
     marginRight: theme.spacing(2),
   },
@@ -245,7 +255,7 @@ function GameAppbar({ authenticated, user, authenticateUser, signOutUser }) {
     if (window.ethereum !== undefined) {
       const networkStatus = await checkCorrectNetwork();
       if (networkStatus) {
-        const localAddress = localStorage.getItem('userAddress');
+        const localAddress = await localStorage.getItem('userAddress');
         if (localAddress) {
           authenticateUser(localAddress);
           getBalance(localAddress);
@@ -291,7 +301,7 @@ function GameAppbar({ authenticated, user, authenticateUser, signOutUser }) {
   return (
     <div className={classes.grow}>
       <AppBar position="static" style={{ background: 'white', boxShadow: 'none', height: 70 }}>
-        <Toolbar className="d-flex justify-content-between" style={{ paddingLeft: 90, paddingRight: 90 }}>
+        <Toolbar className={classes.toolbar}>
           <div className={classes.title}>
             <div className="d-flex flex-row  justify-content-start align-items-center">
               <div style={{ paddingTop: 5 }}>
@@ -379,12 +389,12 @@ function GameAppbar({ authenticated, user, authenticateUser, signOutUser }) {
         BackdropProps={{
           timeout: 500,
         }}>
-        <div style={{ backgroundColor: 'black' }}>
+        <div style={{ backgroundColor: 'white', borderRadius: 20 }}>
           <BalancePopup
-            address={address}
+            address={user}
             corgib={corgibBalance}
             togglePopup={() => togglePopup(false)}
-            signOut={() => signOut(address)}
+            signOut={() => signOut(user)}
           />
         </div>
       </Dialog>

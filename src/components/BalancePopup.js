@@ -5,13 +5,16 @@ const useStyles = makeStyles((theme) => ({
   background: {
     height: '100%',
     width: 500,
+    backgroundColor: 'white',
+
+    borderRadius: 20,
   },
   padding: {
     paddingTop: 20,
     paddingLeft: 20,
   },
   button: {
-    color: '#D9047C',
+    color: 'black',
     backgroundColor: 'white',
     textTransform: 'none',
     borderRadius: '50px',
@@ -51,24 +54,21 @@ const useStyles = makeStyles((theme) => ({
     verticalAlign: 'baseline',
     letterSpacing: '-0.8px',
     margin: 0,
-
     paddingBottom: 10,
     textAlign: 'left',
-    color: theme.palette.pbr.primary,
-
+    color: 'black',
     fontSize: 22,
   },
   subtitle: {
-    fontWeight: 400,
+    fontWeight: 500,
     verticalAlign: 'baseline',
     letterSpacing: '-0.8px',
     margin: 0,
-    paddingTop: 10,
+    paddingTop: 5,
     paddingBottom: 5,
     textAlign: 'left',
-    color: ' #757575',
-
-    fontSize: 14,
+    color: theme.palette.pbr.primary,
+    fontSize: 15,
   },
   para: {
     fontWeight: 400,
@@ -78,7 +78,7 @@ const useStyles = makeStyles((theme) => ({
     paddingTop: 10,
     paddingBottom: 10,
     textAlign: 'left',
-    color: 'white',
+    color: 'black',
     fontSize: 18,
   },
 }));
@@ -91,7 +91,7 @@ export default function BalancePopup({ address, corgib, togglePopup, signOut }) 
         <div className={classes.padding}>
           <h5 className={classes.title}>My Wallet</h5>
         </div>{' '}
-        <Divider style={{ backgroundColor: 'white' }} />
+        <Divider style={{ backgroundColor: 'black' }} />
         <div className={classes.padding}>
           <h6 className={classes.subtitle}>Address</h6>
           <p className={classes.para}>{address}</p>
@@ -100,7 +100,7 @@ export default function BalancePopup({ address, corgib, togglePopup, signOut }) 
           <h6 className={classes.subtitle}>Balance</h6>
           <p className={classes.para}>{corgib} CORGIB</p>
         </div>
-        <div>
+        <div style={{ paddingLeft: 10 }}>
           <div className="my-3 d-flex justify-content-start">
             <div style={{ paddingRight: 10 }}>
               <Button variant="contained" className={classes.buttonMain} onClick={signOut}>
