@@ -87,12 +87,12 @@ export default function ClaimRewards({ mid }) {
   const claimFn = async () => {
     console.log('Claim here');
     setLoading(true);
-
+    let matchId = mid;
     const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
     let userAddress = accounts[0];
     const response = await new Promise((resolve, reject) => {
       contractConnection.methods
-        .claimReward()
+        .claimReward(matchId)
         .send({ from: userAddress }, function (error, transactionHash) {
           if (transactionHash) {
             resolve(transactionHash);
