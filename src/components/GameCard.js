@@ -122,6 +122,7 @@ function GameCard({ item, index, transaction, user, authenticated }) {
   const [loading, setLoading] = useState(false);
   const [popup, setPopup] = useState(false);
   const [choice, setChoice] = useState(0);
+  const [general, setGeneral] = React.useState('A');
 
   const togglePopup = (value, choice) => {
     console.log(value, choice);
@@ -129,9 +130,11 @@ function GameCard({ item, index, transaction, user, authenticated }) {
     setChoice(choice);
   };
 
-  useEffect(() => {
+  useEffect(async () => {
     if (authenticated) {
       setUserAddress(userAddress);
+      // let totalBetAmount = await getTotalBetAmount(index);
+      // setGeneral(totalBetAmount);
     } else {
       setActualCase(3);
     }
@@ -141,46 +144,50 @@ function GameCard({ item, index, transaction, user, authenticated }) {
     async function asyncFn() {
       const mid = index;
       //Get accounts
-      const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-      let userAddress = accounts[0];
-      let totalBetAmount = await getTotalBetAmount(mid);
-      let betAmount1 = await getTotalBetAmountByResult(mid, 1);
-      let betAmount2 = await getTotalBetAmountByResult(mid, 2);
-      let betAmount3 = await getTotalBetAmountByResult(mid, 3);
-      let betAmountTemp1 = web3.utils.fromWei(betAmount1.toString(), 'ether');
-      let betAmountTemp2 = web3.utils.fromWei(betAmount2.toString(), 'ether');
-      let betAmountTemp3 = web3.utils.fromWei(betAmount3.toString(), 'ether');
+      if (authenticated) {
+        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+        let userAddress = accounts[0];
 
-      let teamAmount = {
-        team1: betAmountTemp1 / 1000000000,
-        draw: betAmountTemp2 / 1000000000,
-        team2: betAmountTemp3 / 1000000000,
-      };
-      setTeamBetAmounts(teamAmount);
-      console.log(teamAmount);
-      let totalParticipants = await getTotalParticipants(mid);
-      let betObject = await isBet(mid, userAddress);
+        let totalBetAmount = await getTotalBetAmount(mid);
+        let betAmount1 = await getTotalBetAmountByResult(mid, 1);
+        let betAmount2 = await getTotalBetAmountByResult(mid, 2);
+        let betAmount3 = await getTotalBetAmountByResult(mid, 3);
+        let betAmountTemp1 = web3.utils.fromWei(betAmount1.toString(), 'ether');
+        let betAmountTemp2 = web3.utils.fromWei(betAmount2.toString(), 'ether');
+        let betAmountTemp3 = web3.utils.fromWei(betAmount3.toString(), 'ether');
 
-      setBetAmount(parseInt(totalBetAmount));
-      setParticipants(totalParticipants);
-      if (parseInt(betObject.amountBet) > 0) {
-        console.log('Already Bet');
-        setActualCase(1);
-      } else {
-        // Check approve
-        let approved = await checkApproved(userAddress);
-        console.log(approved);
-        if (parseInt(approved) > 0) {
-          console.log('Approved');
-          setActualCase(3);
+        let teamAmount = {
+          team1: betAmountTemp1 / 1000000000,
+          draw: betAmountTemp2 / 1000000000,
+          team2: betAmountTemp3 / 1000000000,
+        };
+
+        setTeamBetAmounts(teamAmount);
+        console.log(teamAmount);
+        let totalParticipants = await getTotalParticipants(mid);
+        let betObject = await isBet(mid, userAddress);
+
+        setBetAmount(parseInt(totalBetAmount));
+        setParticipants(totalParticipants);
+        if (parseInt(betObject.amountBet) > 0) {
+          console.log('Already Bet');
+          setActualCase(1);
         } else {
-          console.log('Not Approved');
-          setActualCase(2);
+          // Check approve
+          let approved = await checkApproved(userAddress);
+          console.log(approved);
+          if (parseInt(approved) > 0) {
+            console.log('Approved');
+            setActualCase(3);
+          } else {
+            console.log('Not Approved');
+            setActualCase(2);
+          }
         }
       }
     }
     asyncFn();
-  }, [transaction]);
+  }, [transaction, authenticated]);
 
   const approveFn = async () => {
     setLoading(true);

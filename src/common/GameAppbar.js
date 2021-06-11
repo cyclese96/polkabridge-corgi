@@ -335,7 +335,7 @@ function GameAppbar({ authenticated, user, authenticateUser, signOutUser }) {
                 ) : (
                   <div>
                     <Button className={classes.balanceButton} onClick={connectWallet}>
-                      {web3 !== undefined ? 'Connect your wallet' : 'Missing Metamask!'}
+                      {window.ethereum !== undefined ? 'Connect your wallet' : 'Missing Metamask!'}
                     </Button>
                   </div>
                 )}
@@ -343,15 +343,17 @@ function GameAppbar({ authenticated, user, authenticateUser, signOutUser }) {
             </div>
           </div>
           <div className={classes.sectionMobile}>
-            <div className="d-flex flex-row  justify-content-start align-items-center">
-              <div style={{ paddingTop: 5 }}>
-                <img src="corgi.png" alt="logo" height="55px" />{' '}
-              </div>{' '}
-              <div style={{ fontWeight: 600, color: '#000000', fontSize: 20, letterSpacing: '-1px', paddingTop: 5 }}>
-                Corgi of <span className={classes.highlight}>PolkaBridge</span>
+            <Link to="/">
+              {' '}
+              <div className="d-flex flex-row  justify-content-start align-items-center">
+                <div style={{ paddingTop: 5 }}>
+                  <img src="corgi.png" alt="logo" height="55px" />{' '}
+                </div>{' '}
+                <div style={{ fontWeight: 600, color: '#000000', fontSize: 20, letterSpacing: '-1px', paddingTop: 5 }}>
+                  Corgi of <span className={classes.highlight}>PolkaBridge</span>
+                </div>
               </div>
-            </div>
-
+            </Link>
             <div>
               {['right'].map((anchor) => (
                 <React.Fragment key={anchor}>

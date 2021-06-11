@@ -96,9 +96,11 @@ function Play({ authenticated, user }) {
   };
   const conditionValidity = async () => {
     let walletAvailable = await checkWalletAvailable();
+
     if (walletAvailable) {
       console.log('1.Wallet  available');
       let networkStatus = await checkCorrectNetwork();
+
       if (networkStatus) {
         console.log('2. Correct Network');
         //Get accounts
