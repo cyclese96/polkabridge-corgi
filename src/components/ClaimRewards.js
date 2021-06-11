@@ -123,6 +123,20 @@ export default function ClaimRewards({ mid, item, userAddress }) {
     }
     callPlayers();
   }, []);
+
+  const userBet = () => {
+    let choice = parseInt(players.whichBet);
+
+    if (choice === 1) {
+      return `${item.team1.name} `;
+    }
+    if (choice === 2) {
+      return 'Draw';
+    }
+    if (choice === 3) {
+      return `${item.team2.name}`;
+    }
+  };
   const claimFn = async () => {
     //console.log('Claim here');
     setLoading(true);
@@ -162,18 +176,35 @@ export default function ClaimRewards({ mid, item, userAddress }) {
               <div className="mb-2">
                 {matchInfo !== null &&
                   players !== null &&
-                  (matchInfo.finalResult !== players.whichBet ? (
+                  (parseInt(matchInfo[5]) !== parseInt(players.whichBet) ? (
                     <div>
-                      <div className={classes.heading}>You Loose!</div>
+                      <div className={classes.heading}>
+                        <span style={{ color: 'red' }}> You Loose!</span>
+                      </div>
                       <div className={classes.para}>{winner}</div>
+                      {players !== null && (
+                        <div className="d-flex justify-content-between mt-3 mb-2">
+                          <div className={classes.rewards}>
+                            Your Bet: <strong style={{ color: '#a5d6a7' }}>{userBet()}</strong>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   ) : (
                     <div>
-                      <div className={classes.heading}>You Win!</div>
-                      <div className={classes.para}>
-                        <span style={{ color: 'green' }}>{winner}</span>
+                      <div className={classes.heading}>
+                        <span style={{ color: '#66bb6a' }}>You Win!</span>
                       </div>
-
+                      <div className={classes.para}>
+                        <span>{winner}</span>
+                      </div>
+                      {players !== null && (
+                        <div className="d-flex justify-content-between mt-3 mb-2">
+                          <div className={classes.rewards}>
+                            Your Bet: <strong style={{ color: '#a5d6a7' }}>{userBet()}</strong>
+                          </div>
+                        </div>
+                      )}
                       <Button variant="contained" color="primary" className={classes.button} onClick={claimFn}>
                         Claim Rewards
                       </Button>
@@ -191,7 +222,7 @@ export default function ClaimRewards({ mid, item, userAddress }) {
           {players !== null && (
             <div className="d-flex justify-content-between mt-3">
               <div className={classes.rewards}>
-                Your Bet: <strong>{players.whichBet}</strong>
+                Your Bet: <strong style={{ color: '#a5d6a7' }}>{userBet()}</strong>
               </div>
               <div className={classes.rewards}>
                 Expected Reward: <strong>{pendingReward / 1000000000}B</strong>

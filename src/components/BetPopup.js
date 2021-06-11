@@ -256,7 +256,7 @@ function BetForm({ index, choice, transactionHit, stopPopupClicking }) {
             <div className="text-center my-5">
               <img src="https://www.freeiconspng.com/thumbs/success-icon/success-icon-10.png" height="100px" />
             </div>
-            <h4 className="text-center">Transaction Submitted!</h4>
+            <h4 className="text-center">Transaction submitted. Please wait....</h4>
           </div>
         )}
         {actualCase === 3 && (

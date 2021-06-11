@@ -117,7 +117,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function GameCard({ item, index, transaction, user, authenticated }) {
+function GameCard({ item, index, transaction, user, authenticated, tabValue }) {
   const classes = useStyles();
   const [betAmount, setBetAmount] = useState(0);
   const [userAddress, setUserAddress] = useState('');
@@ -229,7 +229,7 @@ function GameCard({ item, index, transaction, user, authenticated }) {
 
   return (
     <section>
-      <div className="d-flex justify-content-center">
+      <div className="d-flex justify-content-center" style={{ height: 520 }}>
         <div className={classes.card}>
           <div className="mt-3 mb-5">
             <p className={classes.date}>{item.date}</p>
@@ -278,7 +278,7 @@ function GameCard({ item, index, transaction, user, authenticated }) {
               )}
             </div>
           )}
-          {actualCase === 3 && (
+          {actualCase === 3 && tabValue === 0 && (
             <div className="d-flex justify-content-center">
               <div className={classes.buttonWrapper}>
                 <Button variant="contained" className={classes.button} onClick={() => togglePopup(true, 1)}>
@@ -295,6 +295,11 @@ function GameCard({ item, index, transaction, user, authenticated }) {
                   Win
                 </Button>
               </div>
+            </div>
+          )}
+          {actualCase === 3 && tabValue === 1 && (
+            <div className="d-flex justify-content-center">
+              <div style={{ color: 'yellow', fontWeight: 700 }}>Not participated</div>
             </div>
           )}
           <div className="mt-3">
