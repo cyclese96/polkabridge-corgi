@@ -278,6 +278,25 @@ function GameCard({ item, index, transaction, user, authenticated }) {
               )}
             </div>
           )}
+          {actualCase === 3 && (
+            <div className="d-flex justify-content-center">
+              <div className={classes.buttonWrapper}>
+                <Button variant="contained" className={classes.button} onClick={() => togglePopup(true, 1)}>
+                  Win
+                </Button>
+              </div>
+              <div className={classes.buttonWrapper}>
+                <Button variant="contained" className={classes.button} onClick={() => togglePopup(true, 2)}>
+                  Draw
+                </Button>
+              </div>
+              <div className={classes.buttonWrapper}>
+                <Button variant="contained" className={classes.button} onClick={() => togglePopup(true, 3)}>
+                  Win
+                </Button>
+              </div>
+            </div>
+          )}
           <div className="mt-3">
             <p className={classes.countryName}>
               Total Participants: <strong>{participants}</strong>

@@ -169,7 +169,9 @@ export default function ClaimRewards({ mid, item }) {
                   ) : (
                     <div>
                       <div className={classes.heading}>You Win!</div>
-                      <div className={classes.para}>{winner}</div>
+                      <div className={classes.para}>
+                        <span style={{ color: 'green' }}>{winner}</span>
+                      </div>
 
                       <Button variant="contained" color="primary" className={classes.button} onClick={claimFn}>
                         Claim Rewards
