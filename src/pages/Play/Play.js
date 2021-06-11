@@ -81,7 +81,7 @@ function Play({ authenticated, user }) {
       gameCards = matches.filter((match) => {
         let d = new Date();
         let matchDate1 = new Date(match.date);
-        return d.toUTCString() < matchDate1.toUTCString();
+        return d.getTime() < matchDate1.getTime();
       });
     }
     if (matches.length !== 0 && newValue === 1) {
@@ -89,7 +89,7 @@ function Play({ authenticated, user }) {
         let d = new Date();
         let matchDate2 = new Date(match.date);
 
-        return d.toUTCString() > matchDate2.toUTCString();
+        return d.getTime() > matchDate2.getTime();
       });
     }
     setGames(gameCards);
