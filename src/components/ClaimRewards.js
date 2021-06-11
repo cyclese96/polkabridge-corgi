@@ -1,7 +1,8 @@
 import { Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useEffect, useState } from 'react';
-import { getMatchInfo } from './../actions/SmartActions';
+import { getMatchInfo, getPlayers } from './../actions/SmartActions';
+import contractConnection from './../utils/connection';
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -22,12 +23,28 @@ const useStyles = makeStyles((theme) => ({
       fontSize: 18,
     },
   },
+  heading: {
+    color: 'white',
+    width: 'auto',
+    textAlign: 'center',
+    fontSize: 36,
+    fontWeight: 600,
+    verticalAlign: 'middle',
+    wordSpacing: '0px',
+    [theme.breakpoints.down('md')]: {
+      fontSize: '26px',
+      textAlign: 'center',
+    },
+  },
 }));
 
 export default function ClaimRewards({ mid }) {
   const classes = useStyles();
   const [matchInfo, setMatchInfo] = useState({});
   const [enableClaim, setEnableClaim] = useState(false);
+  const [players, setPlayers] = useState({});
+  const [claimed, setClaimed] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     async function callMatchInfo() {
@@ -41,22 +58,74 @@ export default function ClaimRewards({ mid }) {
         setEnableClaim(true);
       } else {
         console.log('Result not declared');
-
         setEnableClaim(false);
       }
       console.log(matchInfo);
     }
     callMatchInfo();
   }, []);
+  useEffect(() => {
+    async function callPlayers() {
+      console.log('checking isClaimed');
+
+      const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+      let userAddress = accounts[0];
+      let playersData = await getPlayers(mid, userAddress);
+      setPlayers(playersData);
+      console.log(playersData);
+      if (playersData.isClaim) {
+        setClaimed(true);
+        console.log('Already Claimed');
+      } else {
+        console.log('Not yet Claimed');
+
+        setClaimed(false);
+      }
+    }
+    callPlayers();
+  }, []);
   const claimFn = async () => {
     console.log('Claim here');
+    setLoading(true);
+    let matchId = mid;
+    const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+    let userAddress = accounts[0];
+    const response = await new Promise((resolve, reject) => {
+      contractConnection.methods
+        .claimReward(matchId)
+        .send({ from: userAddress }, function (error, transactionHash) {
+          if (transactionHash) {
+            resolve(transactionHash);
+          } else {
+            console.log('Rejected by user!');
+            setLoading(false);
+            reject();
+          }
+        })
+        .on('receipt', async function (receipt) {
+          console.log('Successfully Claimed');
+          setLoading(false);
+        });
+    });
+    console.log(response);
+    return response;
   };
   return (
     <div className="text-center">
       {enableClaim ? (
-        <Button variant="contained" color="primary" className={classes.button} onClick={claimFn}>
-          Claim Rewards
-        </Button>
+        <div>
+          {claimed ? (
+            <div>
+              <h6 className={classes.heading}>You have claimed your rewards.</h6>
+            </div>
+          ) : (
+            <div>
+              <Button variant="contained" color="primary" className={classes.button} onClick={claimFn}>
+                Claim Rewards
+              </Button>
+            </div>
+          )}
+        </div>
       ) : (
         <div>
           <Button variant="contained" color="primary" className={classes.button}>

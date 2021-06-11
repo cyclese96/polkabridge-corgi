@@ -172,7 +172,7 @@ export default function PrimarySearchAppBar() {
       <List>
         {[
           { name: 'To The Moon', id: 'https://t.me/corgipolkabridge' },
-          { name: 'Predict & Win', id: '/bet' },
+
           {
             name: 'PancakeSwap',
             id: 'https://exchange.pancakeswap.finance/#/swap?outputCurrency=0x1cfd6813a59d7b90c41dd5990ed99c3bf2eb8f55',
@@ -185,11 +185,11 @@ export default function PrimarySearchAppBar() {
             </ListItem>
           </a>
         ))}
-        {/* <ListItem button>
-          <a href="docs/whitepaper.pdf" style={{ textDecoration: 'none' }}>
-            <ListItemText primary={'Read Whitepaper'} className={classes.menuTitlePink} />
+        <ListItem button>
+          <a href="/bet" style={{ textDecoration: 'none' }}>
+            <ListItemText primary={'Bet & Win'} className={classes.menuTitlePink} />
           </a>
-        </ListItem> */}
+        </ListItem>
       </List>
     </div>
   );

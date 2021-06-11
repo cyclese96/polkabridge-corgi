@@ -9,36 +9,42 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
 import Supply from './components/Supply';
 import TotalSupply from './components/TotalSupply';
 import Play from './pages/Play/Play';
+import BetFooter from './common/BetFooter';
+import { Provider } from 'react-redux';
+import store from './store';
 
 export default function App() {
   return (
-    <Router>
-      <ThemeProvider theme={theme}>
-        <Switch>
-          <Route exact path="/">
-            <Fragment>
-              <Appbar />
-              <Home />
-            </Fragment>
-          </Route>
-          <Route exact path="/bet">
-            <Fragment>
-              <GameAppbar />
-              <Play />
-            </Fragment>
-          </Route>
-          <Route exact path="/api/cirsupply">
-            <Fragment>
-              <Supply />
-            </Fragment>
-          </Route>
-          <Route exact path="/api/totalsupply">
-            <Fragment>
-              <TotalSupply />
-            </Fragment>
-          </Route>
-        </Switch>
-      </ThemeProvider>
-    </Router>
+    <Provider store={store}>
+      <Router>
+        <ThemeProvider theme={theme}>
+          <Switch>
+            <Route exact path="/">
+              <Fragment>
+                <Appbar />
+                <Home />
+              </Fragment>
+            </Route>
+            <Route exact path="/bet">
+              <Fragment>
+                <GameAppbar />
+                <Play />
+                <BetFooter />
+              </Fragment>
+            </Route>
+            <Route exact path="/api/cirsupply">
+              <Fragment>
+                <Supply />
+              </Fragment>
+            </Route>
+            <Route exact path="/api/totalsupply">
+              <Fragment>
+                <TotalSupply />
+              </Fragment>
+            </Route>
+          </Switch>
+        </ThemeProvider>
+      </Router>
+    </Provider>
   );
 }

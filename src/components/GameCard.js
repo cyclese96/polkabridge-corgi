@@ -16,6 +16,7 @@ import BetPopup from './BetPopup';
 import Loader from './Loader';
 import web3 from './../web';
 import ClaimRewards from './ClaimRewards';
+import { connect } from 'react-redux';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -110,7 +111,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function GameCard({ item, index }) {
+function GameCard({ item, index, transaction, user, authenticated }) {
   const classes = useStyles();
   const [betAmount, setBetAmount] = useState(0);
   const [userAddress, setUserAddress] = useState('');
@@ -121,6 +122,7 @@ export default function GameCard({ item, index }) {
   const [loading, setLoading] = useState(false);
   const [popup, setPopup] = useState(false);
   const [choice, setChoice] = useState(0);
+  const [general, setGeneral] = React.useState('A');
 
   const togglePopup = (value, choice) => {
     console.log(value, choice);
@@ -128,59 +130,64 @@ export default function GameCard({ item, index }) {
     setChoice(choice);
   };
 
-  useEffect(() => {
-    let userAddress = localStorage.getItem('userAddress');
-    if (userAddress) {
+  useEffect(async () => {
+    if (authenticated) {
       setUserAddress(userAddress);
+      // let totalBetAmount = await getTotalBetAmount(index);
+      // setGeneral(totalBetAmount);
     } else {
       setActualCase(3);
     }
-  }, []);
+  }, [user]);
 
   useEffect(() => {
     async function asyncFn() {
       const mid = index;
       //Get accounts
-      const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-      let userAddress = accounts[0];
-      let totalBetAmount = await getTotalBetAmount(mid);
-      let betAmount1 = await getTotalBetAmountByResult(mid, 1);
-      let betAmount2 = await getTotalBetAmountByResult(mid, 2);
-      let betAmount3 = await getTotalBetAmountByResult(mid, 3);
-      let betAmountTemp1 = web3.utils.fromWei(betAmount1.toString(), 'ether');
-      let betAmountTemp2 = web3.utils.fromWei(betAmount2.toString(), 'ether');
-      let betAmountTemp3 = web3.utils.fromWei(betAmount3.toString(), 'ether');
+      if (authenticated) {
+        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+        let userAddress = accounts[0];
 
-      let teamAmount = {
-        team1: betAmountTemp1 / 1000000000,
-        draw: betAmountTemp2 / 1000000000,
-        team2: betAmountTemp3 / 1000000000,
-      };
-      setTeamBetAmounts(teamAmount);
-      console.log(teamAmount);
-      let totalParticipants = await getTotalParticipants(mid);
-      let betObject = await isBet(mid, userAddress);
+        let totalBetAmount = await getTotalBetAmount(mid);
+        let betAmount1 = await getTotalBetAmountByResult(mid, 1);
+        let betAmount2 = await getTotalBetAmountByResult(mid, 2);
+        let betAmount3 = await getTotalBetAmountByResult(mid, 3);
+        let betAmountTemp1 = web3.utils.fromWei(betAmount1.toString(), 'ether');
+        let betAmountTemp2 = web3.utils.fromWei(betAmount2.toString(), 'ether');
+        let betAmountTemp3 = web3.utils.fromWei(betAmount3.toString(), 'ether');
 
-      setBetAmount(parseInt(totalBetAmount));
-      setParticipants(totalParticipants);
-      if (parseInt(betObject.amountBet) > 0) {
-        console.log('Already Bet');
-        setActualCase(1);
-      } else {
-        // Check approve
-        let approved = await checkApproved(userAddress);
-        console.log(approved);
-        if (parseInt(approved) > 0) {
-          console.log('Approved');
-          setActualCase(3);
+        let teamAmount = {
+          team1: betAmountTemp1 / 1000000000,
+          draw: betAmountTemp2 / 1000000000,
+          team2: betAmountTemp3 / 1000000000,
+        };
+
+        setTeamBetAmounts(teamAmount);
+        console.log(teamAmount);
+        let totalParticipants = await getTotalParticipants(mid);
+        let betObject = await isBet(mid, userAddress);
+
+        setBetAmount(parseInt(totalBetAmount));
+        setParticipants(totalParticipants);
+        if (parseInt(betObject.amountBet) > 0) {
+          console.log('Already Bet');
+          setActualCase(1);
         } else {
-          console.log('Not Approved');
-          setActualCase(2);
+          // Check approve
+          let approved = await checkApproved(userAddress);
+          console.log(approved);
+          if (parseInt(approved) > 0) {
+            console.log('Approved');
+            setActualCase(3);
+          } else {
+            console.log('Not Approved');
+            setActualCase(2);
+          }
         }
       }
     }
     asyncFn();
-  }, [localStorage.getItem('userAddress')]);
+  }, [transaction, authenticated]);
 
   const approveFn = async () => {
     setLoading(true);
@@ -213,8 +220,6 @@ export default function GameCard({ item, index }) {
     });
     console.log(response);
     return response;
-
-    //let res = await approveAmount(userAddress).then((res) => {});
   };
 
   return (
@@ -325,3 +330,12 @@ export default function GameCard({ item, index }) {
     </section>
   );
 }
+const mapStateToProps = (state) => ({
+  transaction: state.auth.transaction,
+  user: state.auth.user,
+  authenticated: state.auth.authenticated,
+});
+
+const mapDispatchToProps = {};
+
+export default connect(mapStateToProps, mapDispatchToProps)(GameCard);

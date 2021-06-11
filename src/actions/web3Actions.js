@@ -25,11 +25,11 @@ export const checkCorrectNetwork = async () => {
     return res;
   });
   //console.log(chainID);
-  if (chainID === parseInt(constants.network_id)) {
+  if (window.ethereum.networkVersion === constants.network_id) {
     //console.log('BSC');
     return true;
   } else {
     //console.log('Other Network');
-    return false;
+    return chainID;
   }
 };

@@ -4,6 +4,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import contractConnection from './../utils/connection';
 import web3 from './../web';
 import Loader from './Loader';
+import { connect } from 'react-redux';
+import { transactionHit } from './../actions/authActions';
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -16,6 +18,16 @@ const useStyles = makeStyles((theme) => ({
       width: 350,
       padding: '5px 2px 5px 2px',
     },
+  },
+  PriceButton: {
+    borderRadius: 10,
+    border: '1px solid #1565c0',
+    padding: 0,
+    paddingTop: 2,
+    paddingBottom: 2,
+    marginLeft: 5,
+    marginRight: 5,
+    fontSize: 12,
   },
   title: {
     verticalAlign: 'baseline',
@@ -77,21 +89,21 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function BetForm({ index, choice }) {
+function BetForm({ index, choice, transactionHit }) {
   const classes = useStyles();
   const [actualCase, setActualCase] = useState(0);
   const [amount, setAmount] = useState(0);
-  const [error, setError] = useState('Enter amount in billions Min: 1B and Max: 100B');
+  const [error, setError] = useState('Enter CORGIB amount in billions Min: 2B and Max: 100B');
   const [errorFlag, setErrorFlag] = useState(false);
 
   const changeAmount = (value) => {
     if (value > 100 || value < 2) {
       setAmount(value);
 
-      setError('Incorrect amount - Amount range 1B to 100B');
+      setError('Incorrect amount - Amount range 2B to 100B');
       setErrorFlag(true);
     } else {
-      setError('Enter amount in billions Min: 1B and Max: 100B');
+      setError('Enter CORGIB amount in billions Min: 1B and Max: 100B');
       setErrorFlag(false);
 
       setAmount(value);
@@ -122,6 +134,7 @@ function BetForm({ index, choice }) {
           }
         })
         .on('receipt', async function (receipt) {
+          transactionHit();
           console.log('2. Transaction successful');
           setActualCase(3);
         })
@@ -133,14 +146,7 @@ function BetForm({ index, choice }) {
     console.log(response);
     return response;
   };
-  useEffect(() => {
-    console.log('hitting cleanup hard');
 
-    return () => {
-      console.log('cleaned up');
-      setActualCase(0);
-    };
-  }, []);
   return (
     <div className={classes.card}>
       <div className="container text-center">
@@ -167,6 +173,39 @@ function BetForm({ index, choice }) {
                 error={errorFlag}
                 helperText={error}
               />
+              <div className="d-flex justify-content-center align-items-center">
+                <div className="text-center">
+                  <Button className={classes.PriceButton} onClick={() => setAmount(2)}>
+                    2B
+                  </Button>
+                </div>
+                <div className="text-center">
+                  <Button className={classes.PriceButton} onClick={() => setAmount(5)}>
+                    5B
+                  </Button>
+                </div>
+                <div className="text-center">
+                  <Button className={classes.PriceButton} onClick={() => setAmount(10)}>
+                    10B
+                  </Button>
+                </div>
+                <div className="text-center">
+                  <Button className={classes.PriceButton} onClick={() => setAmount(20)}>
+                    20B
+                  </Button>
+                </div>
+                <div className="text-center">
+                  <Button className={classes.PriceButton} onClick={() => setAmount(50)}>
+                    50B
+                  </Button>
+                </div>
+                <div className="text-center">
+                  <Button className={classes.PriceButton} onClick={() => setAmount(100)}>
+                    100B
+                  </Button>
+                </div>
+              </div>
+              <p></p>
             </div>
             <div>
               <Button variant="contained" className={classes.buttonProceed} onClick={submitForm}>
@@ -212,4 +251,12 @@ function BetForm({ index, choice }) {
   );
 }
 
-export default BetForm;
+const mapStateToProps = (state) => ({
+  transaction: state.auth.transaction,
+  user: state.auth.user,
+  authenticated: state.auth.authenticated,
+});
+
+const mapDispatchToProps = { transactionHit };
+
+export default connect(mapStateToProps, mapDispatchToProps)(BetForm);

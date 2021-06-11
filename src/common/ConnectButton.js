@@ -3,8 +3,9 @@ import { Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import constants from './../utils/constants';
 import web3 from './../web';
-import { authUser, signOutUser } from './../actions/authActions';
+import { authenticateUser, signOutUser } from './../actions/authActions';
 import { checkCorrectNetwork, checkWalletAvailable } from './../actions/web3Actions';
+import { connect } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -19,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function ConnectButton() {
+function ConnectButton({ authenticateUser }) {
   const classes = useStyles();
   const [error, setError] = useState('');
 
@@ -28,7 +29,7 @@ function ConnectButton() {
     if (networkStatus) {
       const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
       const accountAddress = accounts[0];
-      authUser(accountAddress);
+      authenticateUser(accountAddress);
       setError('');
     } else {
       setError('Only support BSC network');
@@ -38,8 +39,8 @@ function ConnectButton() {
   return (
     <div className="my-5 text-center">
       <div className="mt-5 text-center">
-        <h4 style={{ color: 'yellow' }}>Missing Wallet!</h4>
-        <p style={{ color: 'white' }}>Connect your wallet first and then only you can claim airdrop.</p>
+        <h4 style={{ color: 'yellow' }}>Wallet Not Connected!</h4>
+        <p style={{ color: 'white' }}>Connect your wallet first and then only you can view matches.</p>
       </div>
       <div className="mt-5">
         <Button className={classes.button} onClick={connectWallet}>
@@ -53,4 +54,11 @@ function ConnectButton() {
   );
 }
 
-export default ConnectButton;
+const mapStateToProps = (state) => ({
+  authenticated: state.auth.authenticated,
+  user: state.auth.user,
+});
+
+const mapDispatchToProps = { authenticateUser };
+
+export default connect(mapStateToProps, mapDispatchToProps)(ConnectButton);

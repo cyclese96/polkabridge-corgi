@@ -42,10 +42,17 @@ export const getMatchInfo = (mid) => {
   });
 };
 
+//READ players info
+//RETURNS object
+export const getPlayers = (mid, address) => {
+  return contractConnection.methods.players(mid, address).call((err, response) => {
+    return response;
+  });
+};
+
 //Check approved or not
 export const checkApproved = (userAddress) => {
   return tokenConnection.methods.allowance(userAddress, constants.contractAddress).call((err, response) => {
-    console.log('allowance: ' + response);
     return response;
   });
 };
@@ -57,4 +64,11 @@ export const approveAmount = async (account) => {
     .send({ from: account });
 
   return response;
+};
+
+//Get corgib balance
+export const getCorgibBalance = (userAddress) => {
+  return tokenConnection.methods.balanceOf(userAddress).call(async (err, response) => {
+    return response;
+  });
 };
