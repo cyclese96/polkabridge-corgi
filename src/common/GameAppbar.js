@@ -254,6 +254,8 @@ function GameAppbar({ authenticated, user, authenticateUser, signOutUser }) {
     //Is user in localStorage
     if (window.ethereum !== undefined) {
       const networkStatus = await checkCorrectNetwork();
+      console.log('networkStatus: ' + networkStatus);
+
       if (networkStatus) {
         const localAddress = await localStorage.getItem('userAddress');
         if (localAddress) {

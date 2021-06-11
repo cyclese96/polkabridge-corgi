@@ -30,6 +30,6 @@ export const checkCorrectNetwork = async () => {
     return true;
   } else {
     //console.log('Other Network');
-    return chainID;
+    return false;
   }
 };
