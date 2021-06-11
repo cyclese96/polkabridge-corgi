@@ -162,7 +162,7 @@ function Play({ authenticated, user }) {
                 <Paper square className={classes.root}>
                   <Tabs value={value} onChange={handleChange} indicatorColor="secondary" textColor="primary" centered>
                     <Tab label="Active Matches" />
-                    <Tab label="Ended Ended" />
+                    <Tab label="Ended" />
                   </Tabs>
                 </Paper>
               </div>

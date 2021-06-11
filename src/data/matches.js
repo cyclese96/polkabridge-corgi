@@ -36,30 +36,30 @@ const matches = [
     },
     date: '12 June, 2021 16:00:00 UTC',
   },
-  // {
-  //   id: 4,
-  //   team1: {
-  //     name: 'Belgium',
-  //     image: 'https://www.countryflags.io/be/shiny/64.png',
-  //   },
-  //   team2: {
-  //     name: 'Russia',
-  //     image: 'https://www.countryflags.io/ru/shiny/64.png',
-  //   },
-  //   date: '12 June, 2021 19:00:00 UTC',
-  // },
-  // {
-  //   id: 5,
-  //   team1: {
-  //     name: 'England',
-  //     image: 'https://www.countryflags.io/gb/shiny/64.png',
-  //   },
-  //   team2: {
-  //     name: 'Croatia',
-  //     image: 'https://www.countryflags.io/hr/shiny/64.png',
-  //   },
-  //   date: '13 June, 2021 13:00:00 UTC',
-  // },
+  {
+    id: 4,
+    team1: {
+      name: 'Belgium',
+      image: 'https://www.countryflags.io/be/shiny/64.png',
+    },
+    team2: {
+      name: 'Russia',
+      image: 'https://www.countryflags.io/ru/shiny/64.png',
+    },
+    date: '12 June, 2021 19:00:00 UTC',
+  },
+  {
+    id: 5,
+    team1: {
+      name: 'England',
+      image: 'https://www.countryflags.io/gb/shiny/64.png',
+    },
+    team2: {
+      name: 'Croatia',
+      image: 'https://www.countryflags.io/hr/shiny/64.png',
+    },
+    date: '13 June, 2021 13:00:00 UTC',
+  }
   // {
   //   id: 6,
   //   team1: {
