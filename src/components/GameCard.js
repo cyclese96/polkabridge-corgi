@@ -30,6 +30,8 @@ const useStyles = makeStyles((theme) => ({
     margin: 10,
     padding: 10,
     height: '100%',
+    border: '1px solid #ffffff',
+    borderRadius: 7,
   },
 
   heading: {
