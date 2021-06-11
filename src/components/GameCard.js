@@ -213,8 +213,6 @@ export default function GameCard({ item, index }) {
     });
     console.log(response);
     return response;
-
-    //let res = await approveAmount(userAddress).then((res) => {});
   };
 
   return (

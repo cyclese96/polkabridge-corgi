@@ -143,14 +143,7 @@ function BetForm({ index, choice }) {
     console.log(response);
     return response;
   };
-  useEffect(() => {
-    console.log('hitting cleanup hard');
 
-    return () => {
-      console.log('cleaned up');
-      setActualCase(0);
-    };
-  }, []);
   return (
     <div className={classes.card}>
       <div className="container text-center">

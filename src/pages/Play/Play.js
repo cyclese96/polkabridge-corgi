@@ -83,7 +83,7 @@ export default function Header() {
       gameCards = matches.filter((match) => {
         let d = new Date();
         let matchDate1 = new Date(match.date);
-        return d.toUTCString() > matchDate1.toUTCString();
+        return d.toUTCString() < matchDate1.toUTCString();
       });
     }
     if (matches.length !== 0 && newValue === 1) {
@@ -91,7 +91,7 @@ export default function Header() {
         let d = new Date();
         let matchDate2 = new Date(match.date);
 
-        return d.toUTCString() < matchDate2.toUTCString();
+        return d.toUTCString() > matchDate2.toUTCString();
       });
     }
     setGames(gameCards);
