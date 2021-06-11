@@ -5,7 +5,7 @@ const contractConstant = {
   rpcUrl: constants.network_address,
   chainId: 97, // Smart Chain - Testnet chain id
   api: 'V3X7VF8MVXS2P3XE457J5A5W5FEX8Z1FQK',
-  contractAddress: '0x624B06b8452C9bdB8d558b591bF1B6825a133937',
+  contractAddress: '0x63925DC1C1504d52c9eA5cCAeCed8A7d0942637F',
   abi: [
     {
       inputs: [{ internalType: 'contract PolkaBridgeMemeToken', name: '_tokenAddress', type: 'address' }],
