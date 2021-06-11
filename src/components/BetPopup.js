@@ -48,7 +48,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 600,
     letterSpacing: 0.9,
     fontSize: 22,
-    lineHeight: '50px',
+    lineHeight: '40px',
   },
   label: {
     verticalAlign: 'baseline',

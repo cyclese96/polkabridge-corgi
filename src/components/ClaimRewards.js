@@ -4,6 +4,7 @@ import { useEffect, useState } from 'react';
 import { getMatchInfo, getPlayers } from './../actions/SmartActions';
 import contractConnection from './../utils/connection';
 import web3 from './../web';
+import { getPendingReward } from './../actions/SmartActions';
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -59,38 +60,38 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function ClaimRewards({ mid, item }) {
+export default function ClaimRewards({ mid, item, userAddress }) {
   const classes = useStyles();
   const [matchInfo, setMatchInfo] = useState(null);
   const [enableClaim, setEnableClaim] = useState(false);
   const [players, setPlayers] = useState(null);
   const [claimed, setClaimed] = useState(false);
-  const [winner, setWinner] = useState('Hello');
+  const [winner, setWinner] = useState('Winner');
+  const [pendingReward, setPendingReward] = useState(0);
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
     async function callMatchInfo() {
-      //console.log('Use effect');
-      // let matchInfo = 10;
       let matchInfo = await getMatchInfo(mid);
       let resultDeclared = parseInt(matchInfo[5]);
+
+      //Calculate pending reward
+      let pendingReward = await getPendingReward(mid, userAddress);
+      let pendingRewardTemp = web3.utils.fromWei(pendingReward.toString(), 'ether');
+      setPendingReward(Math.ceil(pendingRewardTemp));
+      console.log('pendingRewards: ' + mid + ' : ' + Math.ceil(pendingRewardTemp));
+
       setMatchInfo(matchInfo);
       if (resultDeclared > 0) {
         console.log(matchInfo);
         let winnerNo = parseInt(matchInfo[5]);
         if (winnerNo === 1) {
-          console.log(`${item.team1.name} wins`);
-
           setWinner(`${item.team1.name} wins`);
         }
         if (winnerNo === 2) {
-          console.log('Draw');
-
           setWinner('Match is Draw');
         }
         if (winnerNo === 3) {
-          console.log(`${item.team2.name} wins`);
-
           setWinner(`${item.team2.name} wins`);
         }
         setEnableClaim(true);
@@ -193,8 +194,7 @@ export default function ClaimRewards({ mid, item }) {
                 Your Bet: <strong>{players.whichBet}</strong>
               </div>
               <div className={classes.rewards}>
-                Expected Reward:{' '}
-                <strong>{web3.utils.fromWei(players.amountBet.toString(), 'ether') / 1000000000}B</strong>
+                Expected Reward: <strong>{pendingReward / 1000000000}B</strong>
               </div>
             </div>
           )}

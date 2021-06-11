@@ -8,6 +8,7 @@ import {
   isBet,
   checkApproved,
   approveAmount,
+  getPendingReward,
 } from './../actions/SmartActions';
 import tokenConnection from './../utils/tokenConnection';
 import contractConnection from './../utils/connection';
@@ -127,10 +128,9 @@ function GameCard({ item, index, transaction, user, authenticated }) {
   const [loading, setLoading] = useState(false);
   const [popup, setPopup] = useState(false);
   const [choice, setChoice] = useState(0);
-  const [general, setGeneral] = React.useState('A');
+  const [pendingReward, setPendingReward] = React.useState(0);
 
   const togglePopup = (value, choice) => {
-    //console.log(value, choice);
     setPopup(value);
     setChoice(choice);
   };
@@ -138,8 +138,6 @@ function GameCard({ item, index, transaction, user, authenticated }) {
   useEffect(async () => {
     if (authenticated) {
       setUserAddress(userAddress);
-      // let totalBetAmount = await getTotalBetAmount(index);
-      // setGeneral(totalBetAmount);
     } else {
       setActualCase(3);
     }
@@ -157,6 +155,7 @@ function GameCard({ item, index, transaction, user, authenticated }) {
         let betAmount1 = await getTotalBetAmountByResult(mid, 1);
         let betAmount2 = await getTotalBetAmountByResult(mid, 2);
         let betAmount3 = await getTotalBetAmountByResult(mid, 3);
+
         let betAmountTemp1 = web3.utils.fromWei(betAmount1.toString(), 'ether');
         let betAmountTemp2 = web3.utils.fromWei(betAmount2.toString(), 'ether');
         let betAmountTemp3 = web3.utils.fromWei(betAmount3.toString(), 'ether');
@@ -260,7 +259,7 @@ function GameCard({ item, index, transaction, user, authenticated }) {
           )}
           {actualCase === 1 && (
             <div className="d-flex justify-content-center">
-              <ClaimRewards mid={index} item={item} />
+              <ClaimRewards mid={index} item={item} userAddress={user} />
             </div>
           )}
           {actualCase === 2 && (

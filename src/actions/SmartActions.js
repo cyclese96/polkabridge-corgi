@@ -50,6 +50,14 @@ export const getPlayers = (mid, address) => {
   });
 };
 
+//READ pending rewards of the player
+//RETURNS object
+export const getPendingReward = (mid, address) => {
+  return contractConnection.methods.pendingReward(mid, address).call((err, response) => {
+    return response;
+  });
+};
+
 //Check approved or not
 export const checkApproved = (userAddress) => {
   return tokenConnection.methods.allowance(userAddress, constants.contractAddress).call((err, response) => {
