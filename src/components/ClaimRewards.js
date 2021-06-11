@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { useEffect, useState } from 'react';
 import { getMatchInfo, getPlayers } from './../actions/SmartActions';
 import contractConnection from './../utils/connection';
+import web3 from './../web';
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -24,26 +25,47 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   heading: {
-    color: 'white',
+    color: 'yellow',
     width: 'auto',
     textAlign: 'center',
-    fontSize: 36,
+    fontSize: 32,
     fontWeight: 600,
     verticalAlign: 'middle',
     wordSpacing: '0px',
     [theme.breakpoints.down('md')]: {
-      fontSize: '26px',
+      fontSize: '22px',
       textAlign: 'center',
     },
   },
+  para: {
+    color: 'white',
+    width: 'auto',
+    textAlign: 'center',
+    fontSize: 14,
+    fontWeight: 600,
+    verticalAlign: 'middle',
+    wordSpacing: '0px',
+    [theme.breakpoints.down('md')]: {
+      fontSize: 12,
+      textAlign: 'center',
+    },
+  },
+  rewards: {
+    color: 'white',
+    textAlign: 'center',
+    fontSize: 18,
+    paddingRight: 20,
+    paddingLeft: 20,
+  },
 }));
 
-export default function ClaimRewards({ mid }) {
+export default function ClaimRewards({ mid, item }) {
   const classes = useStyles();
-  const [matchInfo, setMatchInfo] = useState({});
+  const [matchInfo, setMatchInfo] = useState(null);
   const [enableClaim, setEnableClaim] = useState(false);
-  const [players, setPlayers] = useState({});
+  const [players, setPlayers] = useState(null);
   const [claimed, setClaimed] = useState(false);
+  const [winner, setWinner] = useState('Hello');
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
@@ -54,7 +76,23 @@ export default function ClaimRewards({ mid }) {
       let resultDeclared = parseInt(matchInfo[5]);
       setMatchInfo(matchInfo);
       if (resultDeclared > 0) {
-        //console.log('Result declared');
+        console.log(matchInfo);
+        let winnerNo = parseInt(matchInfo[5]);
+        if (winnerNo === 1) {
+          console.log(`${item.team1.name} wins`);
+
+          setWinner(`${item.team1.name} wins`);
+        }
+        if (winnerNo === 2) {
+          console.log('Draw');
+
+          setWinner('Match is Draw');
+        }
+        if (winnerNo === 3) {
+          console.log(`${item.team2.name} wins`);
+
+          setWinner(`${item.team2.name} wins`);
+        }
         setEnableClaim(true);
       } else {
         //console.log('Result not declared');
@@ -120,9 +158,25 @@ export default function ClaimRewards({ mid }) {
             </div>
           ) : (
             <div>
-              <Button variant="contained" color="primary" className={classes.button} onClick={claimFn}>
-                Claim Rewards
-              </Button>
+              <div className="mb-2">
+                {matchInfo !== null &&
+                  players !== null &&
+                  (matchInfo.finalResult !== players.whichBet ? (
+                    <div>
+                      <div className={classes.heading}>You Loose!</div>
+                      <div className={classes.para}>{winner}</div>
+                    </div>
+                  ) : (
+                    <div>
+                      <div className={classes.heading}>You Win!</div>
+                      <div className={classes.para}>{winner}</div>
+
+                      <Button variant="contained" color="primary" className={classes.button} onClick={claimFn}>
+                        Claim Rewards
+                      </Button>
+                    </div>
+                  ))}
+              </div>
             </div>
           )}
         </div>
@@ -131,6 +185,17 @@ export default function ClaimRewards({ mid }) {
           <Button variant="contained" color="primary" className={classes.button}>
             Result TBA
           </Button>
+          {players !== null && (
+            <div className="d-flex justify-content-between mt-3">
+              <div className={classes.rewards}>
+                Your Bet: <strong>{players.whichBet}</strong>
+              </div>
+              <div className={classes.rewards}>
+                Expected Reward:{' '}
+                <strong>{web3.utils.fromWei(players.amountBet.toString(), 'ether') / 1000000000}B</strong>
+              </div>
+            </div>
+          )}
         </div>
       )}
     </div>

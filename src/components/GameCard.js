@@ -71,7 +71,7 @@ const useStyles = makeStyles((theme) => ({
   countryName: {
     color: 'white',
     textAlign: 'center',
-    fontSize: 18,
+    fontSize: 16,
   },
   vs: {
     fontSize: 32,
@@ -258,7 +258,7 @@ function GameCard({ item, index, transaction, user, authenticated }) {
           )}
           {actualCase === 1 && (
             <div className="d-flex justify-content-center">
-              <ClaimRewards mid={index} />
+              <ClaimRewards mid={index} item={item} />
             </div>
           )}
           {actualCase === 2 && (
@@ -274,25 +274,6 @@ function GameCard({ item, index, transaction, user, authenticated }) {
                   </Button>
                 </div>
               )}
-            </div>
-          )}
-          {actualCase === 3 && (
-            <div className="d-flex justify-content-center">
-              <div className={classes.buttonWrapper}>
-                <Button variant="contained" className={classes.button} onClick={() => togglePopup(true, 1)}>
-                  Win
-                </Button>
-              </div>
-              <div className={classes.buttonWrapper}>
-                <Button variant="contained" className={classes.button} onClick={() => togglePopup(true, 2)}>
-                  Draw
-                </Button>
-              </div>
-              <div className={classes.buttonWrapper}>
-                <Button variant="contained" className={classes.button} onClick={() => togglePopup(true, 3)}>
-                  Win
-                </Button>
-              </div>
             </div>
           )}
           <div className="mt-3">
@@ -327,7 +308,7 @@ function GameCard({ item, index, transaction, user, authenticated }) {
           timeout: 500,
         }}>
         <div style={{ backgroundColor: 'black' }}>
-          <BetPopup index={index} choice={choice} />
+          <BetPopup index={index} choice={choice} item={item} />
         </div>
       </Dialog>{' '}
     </section>
