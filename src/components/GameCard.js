@@ -108,6 +108,9 @@ const useStyles = makeStyles((theme) => ({
   buttonWrapper: {
     textAlign: 'center',
     width: 180,
+    [theme.breakpoints.down('sm')]: {
+      width: 120,
+    },
   },
 }));
 
@@ -125,7 +128,7 @@ function GameCard({ item, index, transaction, user, authenticated }) {
   const [general, setGeneral] = React.useState('A');
 
   const togglePopup = (value, choice) => {
-    console.log(value, choice);
+    //console.log(value, choice);
     setPopup(value);
     setChoice(choice);
   };
@@ -163,31 +166,31 @@ function GameCard({ item, index, transaction, user, authenticated }) {
         };
 
         setTeamBetAmounts(teamAmount);
-        console.log(teamAmount);
+
         let totalParticipants = await getTotalParticipants(mid);
         let betObject = await isBet(mid, userAddress);
 
         setBetAmount(parseInt(totalBetAmount));
         setParticipants(totalParticipants);
         if (parseInt(betObject.amountBet) > 0) {
-          console.log('Already Bet');
+          //console.log('Already Bet');
           setActualCase(1);
         } else {
           // Check approve
           let approved = await checkApproved(userAddress);
           console.log(approved);
           if (parseInt(approved) > 0) {
-            console.log('Approved');
+            // console.log('Approved');
             setActualCase(3);
           } else {
-            console.log('Not Approved');
+            //console.log('Not Approved');
             setActualCase(2);
           }
         }
       }
     }
     asyncFn();
-  }, [transaction, authenticated]);
+  }, [authenticated]);
 
   const approveFn = async () => {
     setLoading(true);
@@ -200,7 +203,7 @@ function GameCard({ item, index, transaction, user, authenticated }) {
           if (transactionHash) {
             resolve(transactionHash);
           } else {
-            console.log('Rejected by user!');
+            //console.log('Rejected by user!');
             setLoading(false);
             reject();
           }
@@ -208,17 +211,17 @@ function GameCard({ item, index, transaction, user, authenticated }) {
         .on('receipt', async function (receipt) {
           let approved = await checkApproved(userAddress);
           if (approved) {
-            console.log('Approved');
+            //console.log('Approved');
             setActualCase(3);
           } else {
-            console.log('Not Approved');
+            //console.log('Not Approved');
 
             setActualCase(2);
           }
           setLoading(false);
         });
     });
-    console.log(response);
+    //console.log(response);
     return response;
   };
 

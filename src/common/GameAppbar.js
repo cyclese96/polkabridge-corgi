@@ -235,7 +235,7 @@ function GameAppbar({ authenticated, user, authenticateUser, signOutUser }) {
   };
 
   const connectWallet = async () => {
-    console.log('Connected');
+    //console.log('Connected');
     if (window.ethereum !== undefined) {
       const networkStatus = await checkCorrectNetwork();
       if (networkStatus) {
@@ -243,10 +243,10 @@ function GameAppbar({ authenticated, user, authenticateUser, signOutUser }) {
         const accountAddress = accounts[0];
         authenticateUser(accountAddress);
       } else {
-        console.log('Only support BSC network');
+        //console.log('Only support BSC network');
       }
     } else {
-      console.log('Install metamask first!');
+      //console.log('Install metamask first!');
     }
   };
 
@@ -263,7 +263,7 @@ function GameAppbar({ authenticated, user, authenticateUser, signOutUser }) {
           signOutUser();
         }
       } else {
-        console.log('Wrong network');
+        //console.log('Wrong network');
       }
     }
   }, [user]);

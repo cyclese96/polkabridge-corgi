@@ -48,36 +48,36 @@ export default function ClaimRewards({ mid }) {
 
   useEffect(() => {
     async function callMatchInfo() {
-      console.log('Use effect');
+      //console.log('Use effect');
       // let matchInfo = 10;
       let matchInfo = await getMatchInfo(mid);
       let resultDeclared = parseInt(matchInfo[5]);
       setMatchInfo(matchInfo);
       if (resultDeclared > 0) {
-        console.log('Result declared');
+        //console.log('Result declared');
         setEnableClaim(true);
       } else {
-        console.log('Result not declared');
+        //console.log('Result not declared');
         setEnableClaim(false);
       }
-      console.log(matchInfo);
+      //console.log(matchInfo);
     }
     callMatchInfo();
   }, []);
   useEffect(() => {
     async function callPlayers() {
-      console.log('checking isClaimed');
+      //console.log('checking isClaimed');
 
       const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
       let userAddress = accounts[0];
       let playersData = await getPlayers(mid, userAddress);
       setPlayers(playersData);
-      console.log(playersData);
+      //console.log(playersData);
       if (playersData.isClaim) {
         setClaimed(true);
-        console.log('Already Claimed');
+        //console.log('Already Claimed');
       } else {
-        console.log('Not yet Claimed');
+        //console.log('Not yet Claimed');
 
         setClaimed(false);
       }
@@ -85,7 +85,7 @@ export default function ClaimRewards({ mid }) {
     callPlayers();
   }, []);
   const claimFn = async () => {
-    console.log('Claim here');
+    //console.log('Claim here');
     setLoading(true);
     let matchId = mid;
     const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
@@ -97,17 +97,17 @@ export default function ClaimRewards({ mid }) {
           if (transactionHash) {
             resolve(transactionHash);
           } else {
-            console.log('Rejected by user!');
+            //console.log('Rejected by user!');
             setLoading(false);
             reject();
           }
         })
         .on('receipt', async function (receipt) {
-          console.log('Successfully Claimed');
+          //console.log('Successfully Claimed');
           setLoading(false);
         });
     });
-    console.log(response);
+    //console.log(response);
     return response;
   };
   return (

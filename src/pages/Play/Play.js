@@ -98,27 +98,27 @@ function Play({ authenticated, user }) {
     let walletAvailable = await checkWalletAvailable();
 
     if (walletAvailable) {
-      console.log('1.Wallet  available');
+      //console.log('1.Wallet  available');
       let networkStatus = await checkCorrectNetwork();
 
       if (networkStatus) {
-        console.log('2. Correct Network');
+        //console.log('2. Correct Network');
         //Get accounts
 
         if (authenticated) {
-          console.log('3. Authenticated True');
+          // console.log('3. Authenticated True');
           setActualCase(4);
         } else {
-          console.log('3. Authenticated False');
+          //console.log('3. Authenticated False');
           setActualCase(3);
         }
       } else {
         setActualCase(2);
-        console.log('2. Wrong Network');
+        //console.log('2. Wrong Network');
       }
     } else {
       setActualCase(1);
-      console.log('1.Wallet not available');
+      //console.log('1.Wallet not available');
     }
   };
   useEffect(() => {

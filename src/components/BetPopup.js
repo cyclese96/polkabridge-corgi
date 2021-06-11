@@ -6,6 +6,7 @@ import web3 from './../web';
 import Loader from './Loader';
 import { connect } from 'react-redux';
 import { transactionHit } from './../actions/authActions';
+import { Replay } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -16,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: 'white',
     [theme.breakpoints.down('md')]: {
       width: 350,
-      padding: '5px 2px 5px 2px',
+      padding: '10px 2px 20px 2px',
     },
   },
   PriceButton: {
@@ -28,6 +29,17 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: 5,
     marginRight: 5,
     fontSize: 12,
+    width: 60,
+    [theme.breakpoints.down('md')]: {
+      padding: 0,
+      paddingTop: 2,
+      paddingBottom: 2,
+      marginLeft: 5,
+      marginRight: 5,
+      paddingLeft: 10,
+      paddingRight: 10,
+      width: 44,
+    },
   },
   title: {
     verticalAlign: 'baseline',
@@ -72,6 +84,17 @@ const useStyles = makeStyles((theme) => ({
     background: `linear-gradient(to bottom,#D9047C, #BF1088)`,
     fontSize: 16,
   },
+  buttonReload: {
+    color: 'white',
+    marginTop: 20,
+    backgroundColor: 'green',
+    textTransform: 'none',
+    borderRadius: '100px',
+    padding: '12px 16px 12px 16px',
+    fontWeight: 500,
+    //background: `linear-gradient(to bottom,#D9047C, #BF1088)`,
+    fontSize: 16,
+  },
 
   icon: {
     fontSize: 16,
@@ -111,39 +134,39 @@ function BetForm({ index, choice, transactionHit }) {
   };
   const submitForm = async () => {
     //Calling smart contract function.
-    console.log('Bet here');
+    //console.log('Bet here');
 
     const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
     let userAddress = accounts[0];
     let mid = index;
     let betChoice = choice;
     let betAmount = web3.utils.toWei((parseInt(amount) * 1000000000).toString(), 'ether');
-    console.log(mid, betChoice, betAmount);
+    //console.log(mid, betChoice, betAmount);
     const response = await new Promise((resolve, reject) => {
       contractConnection.methods
         .bet(mid, betChoice, betAmount)
         .send({ from: userAddress }, function (error, transactionHash) {
           if (transactionHash) {
-            console.log('1. Submitted by user!');
+            //console.log('1. Submitted by user!');
             setActualCase(2);
             resolve(transactionHash);
           } else {
-            console.log('1. Rejected by user!');
+            //console.log('1. Rejected by user!');
+
             setActualCase(1);
             reject();
           }
         })
         .on('receipt', async function (receipt) {
-          transactionHit();
-          console.log('2. Transaction successful');
+          //console.log('2. Transaction successful');
           setActualCase(3);
         })
         .on('error', function (error) {
-          console.log('2. Transaction failed');
+          //console.log('2. Transaction failed');
           setActualCase(4);
         });
     });
-    console.log(response);
+    //console.log(response);
     return response;
   };
 
@@ -173,36 +196,36 @@ function BetForm({ index, choice, transactionHit }) {
                 error={errorFlag}
                 helperText={error}
               />
-              <div className="d-flex justify-content-center align-items-center">
+              <div className="d-flex justify-content-between align-items-center">
                 <div className="text-center">
-                  <Button className={classes.PriceButton} onClick={() => setAmount(2)}>
+                  <button className={classes.PriceButton} onClick={() => setAmount(2)}>
                     2B
-                  </Button>
+                  </button>
                 </div>
                 <div className="text-center">
-                  <Button className={classes.PriceButton} onClick={() => setAmount(5)}>
+                  <button className={classes.PriceButton} onClick={() => setAmount(5)}>
                     5B
-                  </Button>
+                  </button>
                 </div>
                 <div className="text-center">
-                  <Button className={classes.PriceButton} onClick={() => setAmount(10)}>
+                  <button className={classes.PriceButton} onClick={() => setAmount(10)}>
                     10B
-                  </Button>
+                  </button>
                 </div>
                 <div className="text-center">
-                  <Button className={classes.PriceButton} onClick={() => setAmount(20)}>
+                  <button className={classes.PriceButton} onClick={() => setAmount(20)}>
                     20B
-                  </Button>
+                  </button>
                 </div>
                 <div className="text-center">
-                  <Button className={classes.PriceButton} onClick={() => setAmount(50)}>
+                  <button className={classes.PriceButton} onClick={() => setAmount(50)}>
                     50B
-                  </Button>
+                  </button>
                 </div>
                 <div className="text-center">
-                  <Button className={classes.PriceButton} onClick={() => setAmount(100)}>
+                  <button className={classes.PriceButton} onClick={() => setAmount(100)}>
                     100B
-                  </Button>
+                  </button>
                 </div>
               </div>
               <p></p>
@@ -220,6 +243,11 @@ function BetForm({ index, choice, transactionHit }) {
               <img src="https://icon-library.com/images/17c52fbb9e.svg.svg" height="100px" />
             </div>
             <h4 className="text-center">Transaction Rejected</h4>
+            <h6 className="text-center">Please Reload</h6>
+            <Button variant="contained" className={classes.buttonReload} onClick={() => window.location.reload()}>
+              <Replay />
+              Reload
+            </Button>
           </div>
         )}
         {actualCase === 2 && (
@@ -236,6 +264,14 @@ function BetForm({ index, choice, transactionHit }) {
               <img src="https://www.freeiconspng.com/thumbs/success-icon/success-icon-10.png" height="100px" />
             </div>
             <h4 className="text-center">Transaction Confirmed!</h4>
+            <h6 className="text-center">Please Reload</h6>
+
+            <div className="text-center">
+              <Button variant="contained" className={classes.buttonReload} onClick={() => window.location.reload()}>
+                <Replay />
+                Reload
+              </Button>
+            </div>
           </div>
         )}
         {actualCase === 4 && (
@@ -244,6 +280,13 @@ function BetForm({ index, choice, transactionHit }) {
               <img src="images/report.png" height="100px" />
             </div>
             <h4 className="text-center">Transaction Failed!</h4>
+            <h6 className="text-center">Please Reload</h6>
+            <div className="text-center">
+              <Button variant="contained" className={classes.buttonReload} onClick={() => window.location.reload()}>
+                <Replay />
+                Reload
+              </Button>
+            </div>
           </div>
         )}
       </div>

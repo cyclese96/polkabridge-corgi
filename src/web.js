@@ -5,10 +5,10 @@ var web3;
 
 if (typeof window.web3 !== 'undefined') {
   // Use Mist/MetaMask's provider.
-  console.log('using native web3 provider ');
+  //console.log('using native web3 provider ');
   web3 = new Web3(window.web3.currentProvider);
 } else {
-  console.log('using infura web3 provider');
+  //console.log('using infura web3 provider');
 
   if (provider.connected) {
     web3 = new Web3(provider);

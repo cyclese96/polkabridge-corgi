@@ -98,7 +98,7 @@ export default function BalancePopup({ address, corgib, togglePopup, signOut }) 
         </div>
         <div style={{ paddingLeft: 20 }}>
           <h6 className={classes.subtitle}>Balance</h6>
-          <p className={classes.para}>{corgib} CORGIB</p>
+          <p className={classes.para}>{Math.ceil(corgib)} CORGIB</p>
         </div>
         <div style={{ paddingLeft: 10 }}>
           <div className="my-3 d-flex justify-content-start">
