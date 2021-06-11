@@ -129,6 +129,7 @@ function GameCard({ item, index, transaction, user, authenticated }) {
   const [popup, setPopup] = useState(false);
   const [choice, setChoice] = useState(0);
   const [pendingReward, setPendingReward] = React.useState(0);
+  const [stopPopupClick, setStopPopupClick] = useState(false);
 
   const togglePopup = (value, choice) => {
     setPopup(value);
@@ -324,11 +325,12 @@ function GameCard({ item, index, transaction, user, authenticated }) {
         onClose={() => togglePopup(false)}
         closeAfterTransition
         BackdropComponent={Backdrop}
+        disableBackdropClick={stopPopupClick}
         BackdropProps={{
           timeout: 500,
         }}>
         <div style={{ backgroundColor: 'black' }}>
-          <BetPopup index={index} choice={choice} item={item} />
+          <BetPopup index={index} choice={choice} item={item} stopPopupClicking={setStopPopupClick} />
         </div>
       </Dialog>{' '}
     </section>

@@ -112,7 +112,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function BetForm({ index, choice, transactionHit }) {
+function BetForm({ index, choice, transactionHit, stopPopupClicking }) {
   const classes = useStyles();
   const [actualCase, setActualCase] = useState(0);
   const [amount, setAmount] = useState(0);
@@ -135,7 +135,7 @@ function BetForm({ index, choice, transactionHit }) {
   const submitForm = async () => {
     //Calling smart contract function.
     //console.log('Bet here');
-
+    stopPopupClicking(true);
     const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
     let userAddress = accounts[0];
     let mid = index;
@@ -152,7 +152,7 @@ function BetForm({ index, choice, transactionHit }) {
             resolve(transactionHash);
           } else {
             //console.log('1. Rejected by user!');
-
+            stopPopupClicking(false);
             setActualCase(1);
             reject();
           }
@@ -160,6 +160,7 @@ function BetForm({ index, choice, transactionHit }) {
         .on('receipt', async function (receipt) {
           //console.log('2. Transaction successful');
           setActualCase(3);
+          window.location.reload();
         })
         .on('error', function (error) {
           //console.log('2. Transaction failed');

@@ -22,7 +22,7 @@ const useStyles = makeStyles((theme) => ({
   },
   header: {
     overflowY: 'scroll',
-    height: '85vh',
+    height: '95vh',
     width: 'auto',
     background: `linear-gradient(0deg, rgba(0, 0, 0, 0.8), rgba(3, 3, 3, 0.7) ),url("images/corgibbg.jpg")`,
     backgroundSize: 'cover',
