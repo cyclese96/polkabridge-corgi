@@ -3,7 +3,7 @@ import { Button } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import constants from './../utils/constants';
 import web3 from './../web';
-import { authUser, signOutUser } from './../actions/authActions';
+import { authenticateUser, signOutUser } from './../actions/authActions';
 import { checkCorrectNetwork, checkWalletAvailable } from './../actions/web3Actions';
 
 const useStyles = makeStyles((theme) => ({
@@ -28,7 +28,7 @@ function ConnectButton() {
     if (networkStatus) {
       const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
       const accountAddress = accounts[0];
-      authUser(accountAddress);
+      authenticateUser(accountAddress);
       setError('');
     } else {
       setError('Only support BSC network');

@@ -11,7 +11,7 @@ import matches from './../../data/matches';
 import { checkCorrectNetwork, checkWalletAvailable } from './../../actions/web3Actions';
 import Loader from '../../components/Loader';
 import ConnectButton from '../../common/ConnectButton';
-import { authUser } from '../../actions/authActions';
+import { authenticateUser } from '../../actions/authActions';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -106,7 +106,7 @@ export default function Header() {
         //Get accounts
         const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
         const accountAddress = accounts[0];
-        authUser(accountAddress);
+        authenticateUser(accountAddress);
         let authenticatedAddress = localStorage.getItem('userAddress');
         if (authenticatedAddress) {
           console.log('3. Authenticated True');

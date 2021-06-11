@@ -11,11 +11,13 @@ import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import { Link } from 'react-router-dom';
 import { Button, Dialog, Backdrop } from '@material-ui/core';
-import { authUser, signOutUser } from './../actions/authActions';
+import { authenticateUser, signOutUser } from './../actions/authActions';
 import { checkCorrectNetwork, checkWalletAvailable } from './../actions/web3Actions';
 import web3 from './../web';
 import BalancePopup from '../components/BalancePopup';
 import { getCorgibBalance } from './../actions/SmartActions';
+import { connect } from 'react-redux';
+import { AccountBalanceWallet } from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
   grow: {
@@ -133,9 +135,32 @@ const useStyles = makeStyles((theme) => ({
   highlight: {
     color: theme.palette.pbr.primary,
   },
+  balanceButton: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    border: '1px solid #bdbdbd',
+    //background: 'transparent',
+    background: 'linear-gradient(73.28deg,#D9047C 6.51%,#BF1088 88.45%)',
+
+    borderRadius: '20px',
+    position: 'relative',
+    padding: '0 12px 0 40px',
+    minWidth: '50px',
+    marginLeft: '10px',
+    marginRight: '10px',
+    marginTop: 5,
+    height: '40px',
+    maxWidth: 'calc(100% - 20px);',
+    fontSize: 16,
+  },
+  icon: {
+    fontSize: 24,
+    color: '#616161',
+  },
 }));
 
-export default function PrimarySearchAppBar() {
+function GameAppbar({ authenticated, user, authenticateUser, signOutUser }) {
   const classes = useStyles();
 
   const [state, setState] = React.useState({
@@ -205,7 +230,7 @@ export default function PrimarySearchAppBar() {
       if (networkStatus) {
         const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
         const accountAddress = accounts[0];
-        authUser(accountAddress);
+        authenticateUser(accountAddress);
       } else {
         console.log('Only support BSC network');
       }
@@ -220,18 +245,14 @@ export default function PrimarySearchAppBar() {
         const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
         const accountAddress = accounts[0];
         console.log('Calling authenticate');
-        authUser(accountAddress);
+        authenticateUser(accountAddress);
         setAddress(accountAddress);
         getBalance(accountAddress);
       } else {
         console.log('Wrong network');
       }
     }
-  }, [localStorage.getItem('userAddress')]);
-
-  // useEffect(() => {
-  //   window.location.reload();
-  // }, [localStorage.getItem('userAddress')]);
+  }, [user]);
 
   useEffect(() => {
     //Events to detect changes in account or network.
@@ -239,7 +260,7 @@ export default function PrimarySearchAppBar() {
       window.ethereum.on('accountsChanged', function (accounts) {
         web3.eth.requestAccounts().then((accounts) => {
           const accountAddress = accounts[0];
-          authUser(accountAddress);
+          authenticateUser(accountAddress);
 
           window.location.reload();
         });
@@ -250,7 +271,7 @@ export default function PrimarySearchAppBar() {
         if (networkStatus) {
           web3.eth.requestAccounts().then((accounts) => {
             const accountAddress = accounts[0];
-            authUser(accountAddress);
+            authenticateUser(accountAddress);
             window.location.reload();
           });
         } else {
@@ -261,7 +282,7 @@ export default function PrimarySearchAppBar() {
         }
       });
     }
-  }, [localStorage.getItem('userAddress')]);
+  }, [user]);
 
   return (
     <div className={classes.grow}>
@@ -284,26 +305,27 @@ export default function PrimarySearchAppBar() {
 
             <div className={classes.sectionDesktop}>
               <div style={{ paddingRight: 10 }}>
-                {' '}
-                {localStorage.getItem('userAddress') !== '' ? (
+                {authenticated ? (
                   <div>
-                    <Button variant="outlined" className={classes.buttonOutlined} onClick={() => togglePopup(true)}>
-                      <div className="d-flex justify-content-center">
-                        <h6 style={{ padding: 0, margin: 0, paddingRight: 10 }}>Connected</h6>
-                        <img src="images/purse.png" height="20px" alt="wallet" />
+                    <Button className={classes.balanceButton} onClick={() => togglePopup(true)}>
+                      <div className={classes.buttonIcon}>
+                        <AccountBalanceWallet className={classes.icon} />
+                      </div>
+                      <div>
+                        <strong style={{ color: '#e5e5e5' }}>
+                          {bnbBal !== null && parseFloat(bnbBal).toFixed(4) + ' BNB'}{' '}
+                        </strong>
                       </div>
                     </Button>
                   </div>
                 ) : (
-                  <Button variant="outlined" className={classes.buttonOutlined} onClick={connectWallet}>
-                    Connect Wallet
-                  </Button>
+                  <div>
+                    <Button className={classes.airdropButton} onClick={connectWallet}>
+                      {web3 !== undefined ? 'Connect your wallet' : 'Missing Metamask!'}
+                    </Button>
+                  </div>
                 )}
               </div>
-
-              {/* <div>
-                <CustomButton title={'Play & Win'} link={'/play'}></CustomButton>
-              </div> */}
             </div>
           </div>
           <div className={classes.sectionMobile}>
@@ -365,3 +387,12 @@ export default function PrimarySearchAppBar() {
     </div>
   );
 }
+
+const mapStateToProps = (state) => ({
+  authenticated: state.auth.authenticated,
+  user: state.auth.user,
+});
+
+const mapDispatchToProps = { authenticateUser, signOutUser };
+
+export default connect(mapStateToProps, mapDispatchToProps)(GameAppbar);
