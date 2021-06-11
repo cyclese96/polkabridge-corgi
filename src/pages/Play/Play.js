@@ -166,14 +166,17 @@ function Play({ authenticated, user }) {
                 </Paper>
               </div>
             </div>
-
-            {games.map((singleCard, index) => {
-              return (
-                <div className="pb-3">
-                  <GameCard item={singleCard} index={index} key={index} />
-                </div>
-              );
-            })}
+            <div className="row">
+              {games.map((singleCard, index) => {
+                return (
+                  <div className="col-md-6">
+                    <div className="pb-3">
+                      <GameCard item={singleCard} index={index} key={index} />
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         )}
       </div>
