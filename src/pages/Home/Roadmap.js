@@ -208,7 +208,7 @@ export default function Roadmap(props) {
                     <ul>
                       <li>Influencers are on-board.</li>
                       <li> Community contribution & promotion contests.</li>
-                      <li> The shiling army is ready for TikTok | Instagram | YouTube promotions.</li>
+                      <li> The shiling army is ready for TikTok | Twitter | YouTube promotions.</li>
                       <li> Partnerships & Collaborations.</li>{' '}
                     </ul>
                   </p>
@@ -216,7 +216,7 @@ export default function Roadmap(props) {
               </div>
 
               <div className="d-flex justify-content-start">
-                <div className={classes.statusUndone}>
+                <div className={classes.status}>
                   <p style={{ marginLeft: -10 }}>•</p>
                 </div>
 
@@ -226,7 +226,7 @@ export default function Roadmap(props) {
                     <ul>
                       <li> CoinGecko Listing.</li>
                       <li> CoinMarketcap Listing.</li>
-                      <li> Other Tier-2 exchange Listing.</li>
+                      <li>Tier-2 exchange Listing.</li>
                     </ul>
                   </p>
                 </div>
@@ -238,12 +238,12 @@ export default function Roadmap(props) {
                 </div>
 
                 <div className={classes.focusContainer} style={{ backgroundColor: '#fcfcfc' }}>
-                  <h6 className={classes.title}>Defi</h6>
+                  <h6 className={classes.title}>Defi & Gaming</h6>
                   <p className={classes.para}>
                     <ul>
+                      <li> EURO 2020 Event - Online Football Betting Platform.</li>
                       <li> Staking CORGIB on PolkaBridge.</li>
-                      <li> Farming CORGIB on PolkaBridge.</li>
-                      <li> Tier-2 exchange Listing.</li>
+
                     </ul>
                   </p>
                 </div>
