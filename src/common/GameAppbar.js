@@ -139,14 +139,14 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'space-between',
     alignItems: 'center',
-    border: '1px solid #bdbdbd',
-    //background: 'transparent',
-    background: 'linear-gradient(73.28deg,#D9047C 6.51%,#BF1088 88.45%)',
-    color: 'white',
+    border: '2px solid #BF1088',
+    background: 'transparent',
+    //background: 'linear-gradient(73.28deg,#D9047C 6.51%,#BF1088 88.45%)',
+    color: '#BF1088',
     borderRadius: '20px',
     position: 'relative',
-    padding: '0 12px 0 40px',
-    minWidth: '50px',
+    padding: '0 15px 0 15px',
+    minWidth: '100px',
     marginLeft: '10px',
     marginRight: '10px',
     marginTop: 5,
@@ -156,6 +156,7 @@ const useStyles = makeStyles((theme) => ({
   },
   icon: {
     fontSize: 24,
+    marginRight: 5,
     color: '#616161',
   },
 }));
@@ -315,8 +316,8 @@ function GameAppbar({ authenticated, user, authenticateUser, signOutUser }) {
                         <AccountBalanceWallet className={classes.icon} />
                       </div>
                       <div>
-                        <strong style={{ color: '#e5e5e5' }}>
-                          {bnbBal !== null && parseFloat(bnbBal).toFixed(4) + ' BNB'}{' '}
+                        <strong style={{ color: '#BF1088' }}>
+                          {bnbBal !== null ? parseFloat(bnbBal).toFixed(4) + ' BNB' : 'Loading...'}{' '}
                         </strong>
                       </div>
                     </Button>
