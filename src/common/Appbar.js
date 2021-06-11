@@ -257,7 +257,7 @@ export default function PrimarySearchAppBar() {
               </div>
               <div>
                 {' '}
-                <CustomButton title={'Play & Win'} link={'/bet'}></CustomButton>
+                <CustomButton title={'Euro Betting'} link={'/bet'}></CustomButton>
               </div>
             </div>
           </div>
