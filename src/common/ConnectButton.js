@@ -5,6 +5,7 @@ import constants from './../utils/constants';
 import web3 from './../web';
 import { authenticateUser, signOutUser } from './../actions/authActions';
 import { checkCorrectNetwork, checkWalletAvailable } from './../actions/web3Actions';
+import { connect } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   button: {
@@ -19,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function ConnectButton() {
+function ConnectButton({ authenticateUser }) {
   const classes = useStyles();
   const [error, setError] = useState('');
 
@@ -39,7 +40,7 @@ function ConnectButton() {
     <div className="my-5 text-center">
       <div className="mt-5 text-center">
         <h4 style={{ color: 'yellow' }}>Missing Wallet!</h4>
-        <p style={{ color: 'white' }}>Connect your wallet first and then only you can claim airdrop.</p>
+        <p style={{ color: 'white' }}>Connect your wallet first and then only you can view matches.</p>
       </div>
       <div className="mt-5">
         <Button className={classes.button} onClick={connectWallet}>
@@ -53,4 +54,11 @@ function ConnectButton() {
   );
 }
 
-export default ConnectButton;
+const mapStateToProps = (state) => ({
+  authenticated: state.auth.authenticated,
+  user: state.auth.user,
+});
+
+const mapDispatchToProps = { authenticateUser };
+
+export default connect(mapStateToProps, mapDispatchToProps)(ConnectButton);

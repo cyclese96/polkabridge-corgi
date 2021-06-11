@@ -1,17 +1,15 @@
-import React, { Fragment, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
-import TrendingUp from '@material-ui/icons/TrendingUp';
-import EventNote from '@material-ui/icons/EventNote';
-import { Button } from '@material-ui/core';
 import GameCard from '../../components/GameCard';
 import matches from './../../data/matches';
 import { checkCorrectNetwork, checkWalletAvailable } from './../../actions/web3Actions';
 import Loader from '../../components/Loader';
 import ConnectButton from '../../common/ConnectButton';
 import { authenticateUser } from '../../actions/authActions';
+import { connect } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -67,7 +65,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Header() {
+function Play({ authenticated, user }) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
   const [actualCase, setActualCase] = React.useState(0);
@@ -104,13 +102,9 @@ export default function Header() {
       if (networkStatus) {
         console.log('2. Correct Network');
         //Get accounts
-        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-        const accountAddress = accounts[0];
-        authenticateUser(accountAddress);
-        let authenticatedAddress = localStorage.getItem('userAddress');
-        if (authenticatedAddress) {
-          console.log('3. Authenticated True');
 
+        if (authenticated) {
+          console.log('3. Authenticated True');
           setActualCase(4);
         } else {
           console.log('3. Authenticated False');
@@ -128,7 +122,7 @@ export default function Header() {
   useEffect(() => {
     conditionValidity();
     updateMatches(0);
-  }, [localStorage.getItem('userAddress')]);
+  }, [user]);
 
   return (
     <section>
@@ -182,3 +176,11 @@ export default function Header() {
     </section>
   );
 }
+const mapStateToProps = (state) => ({
+  authenticated: state.auth.authenticated,
+  user: state.auth.user,
+});
+
+const mapDispatchToProps = { authenticateUser };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Play);

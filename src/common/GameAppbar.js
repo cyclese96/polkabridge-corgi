@@ -142,7 +142,7 @@ const useStyles = makeStyles((theme) => ({
     border: '1px solid #bdbdbd',
     //background: 'transparent',
     background: 'linear-gradient(73.28deg,#D9047C 6.51%,#BF1088 88.45%)',
-
+    color: 'white',
     borderRadius: '20px',
     position: 'relative',
     padding: '0 12px 0 40px',
@@ -238,16 +238,19 @@ function GameAppbar({ authenticated, user, authenticateUser, signOutUser }) {
       console.log('Install metamask first!');
     }
   };
+
   useEffect(async () => {
+    //Is user in localStorage
     if (window.ethereum !== undefined) {
       const networkStatus = await checkCorrectNetwork();
       if (networkStatus) {
-        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
-        const accountAddress = accounts[0];
-        console.log('Calling authenticate');
-        authenticateUser(accountAddress);
-        setAddress(accountAddress);
-        getBalance(accountAddress);
+        const localAddress = localStorage.getItem('userAddress');
+        if (localAddress) {
+          authenticateUser(localAddress);
+          getBalance(localAddress);
+        } else {
+          signOutUser();
+        }
       } else {
         console.log('Wrong network');
       }
@@ -320,7 +323,7 @@ function GameAppbar({ authenticated, user, authenticateUser, signOutUser }) {
                   </div>
                 ) : (
                   <div>
-                    <Button className={classes.airdropButton} onClick={connectWallet}>
+                    <Button className={classes.balanceButton} onClick={connectWallet}>
                       {web3 !== undefined ? 'Connect your wallet' : 'Missing Metamask!'}
                     </Button>
                   </div>
