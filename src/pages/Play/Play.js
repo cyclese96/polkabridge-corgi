@@ -10,6 +10,7 @@ import Loader from '../../components/Loader';
 import ConnectButton from '../../common/ConnectButton';
 import { authenticateUser } from '../../actions/authActions';
 import { connect } from 'react-redux';
+import { getMatchInfo } from './../../actions/SmartActions';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -69,30 +70,30 @@ function Play({ authenticated, user }) {
   const classes = useStyles();
   const [value, setValue] = React.useState(0);
   const [actualCase, setActualCase] = React.useState(0);
-  const [games, setGames] = React.useState([]);
+  const [gamesActive, setGamesActive] = React.useState([]);
+  const [gamesEnded, setGamesEnded] = React.useState([]);
 
   const handleChange = (event, newValue) => {
-    updateMatches(newValue);
     setValue(newValue);
   };
-  const updateMatches = (newValue) => {
-    let gameCards = [];
-    if (matches.length !== 0 && newValue === 0) {
-      gameCards = matches.filter((match) => {
-        let d = new Date();
-        let matchDate1 = new Date(match.date);
-        return d.getTime() < matchDate1.getTime();
-      });
-    }
-    if (matches.length !== 0 && newValue === 1) {
-      gameCards = matches.filter((match) => {
-        let d = new Date();
-        let matchDate2 = new Date(match.date);
-
-        return d.getTime() > matchDate2.getTime();
-      });
-    }
-    setGames(gameCards);
+  const updateMatches = () => {
+    let gameActiveCards = [];
+    let gameEndedCards = [];
+    matches.map(async (singleMatch, index) => {
+      let matchInfo = await getMatchInfo(index);
+      let resultDeclare = parseInt(matchInfo[5]);
+      let resultCondition = resultDeclare > 0;
+      let d = new Date();
+      let matchDate1 = new Date(singleMatch.date);
+      let endTime = d.getTime() > matchDate1.getTime();
+      if (resultCondition || endTime) {
+        gameEndedCards.push(singleMatch);
+      } else {
+        gameActiveCards.push(singleMatch);
+      }
+    });
+    setGamesActive(gameActiveCards);
+    setGamesEnded(gameEndedCards);
   };
   const conditionValidity = async () => {
     let walletAvailable = await checkWalletAvailable();
@@ -125,7 +126,7 @@ function Play({ authenticated, user }) {
     setTimeout(() => {
       conditionValidity();
     }, 500);
-    updateMatches(0);
+    updateMatches();
   }, [user]);
 
   return (
@@ -166,17 +167,33 @@ function Play({ authenticated, user }) {
                 </Paper>
               </div>
             </div>
-            <div className="row">
-              {games.map((singleCard, index) => {
-                return (
-                  <div className="col-md-6">
-                    <div className="pb-3">
-                      <GameCard item={singleCard} index={index} key={index} tabValue={value} />
+            <h6 style={{ color: 'yellow' }}>{value}</h6>
+            {value === 0 && (
+              <div className="row">
+                {gamesActive.map((singleCard, index) => {
+                  return (
+                    <div className="col-md-6">
+                      <div className="pb-3">
+                        <GameCard item={singleCard} index={index} key={index} tabValue={value} />
+                      </div>
                     </div>
-                  </div>
-                );
-              })}
-            </div>
+                  );
+                })}
+              </div>
+            )}
+            {value === 1 && (
+              <div className="row">
+                {gamesEnded.map((singleCard, index) => {
+                  return (
+                    <div className="col-md-6">
+                      <div className="pb-3">
+                        <GameCard item={singleCard} index={index} key={index} tabValue={value} />
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            )}
           </div>
         )}
       </div>

@@ -3,7 +3,6 @@ import { Button, Divider, TextField } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import contractConnection from './../utils/connection';
 import web3 from './../web';
-import Loader from './Loader';
 import { connect } from 'react-redux';
 import { transactionHit } from './../actions/authActions';
 import { Replay } from '@material-ui/icons';
