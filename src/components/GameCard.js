@@ -16,6 +16,7 @@ import BetPopup from './BetPopup';
 import Loader from './Loader';
 import web3 from './../web';
 import ClaimRewards from './ClaimRewards';
+import { connect } from 'react-redux';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -110,7 +111,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function GameCard({ item, index }) {
+function GameCard({ item, index, transaction, user, authenticated }) {
   const classes = useStyles();
   const [betAmount, setBetAmount] = useState(0);
   const [userAddress, setUserAddress] = useState('');
@@ -129,13 +130,12 @@ export default function GameCard({ item, index }) {
   };
 
   useEffect(() => {
-    let userAddress = localStorage.getItem('userAddress');
-    if (userAddress) {
+    if (authenticated) {
       setUserAddress(userAddress);
     } else {
       setActualCase(3);
     }
-  }, []);
+  }, [user]);
 
   useEffect(() => {
     async function asyncFn() {
@@ -180,7 +180,7 @@ export default function GameCard({ item, index }) {
       }
     }
     asyncFn();
-  }, [localStorage.getItem('userAddress')]);
+  }, [transaction]);
 
   const approveFn = async () => {
     setLoading(true);
@@ -323,3 +323,12 @@ export default function GameCard({ item, index }) {
     </section>
   );
 }
+const mapStateToProps = (state) => ({
+  transaction: state.auth.transaction,
+  user: state.auth.user,
+  authenticated: state.auth.authenticated,
+});
+
+const mapDispatchToProps = {};
+
+export default connect(mapStateToProps, mapDispatchToProps)(GameCard);

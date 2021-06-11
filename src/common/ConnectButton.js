@@ -39,7 +39,7 @@ function ConnectButton({ authenticateUser }) {
   return (
     <div className="my-5 text-center">
       <div className="mt-5 text-center">
-        <h4 style={{ color: 'yellow' }}>Missing Wallet!</h4>
+        <h4 style={{ color: 'yellow' }}>Wallet Not Connected!</h4>
         <p style={{ color: 'white' }}>Connect your wallet first and then only you can view matches.</p>
       </div>
       <div className="mt-5">

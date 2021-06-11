@@ -1,8 +1,9 @@
-import { GET_CURRENT_USER, REMOVE_CURRENT_USER } from '../actions/types';
+import { GET_CURRENT_USER, REMOVE_CURRENT_USER, TRANSACTION_HIT } from '../actions/types';
 
 const initalState = {
   authenticated: false,
   user: null,
+  transaction: 1,
 };
 
 export default function (state = initalState, action) {
@@ -18,6 +19,11 @@ export default function (state = initalState, action) {
         ...state,
         authenticated: false,
         user: null,
+      };
+    case TRANSACTION_HIT:
+      return {
+        ...state,
+        transaction: state.transaction + 1,
       };
 
     default:

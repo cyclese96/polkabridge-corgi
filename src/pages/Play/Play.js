@@ -120,7 +120,9 @@ function Play({ authenticated, user }) {
     }
   };
   useEffect(() => {
-    conditionValidity();
+    setTimeout(() => {
+      conditionValidity();
+    }, 500);
     updateMatches(0);
   }, [user]);
 

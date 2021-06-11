@@ -1,6 +1,6 @@
 import constants from './../utils/constants';
 import web3 from './../web';
-import { GET_CURRENT_USER, REMOVE_CURRENT_USER, GET_ERRORS } from './types';
+import { GET_CURRENT_USER, REMOVE_CURRENT_USER, TRANSACTION_HIT } from './types';
 
 //User authenticate
 export const authenticateUser = (address) => (dispatch) => {
@@ -19,4 +19,12 @@ export const signOutUser = () => (dispatch) => {
     payload: 'remove',
   });
   localStorage.removeItem('userAddress');
+};
+
+//Transaction Changes
+export const transactionHit = () => (dispatch) => {
+  dispatch({
+    type: TRANSACTION_HIT,
+    payload: 'hit',
+  });
 };

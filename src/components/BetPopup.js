@@ -4,6 +4,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import contractConnection from './../utils/connection';
 import web3 from './../web';
 import Loader from './Loader';
+import { connect } from 'react-redux';
+import { transactionHit } from './../actions/authActions';
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -87,7 +89,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function BetForm({ index, choice }) {
+function BetForm({ index, choice, transactionHit }) {
   const classes = useStyles();
   const [actualCase, setActualCase] = useState(0);
   const [amount, setAmount] = useState(0);
@@ -132,6 +134,7 @@ function BetForm({ index, choice }) {
           }
         })
         .on('receipt', async function (receipt) {
+          transactionHit();
           console.log('2. Transaction successful');
           setActualCase(3);
         })
@@ -248,4 +251,12 @@ function BetForm({ index, choice }) {
   );
 }
 
-export default BetForm;
+const mapStateToProps = (state) => ({
+  transaction: state.auth.transaction,
+  user: state.auth.user,
+  authenticated: state.auth.authenticated,
+});
+
+const mapDispatchToProps = { transactionHit };
+
+export default connect(mapStateToProps, mapDispatchToProps)(BetForm);
