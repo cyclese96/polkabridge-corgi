@@ -18,6 +18,7 @@ import Loader from './Loader';
 import web3 from './../web';
 import ClaimRewards from './ClaimRewards';
 import { connect } from 'react-redux';
+import { getMatchInfo } from './../actions/SmartActions';
 
 const Transition = React.forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -34,7 +35,19 @@ const useStyles = makeStyles((theme) => ({
     border: '1px solid #ffffff',
     borderRadius: 7,
   },
-
+  para: {
+    color: 'white',
+    width: 'auto',
+    textAlign: 'center',
+    fontSize: 16,
+    fontWeight: 600,
+    verticalAlign: 'middle',
+    wordSpacing: '0px',
+    [theme.breakpoints.down('md')]: {
+      fontSize: 13,
+      textAlign: 'center',
+    },
+  },
   heading: {
     color: 'white',
     width: 'auto',
@@ -130,6 +143,8 @@ function GameCard({ item, index, transaction, user, authenticated, tabValue }) {
   const [choice, setChoice] = useState(0);
   const [pendingReward, setPendingReward] = React.useState(0);
   const [stopPopupClick, setStopPopupClick] = useState(false);
+  const [result, setResult] = useState(false);
+  const [winner, setWinner] = useState('Winner');
 
   const togglePopup = (value, choice) => {
     setPopup(value);
@@ -227,6 +242,26 @@ function GameCard({ item, index, transaction, user, authenticated, tabValue }) {
     return response;
   };
 
+  useEffect(() => {
+    async function callMatchInfo() {
+      let matchInfo = await getMatchInfo(index);
+      let resultDeclared = parseInt(matchInfo[5]);
+      if (resultDeclared > 0) {
+        setResult(resultDeclared);
+        let winnerNo = resultDeclared;
+        if (winnerNo === 1) {
+          setWinner(`${item.team1.name} wins`);
+        }
+        if (winnerNo === 2) {
+          setWinner('Match is Draw');
+        }
+        if (winnerNo === 3) {
+          setWinner(`${item.team2.name} wins`);
+        }
+      }
+    }
+    callMatchInfo();
+  }, []);
   return (
     <section>
       <div className="d-flex justify-content-center" style={{ height: 520 }}>
@@ -279,27 +314,37 @@ function GameCard({ item, index, transaction, user, authenticated, tabValue }) {
             </div>
           )}
           {actualCase === 3 && tabValue === 0 && (
-            <div className="d-flex justify-content-center">
-              <div className={classes.buttonWrapper}>
-                <Button variant="contained" className={classes.button} onClick={() => togglePopup(true, 1)}>
-                  Win
-                </Button>
-              </div>
-              <div className={classes.buttonWrapper}>
-                <Button variant="contained" className={classes.button} onClick={() => togglePopup(true, 2)}>
-                  Draw
-                </Button>
-              </div>
-              <div className={classes.buttonWrapper}>
-                <Button variant="contained" className={classes.button} onClick={() => togglePopup(true, 3)}>
-                  Win
-                </Button>
-              </div>
+            <div>
+              {!result ? (
+                <div className="d-flex justify-content-center">
+                  <div className={classes.buttonWrapper}>
+                    <Button variant="contained" className={classes.button} onClick={() => togglePopup(true, 1)}>
+                      Win
+                    </Button>
+                  </div>
+                  <div className={classes.buttonWrapper}>
+                    <Button variant="contained" className={classes.button} onClick={() => togglePopup(true, 2)}>
+                      Draw
+                    </Button>
+                  </div>
+                  <div className={classes.buttonWrapper}>
+                    <Button variant="contained" className={classes.button} onClick={() => togglePopup(true, 3)}>
+                      Win
+                    </Button>
+                  </div>
+                </div>
+              ) : (
+                <div className="d-flex justify-content-center mb-3">
+                  <div className={classes.para}>
+                    <span>{winner}</span>
+                  </div>
+                </div>
+              )}
             </div>
           )}
           {actualCase === 3 && tabValue === 1 && (
             <div className="d-flex justify-content-center">
-              <div style={{ color: 'yellow', fontWeight: 700 }}>Not participated</div>
+              <div style={{ color: 'yellow', fontWeight: 700 }}>You did not bet.</div>
             </div>
           )}
           <div className="mt-3">
