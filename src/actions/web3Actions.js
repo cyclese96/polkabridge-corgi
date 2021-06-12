@@ -24,9 +24,11 @@ export const checkCorrectNetwork = async () => {
   let chainID = await web3.eth.getChainId().then((res) => {
     return res;
   });
+  console.log(constants.network_id);
+
   //console.log(chainID);
   if (window.ethereum.networkVersion === constants.network_id) {
-    //console.log('BSC');
+    //console.log(constants.network_id);
     return true;
   } else {
     //console.log('Other Network');

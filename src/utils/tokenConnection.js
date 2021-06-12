@@ -5,7 +5,7 @@ const tokenConstant = {
   rpcUrl: constants.network_address,
   chainId: 97, // Smart Chain - Testnet chain id
   api: 'V3X7VF8MVXS2P3XE457J5A5W5FEX8Z1FQK',
-  contractAddress: '0xE428Cc8A06Cdba0ad5074180f8E80ec6D4083b24',
+  contractAddress: '0x1cfD6813a59d7B90c41dd5990Ed99c3bf2Eb8F55',
   abi: [
     {
       inputs: [{ internalType: 'uint256', name: 'initialSupply', type: 'uint256' }],

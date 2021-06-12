@@ -3,9 +3,9 @@ import constants from './constants';
 
 const contractConstant = {
   rpcUrl: constants.network_address,
-  chainId: 97, // Smart Chain - Testnet chain id
+  chainId: 56, // Smart Chain - Testnet chain id
   api: 'V3X7VF8MVXS2P3XE457J5A5W5FEX8Z1FQK',
-  contractAddress: '0x63925DC1C1504d52c9eA5cCAeCed8A7d0942637F',
+  contractAddress: '0xa8945252ac4604c8B4d93765Ecccf68c809422D2',
   abi: [
     {
       inputs: [{ internalType: 'contract PolkaBridgeMemeToken', name: '_tokenAddress', type: 'address' }],
