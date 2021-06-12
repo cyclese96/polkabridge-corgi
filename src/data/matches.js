@@ -1,6 +1,6 @@
 const matches = [
   {
-    id: 1,
+    id: 0,
     team1: {
       name: 'Turkey',
       image: 'https://www.countryflags.io/tr/shiny/64.png',
@@ -12,7 +12,7 @@ const matches = [
     date: '11 June, 2021 19:00:00 UTC',
   },
   {
-    id: 2,
+    id: 1,
     team1: {
       name: 'Wales',
       image:
@@ -25,7 +25,7 @@ const matches = [
     date: '12 June, 2021 13:00:00 UTC',
   },
   {
-    id: 3,
+    id: 2,
     team1: {
       name: 'Denmark',
       image: 'https://www.countryflags.io/dk/shiny/64.png',
@@ -37,7 +37,7 @@ const matches = [
     date: '12 June, 2021 16:00:00 UTC',
   },
   {
-    id: 4,
+    id: 3,
     team1: {
       name: 'Belgium',
       image: 'https://www.countryflags.io/be/shiny/64.png',
@@ -49,7 +49,7 @@ const matches = [
     date: '12 June, 2021 19:00:00 UTC',
   },
   {
-    id: 5,
+    id: 4,
     team1: {
       name: 'England',
       image: 'https://www.countryflags.io/gb/shiny/64.png',
@@ -59,7 +59,7 @@ const matches = [
       image: 'https://www.countryflags.io/hr/shiny/64.png',
     },
     date: '13 June, 2021 13:00:00 UTC',
-  }
+  },
   // {
   //   id: 6,
   //   team1: {

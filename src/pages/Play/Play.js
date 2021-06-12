@@ -167,7 +167,7 @@ function Play({ authenticated, user }) {
                 </Paper>
               </div>
             </div>
-            <h6 style={{ color: 'yellow' }}>{value}</h6>
+
             {value === 0 && (
               <div className="row">
                 {gamesActive.map((singleCard, index) => {

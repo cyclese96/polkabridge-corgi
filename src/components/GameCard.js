@@ -130,7 +130,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function GameCard({ item, index, transaction, user, authenticated, tabValue }) {
+function GameCard({ item, transaction, user, authenticated, tabValue }) {
   const classes = useStyles();
   const [betAmount, setBetAmount] = useState(0);
   const [userAddress, setUserAddress] = useState('');
@@ -161,7 +161,7 @@ function GameCard({ item, index, transaction, user, authenticated, tabValue }) {
 
   useEffect(() => {
     async function asyncFn() {
-      const mid = index;
+      const mid = item.id;
       //Get accounts
       if (authenticated) {
         const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
@@ -244,7 +244,7 @@ function GameCard({ item, index, transaction, user, authenticated, tabValue }) {
 
   useEffect(() => {
     async function callMatchInfo() {
-      let matchInfo = await getMatchInfo(index);
+      let matchInfo = await getMatchInfo(item.id);
       let resultDeclared = parseInt(matchInfo[5]);
       if (resultDeclared > 0) {
         setResult(resultDeclared);
@@ -264,6 +264,7 @@ function GameCard({ item, index, transaction, user, authenticated, tabValue }) {
   }, []);
   return (
     <section>
+      {/* <h6 style={{ color: 'yellow' }}> {item.id}</h6> */}
       <div className="d-flex justify-content-center" style={{ height: 520 }}>
         <div className={classes.card}>
           <div className="mt-3 mb-5">
@@ -295,7 +296,7 @@ function GameCard({ item, index, transaction, user, authenticated, tabValue }) {
           )}
           {actualCase === 1 && (
             <div className="d-flex justify-content-center">
-              <ClaimRewards mid={index} item={item} userAddress={user} />
+              <ClaimRewards mid={item.id} item={item} userAddress={user} />
             </div>
           )}
           {actualCase === 2 && (
@@ -380,7 +381,7 @@ function GameCard({ item, index, transaction, user, authenticated, tabValue }) {
           timeout: 500,
         }}>
         <div style={{ backgroundColor: 'black' }}>
-          <BetPopup index={index} choice={choice} item={item} stopPopupClicking={setStopPopupClick} />
+          <BetPopup index={item.id} choice={choice} item={item} stopPopupClicking={setStopPopupClick} />
         </div>
       </Dialog>{' '}
     </section>
