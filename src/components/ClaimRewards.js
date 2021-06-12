@@ -58,12 +58,12 @@ const useStyles = makeStyles((theme) => ({
     color: 'yellow',
     width: 'auto',
     textAlign: 'center',
-    fontSize: 30,
+    fontSize: 26,
     fontWeight: 600,
     verticalAlign: 'middle',
     wordSpacing: '0px',
     [theme.breakpoints.down('md')]: {
-      fontSize: '20px',
+      fontSize: '18px',
       textAlign: 'center',
     },
   },
@@ -236,6 +236,22 @@ export default function ClaimRewards({ mid, item, userAddress }) {
           {claimed ? (
             <div>
               <h6 className={classes.heading}>You have claimed your rewards.</h6>
+              <div>
+                {' '}
+                {players !== null && (
+                  <div className="d-flex justify-content-between mt-3 mb-2">
+                    <div className={classes.rewards}>
+                      Bet Amount:{' '}
+                      <strong>
+                        <span>{userBetAmount() / 1000000000}B</span>
+                      </strong>
+                    </div>
+                    <div className={classes.rewards}>
+                      Win Amount: <strong>{pendingReward / 1000000000}B</strong>
+                    </div>
+                  </div>
+                )}
+              </div>
             </div>
           ) : (
             <div>
@@ -313,7 +329,6 @@ export default function ClaimRewards({ mid, item, userAddress }) {
           timeout: 500,
         }}>
         <div style={{ backgroundColor: 'black' }}>
-          {popupActualCase}
           <div className={classes.card}>
             {popupActualCase === 0 && (
               <div className="text-center">
