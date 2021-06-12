@@ -233,7 +233,7 @@ export default function Roadmap(props) {
               </div>
 
               <div className="d-flex justify-content-start">
-                <div className={classes.statusUndone}>
+                <div className={classes.status}>
                   <p style={{ marginLeft: -10 }}>•</p>
                 </div>
 

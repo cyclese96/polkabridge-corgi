@@ -201,7 +201,7 @@ function GameAppbar({ authenticated, user, authenticateUser, signOutUser }) {
       <List>
         {[
           { name: 'To The Moon', id: 'https://t.me/corgipolkabridge' },
-          { name: 'Predict & Win', id: '/play' },
+          { name: 'Euro Betting', id: '/play' },
           {
             name: 'PancakeSwap',
             id: 'https://exchange.pancakeswap.finance/#/swap?outputCurrency=0x1cfd6813a59d7b90c41dd5990ed99c3bf2eb8f55',
