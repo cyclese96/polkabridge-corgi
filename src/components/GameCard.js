@@ -306,10 +306,18 @@ function GameCard({ item, transaction, user, authenticated, tabValue }) {
                   <Loader />
                 </div>
               ) : (
-                <div className={classes.buttonWrapper}>
-                  <Button variant="contained" className={classes.button} onClick={approveFn}>
-                    Approve
-                  </Button>
+                <div>
+                  {tabValue !== 1 ? (
+                    <div className={classes.buttonWrapper}>
+                      <Button variant="contained" className={classes.button} onClick={approveFn}>
+                        Approve
+                      </Button>
+                    </div>
+                  ) : (
+                    <div className="d-flex justify-content-center">
+                      <div style={{ color: 'yellow', fontWeight: 700 }}>You did not bet.</div>
+                    </div>
+                  )}
                 </div>
               )}
             </div>
