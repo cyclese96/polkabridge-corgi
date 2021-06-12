@@ -6,6 +6,7 @@ import web3 from './../web';
 import { connect } from 'react-redux';
 import { transactionHit } from './../actions/authActions';
 import { Replay } from '@material-ui/icons';
+import Loader from './Loader';
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -253,7 +254,7 @@ function BetForm({ index, choice, transactionHit, stopPopupClicking }) {
         {actualCase === 2 && (
           <div>
             <div className="text-center my-5">
-              <img src="https://www.freeiconspng.com/thumbs/success-icon/success-icon-10.png" height="100px" />
+              <Loader />
             </div>
             <h4 className="text-center">Transaction submitted. Please wait....</h4>
           </div>

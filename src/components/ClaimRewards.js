@@ -125,6 +125,8 @@ export default function ClaimRewards({ mid, item, userAddress }) {
   }, []);
 
   const userBet = () => {
+    console.log(players);
+
     let choice = parseInt(players.whichBet);
 
     if (choice === 1) {
@@ -136,6 +138,12 @@ export default function ClaimRewards({ mid, item, userAddress }) {
     if (choice === 3) {
       return `${item.team2.name}`;
     }
+  };
+  const userBetAmount = () => {
+    console.log(players.amountBet);
+    let amount = web3.utils.fromWei(players.amountBet, 'ether');
+
+    return amount;
   };
   const claimFn = async () => {
     //console.log('Claim here');
@@ -222,7 +230,10 @@ export default function ClaimRewards({ mid, item, userAddress }) {
           {players !== null && (
             <div className="d-flex justify-content-between mt-3">
               <div className={classes.rewards}>
-                Your Bet: <strong style={{ color: '#a5d6a7' }}>{userBet()}</strong>
+                Your Bet:{' '}
+                <strong style={{ color: '#a5d6a7' }}>
+                  {userBet()} <span style={{ color: 'yellow' }}>({userBetAmount() / 1000000000}B)</span>
+                </strong>
               </div>
               <div className={classes.rewards}>
                 Expected Reward: <strong>{pendingReward / 1000000000}B</strong>
