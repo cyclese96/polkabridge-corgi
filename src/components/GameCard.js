@@ -226,10 +226,15 @@ function GameCard({ item, transaction, user, authenticated, tabValue }) {
           }
         })
         .on('receipt', async function (receipt) {
+          console.log('1.reloading');
+          window.location.reload();
           let approved = await checkApproved(userAddress);
           if (approved) {
             //console.log('Approved');
             setActualCase(3);
+            console.log('2.reloading');
+
+            window.location.reload();
           } else {
             //console.log('Not Approved');
 
