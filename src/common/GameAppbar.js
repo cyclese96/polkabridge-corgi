@@ -213,6 +213,20 @@ function GameAppbar({ authenticated, user, authenticateUser, signOutUser }) {
             </ListItem>
           </a>
         ))}
+        <ListItem button>
+          <div>
+            <Button className={classes.balanceButton}>
+              <div className={classes.buttonIcon}>
+                <AccountBalanceWallet className={classes.icon} />
+              </div>
+              <div>
+                <strong style={{ color: '#616161' }}>
+                  {bnbBal !== null && parseFloat(bnbBal).toFixed(4) + ' BNB'}{' '}
+                </strong>
+              </div>
+            </Button>
+          </div>
+        </ListItem>
       </List>
     </div>
   );
