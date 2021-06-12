@@ -1,12 +1,41 @@
-import { Button } from '@material-ui/core';
+import React from 'react';
+import { Button, Slide, Dialog, Backdrop } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import { useEffect, useState } from 'react';
 import { getMatchInfo, getPlayers } from './../actions/SmartActions';
 import contractConnection from './../utils/connection';
 import web3 from './../web';
 import { getPendingReward } from './../actions/SmartActions';
+import Loader from './Loader';
+import { Replay } from '@material-ui/icons';
+
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 const useStyles = makeStyles((theme) => ({
+  card: {
+    width: 500,
+    border: '1px solid #e5e5e5',
+    borderRadius: 14,
+    padding: '25px 10px 25px 10px',
+    backgroundColor: 'white',
+    [theme.breakpoints.down('md')]: {
+      width: 350,
+      padding: '10px 2px 20px 2px',
+    },
+  },
+  buttonReload: {
+    color: 'white',
+    marginTop: 20,
+    backgroundColor: 'green',
+    textTransform: 'none',
+    borderRadius: '100px',
+    padding: '12px 16px 12px 16px',
+    fontWeight: 500,
+    //background: `linear-gradient(to bottom,#D9047C, #BF1088)`,
+    fontSize: 16,
+  },
   button: {
     paddingRight: '10px',
     borderRadius: '10px',
@@ -29,12 +58,12 @@ const useStyles = makeStyles((theme) => ({
     color: 'yellow',
     width: 'auto',
     textAlign: 'center',
-    fontSize: 32,
+    fontSize: 30,
     fontWeight: 600,
     verticalAlign: 'middle',
     wordSpacing: '0px',
     [theme.breakpoints.down('md')]: {
-      fontSize: '22px',
+      fontSize: '20px',
       textAlign: 'center',
     },
   },
@@ -69,6 +98,13 @@ export default function ClaimRewards({ mid, item, userAddress }) {
   const [winner, setWinner] = useState('Winner');
   const [pendingReward, setPendingReward] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [stopPopupClick, setStopPopupClick] = useState(false);
+  const [popup, setPopup] = useState(false);
+  const [popupActualCase, setPopupActualCase] = useState(0);
+
+  const togglePopup = (value) => {
+    setPopup(value);
+  };
 
   useEffect(() => {
     async function callMatchInfo() {
@@ -147,18 +183,31 @@ export default function ClaimRewards({ mid, item, userAddress }) {
   };
   const claimFn = async () => {
     //console.log('Claim here');
+    setPopupActualCase(0);
+
+    togglePopup(true);
     setLoading(true);
+    setStopPopupClick(true);
     let matchId = mid;
+
     const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
     let userAddress = accounts[0];
+
     const response = await new Promise((resolve, reject) => {
       contractConnection.methods
         .claimReward(matchId)
         .send({ from: userAddress }, function (error, transactionHash) {
           if (transactionHash) {
+            console.log(error);
+
+            setPopupActualCase(2);
             resolve(transactionHash);
           } else {
+            console.log(error);
+
             //console.log('Rejected by user!');
+            setStopPopupClick(false);
+            setPopupActualCase(1);
             setLoading(false);
             reject();
           }
@@ -166,6 +215,15 @@ export default function ClaimRewards({ mid, item, userAddress }) {
         .on('receipt', async function (receipt) {
           //console.log('Successfully Claimed');
           setLoading(false);
+          setPopupActualCase(3);
+          setStopPopupClick(false);
+          window.location.reload();
+        })
+        .on('error', function (error) {
+          //console.log('2. Transaction failed');
+          console.log(error);
+
+          setPopupActualCase(4);
         });
     });
     //console.log(response);
@@ -242,6 +300,84 @@ export default function ClaimRewards({ mid, item, userAddress }) {
           )}
         </div>
       )}
+      <Dialog
+        className={classes.modal}
+        open={popup}
+        TransitionComponent={Transition}
+        keepMounted
+        onClose={() => togglePopup(false)}
+        closeAfterTransition
+        BackdropComponent={Backdrop}
+        disableBackdropClick={stopPopupClick}
+        BackdropProps={{
+          timeout: 500,
+        }}>
+        <div style={{ backgroundColor: 'black' }}>
+          {popupActualCase}
+          <div className={classes.card}>
+            {popupActualCase === 0 && (
+              <div className="text-center">
+                <h4 className="text-center">Confirm in Metamask</h4>
+              </div>
+            )}
+            {popupActualCase === 1 && (
+              <div>
+                <div className="text-center my-5">
+                  <img src="https://icon-library.com/images/17c52fbb9e.svg.svg" height="100px" />
+                </div>
+                <h4 className="text-center">Transaction Rejected</h4>
+                <h6 className="text-center">Please Reload</h6>
+                <div className="text-center">
+                  {' '}
+                  <Button variant="contained" className={classes.buttonReload} onClick={() => window.location.reload()}>
+                    <Replay />
+                    Reload
+                  </Button>
+                </div>
+              </div>
+            )}
+            {popupActualCase === 2 && (
+              <div>
+                <div className="text-center my-5">
+                  <Loader />
+                </div>
+                <h4 className="text-center">Transaction submitted. Please wait....</h4>
+              </div>
+            )}
+            {popupActualCase === 3 && (
+              <div>
+                <div className="text-center my-5">
+                  <img src="https://www.freeiconspng.com/thumbs/success-icon/success-icon-10.png" height="100px" />
+                </div>
+                <h4 className="text-center">Transaction Confirmed!</h4>
+                <h6 className="text-center">Please Reload</h6>
+
+                <div className="text-center">
+                  <Button variant="contained" className={classes.buttonReload} onClick={() => window.location.reload()}>
+                    <Replay />
+                    Reload
+                  </Button>
+                </div>
+              </div>
+            )}
+            {popupActualCase === 4 && (
+              <div>
+                <div className="text-center my-5">
+                  <img src="images/report.png" height="100px" />
+                </div>
+                <h4 className="text-center">Transaction Failed!</h4>
+                <h6 className="text-center">Please Reload</h6>
+                <div className="text-center">
+                  <Button variant="contained" className={classes.buttonReload} onClick={() => window.location.reload()}>
+                    <Replay />
+                    Reload
+                  </Button>
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      </Dialog>{' '}
     </div>
   );
 }
