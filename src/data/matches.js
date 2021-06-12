@@ -60,30 +60,30 @@ const matches = [
     },
     date: '13 June, 2021 13:00:00 UTC',
   },
-  // {
-  //   id: 6,
-  //   team1: {
-  //     name: 'Austria',
-  //     image: 'https://www.countryflags.io/at/shiny/64.png',
-  //   },
-  //   team2: {
-  //     name: 'North Macedonia',
-  //     image: 'https://www.countryflags.io/mk/shiny/64.png',
-  //   },
-  //   date: '13 June, 2021 16:00:00 UTC',
-  // },
-  // {
-  //   id: 7,
-  //   team1: {
-  //     name: 'Netherlands',
-  //     image: 'https://www.countryflags.io/nl/shiny/64.png',
-  //   },
-  //   team2: {
-  //     name: 'Ukraine',
-  //     image: 'https://www.countryflags.io/ua/shiny/64.png',
-  //   },
-  //   date: '13 June, 2021 19:00:00 UTC',
-  // },
+  {
+    id: 6,
+    team1: {
+      name: 'Austria',
+      image: 'https://www.countryflags.io/at/shiny/64.png',
+    },
+    team2: {
+      name: 'North Macedonia',
+      image: 'https://www.countryflags.io/mk/shiny/64.png',
+    },
+    date: '13 June, 2021 16:00:00 UTC',
+  },
+  {
+    id: 7,
+    team1: {
+      name: 'Netherlands',
+      image: 'https://www.countryflags.io/nl/shiny/64.png',
+    },
+    team2: {
+      name: 'Ukraine',
+      image: 'https://www.countryflags.io/ua/shiny/64.png',
+    },
+    date: '13 June, 2021 19:00:00 UTC',
+  },
   // {
   //   id: 8,
   //   team1: {
