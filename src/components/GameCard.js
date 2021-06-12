@@ -363,7 +363,7 @@ function GameCard({ item, transaction, user, authenticated, tabValue }) {
           )}
           <div className="mt-3">
             <p className={classes.countryName}>
-              Total Participants: <strong>{participants}</strong>
+              Total Participants: <strong style={{ fontSize: 18, color: 'red' }}>{participants}</strong>
             </p>
           </div>
           <div className="mt-3">
