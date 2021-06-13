@@ -89,13 +89,15 @@ function Play({ authenticated, user }) {
       let endTime = d.getTime() > matchDate1.getTime();
       if (resultCondition || endTime) {
         gameEndedCards.unshift(singleMatch);
+        setGamesEnded(gameEndedCards);
       } else {
         gameActiveCards.push(singleMatch);
+        setGamesActive(gameActiveCards);
       }
     });
 
-    setGamesActive(gameActiveCards);
-    setGamesEnded(gameEndedCards);
+    // setGamesActive(gameActiveCards);
+    // setGamesEnded(gameEndedCards);
   };
 
   const conditionValidity = async () => {
