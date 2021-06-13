@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { transactionHit } from './../actions/authActions';
 import { Replay } from '@material-ui/icons';
 import Loader from './Loader';
+import { getPlayers } from './../actions/SmartActions';
 
 const useStyles = makeStyles((theme) => ({
   card: {
@@ -117,15 +118,27 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function BetForm({ index, choice, transactionHit, stopPopupClicking }) {
+function BetForm({ index, choice, transactionHit, stopPopupClicking, matchInfo }) {
   const classes = useStyles();
   const [actualCase, setActualCase] = useState(0);
   const [amount, setAmount] = useState(0);
   const [error, setError] = useState('Enter CORGIB amount in billions Min: 2B and Max: 100B');
   const [errorFlag, setErrorFlag] = useState(false);
+  const [players, setPlayers] = useState(null);
+
+  // useEffect(() => {
+  //   async function callPlayers() {
+  //     let mid = index;
+  //     const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+  //     let userAddress = accounts[0];
+  //     let playersData = await getPlayers(mid, userAddress);
+  //     setPlayers(playersData);
+  //   }
+  //   callPlayers();
+  // }, []);
 
   const changeAmount = (value) => {
-    if (value > 100 || value < 2) {
+    if (value > 100 || value < 0.2) {
       setAmount(value);
 
       setError('Incorrect amount - Amount range 2B to 100B');
@@ -136,6 +149,8 @@ function BetForm({ index, choice, transactionHit, stopPopupClicking }) {
 
       setAmount(value);
     }
+    console.log('calling');
+    //calculateExpectedRewards();
   };
   const submitForm = async () => {
     //Calling smart contract function.
@@ -176,6 +191,18 @@ function BetForm({ index, choice, transactionHit, stopPopupClicking }) {
     return response;
   };
 
+  // const calculateExpectedRewards = () => {
+  //   let userBetAmount = web3.utils.toWei(parseInt(amount * 1000000000).toString(), 'ether');
+  //   console.log(matchInfo);
+  //   let totalBetAmount = matchInfo[0];
+  //   if (userBetAmount > 0) {
+  //     let totalResultPool = matchInfo.totalByBetResult[players.whichBet];
+  //     let userPercent = userBetAmount.mul(1e18).div(totalResultPool);
+  //     let userReward = userPercent.mul(totalBetAmount).div(1e18);
+  //     console.log(userReward);
+  //     return userReward;
+  //   }
+  // };
   return (
     <div className={classes.card}>
       <div className="container text-center">
@@ -203,47 +230,47 @@ function BetForm({ index, choice, transactionHit, stopPopupClicking }) {
               />
               <div className="d-flex justify-content-between align-items-center">
                 <div className="text-center">
-                  <button className={classes.PriceButton} onClick={() => setAmount(0.2)}>
+                  <button className={classes.PriceButton} onClick={(e) => changeAmount(0.2)}>
                     200M
                   </button>
                 </div>
                 <div className="text-center">
-                  <button className={classes.PriceButton} onClick={() => setAmount(0.5)}>
+                  <button className={classes.PriceButton} onClick={(e) => changeAmount(0.5)}>
                     500M
                   </button>
                 </div>
                 <div className="text-center">
-                  <button className={classes.PriceButton} onClick={() => setAmount(1)}>
+                  <button className={classes.PriceButton} onClick={(e) => changeAmount(1)}>
                     1B
                   </button>
                 </div>
                 <div className="text-center">
-                  <button className={classes.PriceButton} onClick={() => setAmount(2)}>
+                  <button className={classes.PriceButton} onClick={(e) => changeAmount(2)}>
                     2B
                   </button>
                 </div>
                 <div className="text-center">
-                  <button className={classes.PriceButton} onClick={() => setAmount(5)}>
+                  <button className={classes.PriceButton} onClick={(e) => changeAmount(5)}>
                     5B
                   </button>
                 </div>
                 <div className="text-center">
-                  <button className={classes.PriceButton} onClick={() => setAmount(10)}>
+                  <button className={classes.PriceButton} onClick={(e) => changeAmount(10)}>
                     10B
                   </button>
                 </div>
                 <div className="text-center">
-                  <button className={classes.PriceButton} onClick={() => setAmount(20)}>
+                  <button className={classes.PriceButton} onClick={(e) => changeAmount(20)}>
                     20B
                   </button>
                 </div>
                 <div className="text-center">
-                  <button className={classes.PriceButton} onClick={() => setAmount(50)}>
+                  <button className={classes.PriceButton} onClick={(e) => changeAmount(50)}>
                     50B
                   </button>
                 </div>
                 <div className="text-center">
-                  <button className={classes.PriceButton} onClick={() => setAmount(100)}>
+                  <button className={classes.PriceButton} onClick={(e) => changeAmount(100)}>
                     100B
                   </button>
                 </div>

@@ -145,6 +145,7 @@ function GameCard({ item, transaction, user, authenticated, tabValue }) {
   const [stopPopupClick, setStopPopupClick] = useState(false);
   const [result, setResult] = useState(false);
   const [winner, setWinner] = useState('Winner');
+  const [matchInfoActual, setMatchInfoActual] = useState({});
 
   const togglePopup = (value, choice) => {
     setPopup(value);
@@ -250,6 +251,7 @@ function GameCard({ item, transaction, user, authenticated, tabValue }) {
   useEffect(() => {
     async function callMatchInfo() {
       let matchInfo = await getMatchInfo(item.id);
+      setMatchInfoActual(matchInfo);
       let resultDeclared = parseInt(matchInfo[5]);
       if (resultDeclared > 0) {
         setResult(resultDeclared);
@@ -400,7 +402,13 @@ function GameCard({ item, transaction, user, authenticated, tabValue }) {
           timeout: 500,
         }}>
         <div style={{ backgroundColor: 'black' }}>
-          <BetPopup index={item.id} choice={choice} item={item} stopPopupClicking={setStopPopupClick} />
+          <BetPopup
+            index={item.id}
+            choice={choice}
+            item={item}
+            stopPopupClicking={setStopPopupClick}
+            matchInfo={matchInfoActual}
+          />
         </div>
       </Dialog>{' '}
     </section>
