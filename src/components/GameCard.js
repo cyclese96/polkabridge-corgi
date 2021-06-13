@@ -319,8 +319,11 @@ function GameCard({ item, transaction, user, authenticated, tabValue }) {
                       </Button>
                     </div>
                   ) : (
-                    <div className="d-flex justify-content-center">
+                    <div className="text-center">
                       <div style={{ color: 'yellow', fontWeight: 700 }}>You did not bet.</div>
+                      <div className={classes.para}>
+                        <span>{winner}</span>
+                      </div>
                     </div>
                   )}
                 </div>
@@ -357,8 +360,11 @@ function GameCard({ item, transaction, user, authenticated, tabValue }) {
             </div>
           )}
           {actualCase === 3 && tabValue === 1 && (
-            <div className="d-flex justify-content-center">
+            <div className="text-center">
               <div style={{ color: 'yellow', fontWeight: 700 }}>You did not bet.</div>
+              <div className={classes.para}>
+                <span>{winner}</span>
+              </div>
             </div>
           )}
           <div className="mt-3">
