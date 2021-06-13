@@ -76,7 +76,7 @@ function Play({ authenticated, user }) {
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
-  const updateMatches = () => {
+  const updateMatches = async () => {
     let gameActiveCards = [];
     let gameEndedCards = [];
     matches.map(async (singleMatch, index) => {
@@ -92,6 +92,7 @@ function Play({ authenticated, user }) {
         gameActiveCards.push(singleMatch);
       }
     });
+
     setGamesActive(gameActiveCards);
     setGamesEnded(gameEndedCards);
   };

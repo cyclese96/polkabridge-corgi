@@ -29,16 +29,18 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: 5,
     marginRight: 5,
     fontSize: 12,
-    width: 60,
+    width: 'fit-content',
+    paddingRight: 7,
+    paddingLeft: 7,
     [theme.breakpoints.down('md')]: {
       padding: 0,
       paddingTop: 2,
       paddingBottom: 2,
-      marginLeft: 5,
-      marginRight: 5,
-      paddingLeft: 10,
-      paddingRight: 10,
-      width: 44,
+      marginLeft: 2,
+      marginRight: 2,
+      width: 'fit-content',
+      paddingRight: 3,
+      paddingLeft: 3,
     },
   },
   title: {
@@ -83,6 +85,9 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 500,
     background: `linear-gradient(to bottom,#D9047C, #BF1088)`,
     fontSize: 16,
+    [theme.breakpoints.down('md')]: {
+      fontSize: 14,
+    },
   },
   buttonReload: {
     color: 'white',
@@ -140,7 +145,7 @@ function BetForm({ index, choice, transactionHit, stopPopupClicking }) {
     let userAddress = accounts[0];
     let mid = index;
     let betChoice = choice;
-    let betAmount = web3.utils.toWei((parseInt(amount) * 1000000000).toString(), 'ether');
+    let betAmount = web3.utils.toWei(parseInt(amount * 1000000000).toString(), 'ether');
     //console.log(mid, betChoice, betAmount);
     const response = await new Promise((resolve, reject) => {
       contractConnection.methods
@@ -189,7 +194,6 @@ function BetForm({ index, choice, transactionHit, stopPopupClicking }) {
                 label={<p className={classes.label}>Amount</p>}
                 value={amount}
                 type="number"
-                //   InputProps={{ inputProps: { min: 1, max: 100 } }}
                 placeholder="Enter Amount in Billions"
                 className={classes.textField}
                 onChange={(e) => changeAmount(e.target.value)}
@@ -198,6 +202,21 @@ function BetForm({ index, choice, transactionHit, stopPopupClicking }) {
                 helperText={error}
               />
               <div className="d-flex justify-content-between align-items-center">
+                <div className="text-center">
+                  <button className={classes.PriceButton} onClick={() => setAmount(0.2)}>
+                    200M
+                  </button>
+                </div>
+                <div className="text-center">
+                  <button className={classes.PriceButton} onClick={() => setAmount(0.5)}>
+                    500M
+                  </button>
+                </div>
+                <div className="text-center">
+                  <button className={classes.PriceButton} onClick={() => setAmount(1)}>
+                    1B
+                  </button>
+                </div>
                 <div className="text-center">
                   <button className={classes.PriceButton} onClick={() => setAmount(2)}>
                     2B
