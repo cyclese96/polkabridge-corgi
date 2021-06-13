@@ -87,7 +87,7 @@ function Play({ authenticated, user }) {
       let matchDate1 = new Date(singleMatch.date);
       let endTime = d.getTime() > matchDate1.getTime();
       if (resultCondition || endTime) {
-        gameEndedCards.push(singleMatch);
+        gameEndedCards.unshift(singleMatch);
       } else {
         gameActiveCards.push(singleMatch);
       }
