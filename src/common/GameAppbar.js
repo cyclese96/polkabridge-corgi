@@ -351,7 +351,7 @@ function GameAppbar({ authenticated, user, authenticateUser, signOutUser }) {
                 ) : (
                   <div>
                     <Button className={classes.balanceButton} onClick={connectWallet}>
-                      {window.ethereum !== undefined ? 'Connect your wallet' : 'Missing Metamask!'}
+                      {window.ethereum !== undefined ? 'Connect your wallet' : 'Missing Wallet!'}
                     </Button>
                   </div>
                 )}

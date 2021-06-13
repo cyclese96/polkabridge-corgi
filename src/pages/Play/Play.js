@@ -11,6 +11,7 @@ import ConnectButton from '../../common/ConnectButton';
 import { authenticateUser } from '../../actions/authActions';
 import { connect } from 'react-redux';
 import { getMatchInfo } from './../../actions/SmartActions';
+import web3 from './../../web';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -96,6 +97,7 @@ function Play({ authenticated, user }) {
     setGamesActive(gameActiveCards);
     setGamesEnded(gameEndedCards);
   };
+
   const conditionValidity = async () => {
     let walletAvailable = await checkWalletAvailable();
 

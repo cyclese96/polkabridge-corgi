@@ -6,7 +6,7 @@ export const checkWalletAvailable = () => {
   if (typeof window.ethereum !== 'undefined') {
     //console.log('Yes available');
 
-    if (window.ethereum && window.ethereum.isMetaMask) {
+    if (window.ethereum) {
       //console.log('Yes metamask available');
       return true;
     } else {
@@ -21,17 +21,12 @@ export const checkWalletAvailable = () => {
 //Check correct network
 //Returns boolean true or false
 export const checkCorrectNetwork = async () => {
-  let chainID = await web3.eth.getChainId().then((res) => {
-    return res;
-  });
-  console.log(constants.network_id);
-
   //console.log(chainID);
   if (window.ethereum.networkVersion === constants.network_id) {
     //console.log(constants.network_id);
-    return true;
+    return constants.network_id;
   } else {
     //console.log('Other Network');
-    return false;
+    return constants.network_id;
   }
 };
