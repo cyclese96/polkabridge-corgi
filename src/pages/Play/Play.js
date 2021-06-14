@@ -12,6 +12,8 @@ import { authenticateUser } from '../../actions/authActions';
 import { connect } from 'react-redux';
 import { getMatchInfo } from './../../actions/SmartActions';
 import web3 from './../../web';
+import { Fragment } from 'react';
+import ActiveMatches from '../../components/ActiveMatches';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -80,30 +82,34 @@ function Play({ authenticated, user }) {
   const updateMatches = async () => {
     let gameActiveCards = [];
     let gameEndedCards = [];
-    matches.map(async (singleMatch, index) => {
+
+    matches.map((singleMatch, index) => {
       let d = new Date();
       let matchDate = new Date(singleMatch.date);
       let endTime = d.getTime() > matchDate.getTime();
       if (endTime) {
         gameEndedCards.unshift(singleMatch);
+        //setGamesEnded(gameEndedCards);
       } else {
-        console.log('Hitting MatchInfo');
+        //console.log('Hitting MatchInfo');
 
-        let matchInfo = await getMatchInfo(singleMatch.id);
+        let matchInfo = getMatchInfo(singleMatch.id);
+        //console.log('MatchID:' + singleMatch.id);
 
+        //console.log(matchInfo);
         let resultDeclare = parseInt(matchInfo[5]);
         let resultCondition = resultDeclare > 0;
         if (resultCondition) {
           gameEndedCards.unshift(singleMatch);
         } else {
           gameActiveCards.push(singleMatch);
-          setGamesActive(gameActiveCards);
+          //setGamesActive(gameActiveCards);
         }
       }
     });
     let dd = Math.ceil(2366237828732.3232);
 
-    console.log(gameActiveCards);
+    //console.log(gameActiveCards);
     setGamesActive(gameActiveCards);
     setGamesEnded(gameEndedCards);
   };
@@ -181,13 +187,18 @@ function Play({ authenticated, user }) {
               </div>
             </div>
 
+            {/* {value === 0 && (
+              <div>
+                <ActiveMatches />;
+              </div>
+            )} */}
             {value === 0 && (
               <div className="row">
-                {gamesActive.slice(0, 4).map((singleCard, index) => {
+                {gamesActive.map((singleCard, index) => {
                   return (
                     <div className="col-md-6">
                       <div className="pb-3">
-                        <GameCard item={singleCard} index={singleCard.id} key={index} tabValue={value} />
+                        <GameCard item={singleCard} index={singleCard.id} key={singleCard.id} tabValue={value} />
                       </div>
                     </div>
                   );
@@ -196,7 +207,7 @@ function Play({ authenticated, user }) {
             )}
             {value === 1 && (
               <div className="row">
-                {gamesEnded.slice(0, 4).map((singleCard, index) => {
+                {gamesEnded.map((singleCard, index) => {
                   return (
                     <div className="col-md-6">
                       <div className="pb-3">

@@ -196,7 +196,7 @@ function GameCard({ item, transaction, index, user, authenticated, tabValue }) {
         } else {
           // Check approve
           let approved = await checkApproved(userAddress);
-          console.log(approved);
+          //console.log(approved);
           if (parseInt(approved) > 0) {
             // console.log('Approved');
             setActualCase(3);

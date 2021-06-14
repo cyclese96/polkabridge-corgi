@@ -36,8 +36,8 @@ export const isBet = (mid, address) => {
 
 //READ getMatchInfo
 //RETURNS object
-export const getMatchInfo = (mid) => {
-  return contractConnection.methods.getMatchInfo(mid).call((err, response) => {
+export const getMatchInfo = async (mid) => {
+  return await contractConnection.methods.getMatchInfo(mid).call((err, response) => {
     return response;
   });
 };
