@@ -187,7 +187,7 @@ function Play({ authenticated, user }) {
                   return (
                     <div className="col-md-6">
                       <div className="pb-3">
-                        <GameCard item={singleCard} index={index} key={index} tabValue={value} />
+                        <GameCard item={singleCard} index={singleCard.id} key={index} tabValue={value} />
                       </div>
                     </div>
                   );
@@ -200,7 +200,7 @@ function Play({ authenticated, user }) {
                   return (
                     <div className="col-md-6">
                       <div className="pb-3">
-                        <GameCard item={singleCard} index={index} key={index} tabValue={value} />
+                        <GameCard item={singleCard} index={singleCard.id} key={index} tabValue={value} />
                       </div>
                     </div>
                   );

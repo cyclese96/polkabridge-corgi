@@ -130,7 +130,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function GameCard({ item, transaction, user, authenticated, tabValue }) {
+function GameCard({ item, transaction, index, user, authenticated, tabValue }) {
   const classes = useStyles();
   const [betAmount, setBetAmount] = useState(0);
   const [userAddress, setUserAddress] = useState('');
