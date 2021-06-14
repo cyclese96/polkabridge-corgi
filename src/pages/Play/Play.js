@@ -81,23 +81,31 @@ function Play({ authenticated, user }) {
     let gameActiveCards = [];
     let gameEndedCards = [];
     matches.map(async (singleMatch, index) => {
-      let matchInfo = await getMatchInfo(index);
-      let resultDeclare = parseInt(matchInfo[5]);
-      let resultCondition = resultDeclare > 0;
       let d = new Date();
-      let matchDate1 = new Date(singleMatch.date);
-      let endTime = d.getTime() > matchDate1.getTime();
-      if (resultCondition || endTime) {
+      let matchDate = new Date(singleMatch.date);
+      let endTime = d.getTime() > matchDate.getTime();
+      if (endTime) {
         gameEndedCards.unshift(singleMatch);
-        setGamesEnded(gameEndedCards);
       } else {
-        gameActiveCards.push(singleMatch);
-        setGamesActive(gameActiveCards);
+        console.log('Hitting MatchInfo');
+
+        let matchInfo = await getMatchInfo(singleMatch.id);
+
+        let resultDeclare = parseInt(matchInfo[5]);
+        let resultCondition = resultDeclare > 0;
+        if (resultCondition) {
+          gameEndedCards.unshift(singleMatch);
+        } else {
+          gameActiveCards.push(singleMatch);
+          setGamesActive(gameActiveCards);
+        }
       }
     });
+    let dd = Math.ceil(2366237828732.3232);
 
-    // setGamesActive(gameActiveCards);
-    // setGamesEnded(gameEndedCards);
+    console.log(gameActiveCards);
+    setGamesActive(gameActiveCards);
+    setGamesEnded(gameEndedCards);
   };
 
   const conditionValidity = async () => {
@@ -175,7 +183,7 @@ function Play({ authenticated, user }) {
 
             {value === 0 && (
               <div className="row">
-                {gamesActive.map((singleCard, index) => {
+                {gamesActive.slice(0, 4).map((singleCard, index) => {
                   return (
                     <div className="col-md-6">
                       <div className="pb-3">
@@ -188,7 +196,7 @@ function Play({ authenticated, user }) {
             )}
             {value === 1 && (
               <div className="row">
-                {gamesEnded.map((singleCard, index) => {
+                {gamesEnded.slice(0, 4).map((singleCard, index) => {
                   return (
                     <div className="col-md-6">
                       <div className="pb-3">

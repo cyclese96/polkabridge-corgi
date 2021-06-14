@@ -84,92 +84,92 @@ const matches = [
     },
     date: '13 June, 2021 19:00:00 UTC',
   },
-  // {
-  //   id: 7,
-  //   team1: {
-  //     name: 'Scotland',
-  //     image:
-  //       'https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Flag_of_Scotland.svg/1200px-Flag_of_Scotland.svg.png',
-  //   },
-  //   team2: {
-  //     name: 'Czech Republic',
-  //     image: 'https://www.countryflags.io/cz/shiny/64.png',
-  //   },
-  //   date: '14 June, 2021 13:00:00 UTC',
-  // },
-  // {
-  //   id: 8,
-  //   team1: {
-  //     name: 'Poland',
-  //     image: 'https://www.countryflags.io/pl/shiny/64.png',
-  //   },
-  //   team2: {
-  //     name: 'Slovakia',
-  //     image: 'https://www.countryflags.io/sk/shiny/64.png',
-  //   },
-  //   date: '14 June, 2021 16:00:00 UTC',
-  // },
-  // {
-  //   id: 9,
-  //   team1: {
-  //     name: 'Spain',
-  //     image: 'https://www.countryflags.io/es/shiny/64.png',
-  //   },
-  //   team2: {
-  //     name: 'Sweden',
-  //     image: 'https://www.countryflags.io/se/shiny/64.png',
-  //   },
-  //   date: '14 June, 2021 19:00:00 UTC',
-  // },
-  // {
-  //   id: 10,
-  //   team1: {
-  //     name: 'Hungary',
-  //     image: 'https://www.countryflags.io/hu/shiny/64.png',
-  //   },
-  //   team2: {
-  //     name: 'Portugal',
-  //     image: 'https://www.countryflags.io/pt/shiny/64.png',
-  //   },
-  //   date: '15 June, 2021 16:00:00 UTC',
-  // },
-  // {
-  //   id: 11,
-  //   team1: {
-  //     name: 'France',
-  //     image: 'https://www.countryflags.io/fr/shiny/64.png',
-  //   },
-  //   team2: {
-  //     name: 'Germany',
-  //     image: 'https://www.countryflags.io/de/shiny/64.png',
-  //   },
-  //   date: '15 June, 2021 19:00:00 UTC',
-  // },
-  // {
-  //   id: 12,
-  //   team1: {
-  //     name: 'Finland',
-  //     image: 'https://www.countryflags.io/fi/shiny/64.png',
-  //   },
-  //   team2: {
-  //     name: 'Russia',
-  //     image: 'https://www.countryflags.io/ru/shiny/64.png',
-  //   },
-  //   date: '16 June, 2021 13:00:00 UTC',
-  // },
-  // {
-  //   id: 13,
-  //   team1: {
-  //     name: 'Turkey',
-  //     image: 'https://www.countryflags.io/tr/shiny/64.png',
-  //   },
-  //   team2: {
-  //     name: 'Wales',
-  //     image:
-  //       'https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Flag_of_Wales_%281959%29.svg/2560px-Flag_of_Wales_%281959%29.svg.png',
-  //   },
-  //   date: '16 June, 2021 16:00:00 UTC',
-  // },
+  {
+    id: 7,
+    team1: {
+      name: 'Scotland',
+      image:
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/1/10/Flag_of_Scotland.svg/1200px-Flag_of_Scotland.svg.png',
+    },
+    team2: {
+      name: 'Czech Republic',
+      image: 'https://www.countryflags.io/cz/shiny/64.png',
+    },
+    date: '14 June, 2021 13:00:00 UTC',
+  },
+  {
+    id: 8,
+    team1: {
+      name: 'Poland',
+      image: 'https://www.countryflags.io/pl/shiny/64.png',
+    },
+    team2: {
+      name: 'Slovakia',
+      image: 'https://www.countryflags.io/sk/shiny/64.png',
+    },
+    date: '14 June, 2021 16:00:00 UTC',
+  },
+  {
+    id: 9,
+    team1: {
+      name: 'Spain',
+      image: 'https://www.countryflags.io/es/shiny/64.png',
+    },
+    team2: {
+      name: 'Sweden',
+      image: 'https://www.countryflags.io/se/shiny/64.png',
+    },
+    date: '14 June, 2021 19:00:00 UTC',
+  },
+  {
+    id: 10,
+    team1: {
+      name: 'Hungary',
+      image: 'https://www.countryflags.io/hu/shiny/64.png',
+    },
+    team2: {
+      name: 'Portugal',
+      image: 'https://www.countryflags.io/pt/shiny/64.png',
+    },
+    date: '15 June, 2021 16:00:00 UTC',
+  },
+  {
+    id: 11,
+    team1: {
+      name: 'France',
+      image: 'https://www.countryflags.io/fr/shiny/64.png',
+    },
+    team2: {
+      name: 'Germany',
+      image: 'https://www.countryflags.io/de/shiny/64.png',
+    },
+    date: '15 June, 2021 19:00:00 UTC',
+  },
+  {
+    id: 12,
+    team1: {
+      name: 'Finland',
+      image: 'https://www.countryflags.io/fi/shiny/64.png',
+    },
+    team2: {
+      name: 'Russia',
+      image: 'https://www.countryflags.io/ru/shiny/64.png',
+    },
+    date: '16 June, 2021 13:00:00 UTC',
+  },
+  {
+    id: 13,
+    team1: {
+      name: 'Turkey',
+      image: 'https://www.countryflags.io/tr/shiny/64.png',
+    },
+    team2: {
+      name: 'Wales',
+      image:
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Flag_of_Wales_%281959%29.svg/2560px-Flag_of_Wales_%281959%29.svg.png',
+    },
+    date: '16 June, 2021 16:00:00 UTC',
+  },
   // {
   //   id: 14,
   //   team1: {
