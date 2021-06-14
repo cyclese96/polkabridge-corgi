@@ -130,7 +130,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function GameCard({ item, transaction, user, authenticated, tabValue }) {
+function GameCard({ item, transaction, index, user, authenticated, tabValue }) {
   const classes = useStyles();
   const [betAmount, setBetAmount] = useState(0);
   const [userAddress, setUserAddress] = useState('');
@@ -144,7 +144,7 @@ function GameCard({ item, transaction, user, authenticated, tabValue }) {
   const [pendingReward, setPendingReward] = React.useState(0);
   const [stopPopupClick, setStopPopupClick] = useState(false);
   const [result, setResult] = useState(false);
-  const [winner, setWinner] = useState('Winner');
+  const [winner, setWinner] = useState('');
   const [matchInfoActual, setMatchInfoActual] = useState({});
 
   const togglePopup = (value, choice) => {
@@ -271,7 +271,6 @@ function GameCard({ item, transaction, user, authenticated, tabValue }) {
   }, []);
   return (
     <section>
-      {/* <h6 style={{ color: 'yellow' }}> {item.id}</h6> */}
       <div className="d-flex justify-content-center" style={{ height: 520 }}>
         <div className={classes.card}>
           <div className="mt-3 mb-5">
