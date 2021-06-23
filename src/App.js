@@ -12,6 +12,7 @@ import Play from './pages/Play/Play';
 import BetFooter from './common/BetFooter';
 import { Provider } from 'react-redux';
 import store from './store';
+import Marketplace from './pages/MarketPlace/marketplace';
 
 export default function App() {
   return (
@@ -29,6 +30,13 @@ export default function App() {
               <Fragment>
                 <GameAppbar />
                 <Play />
+                <BetFooter />
+              </Fragment>
+            </Route>
+            <Route exact path="/bet">
+              <Fragment>
+                <GameAppbar />
+                <Marketplace />
                 <BetFooter />
               </Fragment>
             </Route>
