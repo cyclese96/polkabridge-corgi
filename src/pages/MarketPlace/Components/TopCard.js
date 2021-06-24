@@ -11,9 +11,9 @@ const useStyles = makeStyles((theme) => ({
   card: {
     backgroundColor: 'white',
     height: 280,
+    width: '100%',
     padding: 20,
     borderRadius: 10,
-    width: '100%',
     background: `linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.99)),
     url('https://wallpaperaccess.com/full/539156.jpg') no-repeat center center`,
     backgroundSize: 'cover',
@@ -42,6 +42,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 16,
     [theme.breakpoints.down('md')]: {
       fontSize: 14,
+      width: '100%',
     },
   },
   textContainer: {
@@ -67,6 +68,12 @@ const useStyles = makeStyles((theme) => ({
     background: `linear-gradient(to right,#15134A, #1C1656)`,
     fontSize: 14,
     filter: `drop-shadow(0 0 0.1rem #1C1656)`,
+  },
+  image: {
+    height: '320px',
+    [theme.breakpoints.down('md')]: {
+      height: '200px',
+    },
   },
 }));
 
@@ -98,7 +105,7 @@ function TopCard() {
               <img
                 src="https://i.pinimg.com/originals/d8/c7/1e/d8c71e11c94a618331dedbbae48be15d.png"
                 alt="right"
-                height="320px"
+                className={classes.image}
               />
             </div>
           </div>

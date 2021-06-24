@@ -78,7 +78,7 @@ const useStyles = makeStyles((theme) => ({
     backgroundColor: 'transparent',
   },
   menuIcon: {
-    color: '#212121',
+    color: '#e5e5e5',
 
     marginTop: 10,
   },
@@ -261,7 +261,7 @@ export default function MarketAppbar() {
               <div style={{ paddingTop: 5 }}>
                 <img src="corgi.png" alt="logo" height="55px" />{' '}
               </div>{' '}
-              <div style={{ fontWeight: 600, color: '#000000', fontSize: 20, letterSpacing: '-1px', paddingTop: 5 }}>
+              <div style={{ fontWeight: 600, color: '#e5e5e5', fontSize: 20, letterSpacing: '-1px', paddingTop: 5 }}>
                 Corgib <span className={classes.highlight}>MarketPlace</span>
               </div>
             </div>

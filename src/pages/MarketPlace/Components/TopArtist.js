@@ -81,7 +81,13 @@ const useStyles = makeStyles((theme) => ({
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     display: 'flex',
+    flexDirection: 'row',
     justifyContent: 'center',
+    [theme.breakpoints.down('md')]: {
+      flexDirection: 'column',
+      justifyContent: 'start',
+      height: '100%',
+    },
   },
   nftCard: {
     backgroundColor: '#15134A',

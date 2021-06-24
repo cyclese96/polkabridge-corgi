@@ -18,7 +18,8 @@ const useStyles = makeStyles((theme) => ({
     wordSpacing: '0px',
     paddingBottom: 5,
     [theme.breakpoints.down('md')]: {
-      fontSize: 18,
+      fontSize: 16,
+      width: 200,
     },
   },
   para: {
@@ -80,7 +81,14 @@ const useStyles = makeStyles((theme) => ({
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     display: 'flex',
+    flexDirection: 'row',
     justifyContent: 'center',
+
+    [theme.breakpoints.down('md')]: {
+      flexDirection: 'column',
+      justifyContent: 'start',
+      height: '100%',
+    },
   },
   nftCard: {
     backgroundColor: '#15134A',
