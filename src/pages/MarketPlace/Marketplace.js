@@ -1,23 +1,30 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Button } from '@material-ui/core';
+import MarketAppbar from './Common/Appbar';
+import TopCard from './Components/TopCard';
+import FeaturedItems from './Components/FeaturedItems';
+import TopArtist from './Components/TopArtist';
 
 const useStyles = makeStyles((theme) => ({
-  card: {
-    borderRadius: 7,
-    borderBottom: '1px solid #bdbdbd',
-    width: 600,
-    margin: 10,
-    padding: 10,
-    height: '100%',
-    border: '1px solid #ffffff',
-    borderRadius: 7,
+  background: {
+    backgroundColor: theme.palette.market.primary,
+    color: theme.palette.market.textPrimary,
+    minHeight: '100vh',
   },
 }));
 
 function Marketplace() {
   const classes = useStyles();
 
-  return <div>MarketPlace</div>;
+  return (
+    <div className={classes.background}>
+      <MarketAppbar />
+      <section>
+        <TopCard />
+        <FeaturedItems />
+        <TopArtist />
+      </section>
+    </div>
+  );
 }
 export default Marketplace;

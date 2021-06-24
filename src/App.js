@@ -12,7 +12,7 @@ import Play from './pages/Play/Play';
 import BetFooter from './common/BetFooter';
 import { Provider } from 'react-redux';
 import store from './store';
-import Marketplace from './pages/MarketPlace/marketplace';
+import Marketplace from './pages/MarketPlace/Marketplace';
 
 export default function App() {
   return (
@@ -33,11 +33,9 @@ export default function App() {
                 <BetFooter />
               </Fragment>
             </Route>
-            <Route exact path="/bet">
+            <Route exact path="/market">
               <Fragment>
-                <GameAppbar />
                 <Marketplace />
-                <BetFooter />
               </Fragment>
             </Route>
             <Route exact path="/api/cirsupply">
