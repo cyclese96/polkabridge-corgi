@@ -11,9 +11,8 @@ import List from '@material-ui/core/List';
 import Divider from '@material-ui/core/Divider';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
-import { Link } from 'react-scroll';
+import { Link } from 'react-router-dom';
 import { Button } from '@material-ui/core';
-import CustomButton from '../../../common/CustomButton';
 
 const useStyles = makeStyles((theme) => ({
   background: {
@@ -229,19 +228,18 @@ export default function MarketAppbar() {
             </div>
           </div>
           <div className="d-flex justify-content-end align-items-center">
-            <Link activeClass="active" to="header" smooth={true} offset={0} duration={500} delay={0}></Link>
-            <Link activeClass="active" to="about" smooth={true} offset={0} duration={500} delay={0}>
+            <Link to={'/market'}>
               <Typography className={classes.tabs} variant="body1" noWrap>
                 Explore
               </Typography>
             </Link>
 
-            <Link activeClass="active" to="features" smooth={true} offset={0} duration={500} delay={0}>
+            <Link to={'/profile'}>
               <Typography className={classes.tabs} variant="body1">
                 Activities
               </Typography>
             </Link>
-            <Link activeClass="active" to="roadmap" smooth={true} offset={0} duration={500} delay={0}>
+            <Link to={'/profile'}>
               <Typography className={classes.tabs} variant="body1">
                 Profile
               </Typography>

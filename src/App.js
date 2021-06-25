@@ -12,7 +12,9 @@ import Play from './pages/Play/Play';
 import BetFooter from './common/BetFooter';
 import { Provider } from 'react-redux';
 import store from './store';
-import Marketplace from './pages/MarketPlace/Marketplace';
+import Marketplace from './pages/MarketPlace/pages/MarketPlace/Marketplace';
+import Profile from './pages/MarketPlace/pages/Profile/Profile';
+import MarketAppbar from './pages/MarketPlace/Common/Appbar';
 
 export default function App() {
   return (
@@ -36,6 +38,12 @@ export default function App() {
             <Route exact path="/market">
               <Fragment>
                 <Marketplace />
+              </Fragment>
+            </Route>
+            <Route exact path="/profile">
+              <Fragment>
+                <MarketAppbar />
+                <Profile />
               </Fragment>
             </Route>
             <Route exact path="/api/cirsupply">
