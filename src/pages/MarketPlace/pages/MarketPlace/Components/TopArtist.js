@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   background: {
@@ -146,9 +147,12 @@ function TopArtist() {
                 <div className="d-flex justify-content-start">
                   <div className={classes.bgImage}></div>
                   <div className={classes.textBox}>
-                    <h6 className={classes.cardText}>
-                      <strong>Carry Minati</strong>
-                    </h6>
+                    <Link to="/market/profile" className={classes.link}>
+                      <h6 className={classes.cardText}>
+                        <strong>Carry Minati</strong>
+                      </h6>
+                    </Link>
+
                     <h6 className={classes.cardText}>23 Items</h6>
                   </div>
                 </div>
@@ -160,9 +164,11 @@ function TopArtist() {
                 <div className="d-flex justify-content-start">
                   <div className={classes.bgImage}></div>
                   <div className={classes.textBox}>
-                    <h6 className={classes.cardText}>
-                      <strong>Denii Lie</strong>
-                    </h6>
+                    <Link to="/market/profile" className={classes.link}>
+                      <h6 className={classes.cardText}>
+                        <strong>Denni Lie</strong>
+                      </h6>
+                    </Link>
                     <h6 className={classes.cardText}>232 Items</h6>
                   </div>
                 </div>
@@ -176,9 +182,11 @@ function TopArtist() {
                 <div className="d-flex justify-content-start">
                   <div className={classes.bgImage}></div>
                   <div className={classes.textBox}>
-                    <h6 className={classes.cardText}>
-                      <strong>Carry Minati</strong>
-                    </h6>
+                    <Link to="/market/profile" className={classes.link}>
+                      <h6 className={classes.cardText}>
+                        <strong>Carry Minati</strong>
+                      </h6>
+                    </Link>
                     <h6 className={classes.cardText}>23 Items</h6>
                   </div>
                 </div>
@@ -190,9 +198,11 @@ function TopArtist() {
                 <div className="d-flex justify-content-start">
                   <div className={classes.bgImage}></div>
                   <div className={classes.textBox}>
-                    <h6 className={classes.cardText}>
-                      <strong>Denii Lie</strong>
-                    </h6>
+                    <Link to="/market/profile" className={classes.link}>
+                      <h6 className={classes.cardText}>
+                        <strong>Carry Minati</strong>
+                      </h6>
+                    </Link>
                     <h6 className={classes.cardText}>232 Items</h6>
                   </div>
                 </div>
@@ -206,9 +216,11 @@ function TopArtist() {
                 <div className="d-flex justify-content-start">
                   <div className={classes.bgImage}></div>
                   <div className={classes.textBox}>
-                    <h6 className={classes.cardText}>
-                      <strong>Carry Minati</strong>
-                    </h6>
+                    <Link to="/market/profile" className={classes.link}>
+                      <h6 className={classes.cardText}>
+                        <strong>Carry Minati</strong>
+                      </h6>
+                    </Link>
                     <h6 className={classes.cardText}>23 Items</h6>
                   </div>
                 </div>
@@ -220,9 +232,11 @@ function TopArtist() {
                 <div className="d-flex justify-content-start">
                   <div className={classes.bgImage}></div>
                   <div className={classes.textBox}>
-                    <h6 className={classes.cardText}>
-                      <strong>Denii Lie</strong>
-                    </h6>
+                    <Link to="/market/profile" className={classes.link}>
+                      <h6 className={classes.cardText}>
+                        <strong>Carry Minati</strong>
+                      </h6>
+                    </Link>
                     <h6 className={classes.cardText}>232 Items</h6>
                   </div>
                 </div>
@@ -236,9 +250,11 @@ function TopArtist() {
                 <div className="d-flex justify-content-start">
                   <div className={classes.bgImage}></div>
                   <div className={classes.textBox}>
-                    <h6 className={classes.cardText}>
-                      <strong>Carry Minati</strong>
-                    </h6>
+                    <Link to="/market/profile" className={classes.link}>
+                      <h6 className={classes.cardText}>
+                        <strong>Carry Minati</strong>
+                      </h6>
+                    </Link>
                     <h6 className={classes.cardText}>23 Items</h6>
                   </div>
                 </div>
@@ -250,9 +266,11 @@ function TopArtist() {
                 <div className="d-flex justify-content-start">
                   <div className={classes.bgImage}></div>
                   <div className={classes.textBox}>
-                    <h6 className={classes.cardText}>
-                      <strong>Denii Lie</strong>
-                    </h6>
+                    <Link to="/market/profile" className={classes.link}>
+                      <h6 className={classes.cardText}>
+                        <strong>Denii Lie</strong>
+                      </h6>
+                    </Link>
                     <h6 className={classes.cardText}>232 Items</h6>
                   </div>
                 </div>

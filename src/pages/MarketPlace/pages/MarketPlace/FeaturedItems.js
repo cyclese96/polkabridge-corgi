@@ -1,16 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Button } from '@material-ui/core';
-import { ArrowBack, Edit } from '@material-ui/icons';
-import { Link } from 'react-router-dom';
+import { ArrowBack } from '@material-ui/icons';
 import ItemsList from '../../Components/ItemsList';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   background: {
-    backgroundColor: theme.palette.market.primary,
     color: theme.palette.market.textPrimary,
+    backgroundColor: theme.palette.market.primary,
     minHeight: '100vh',
-
     padding: 30,
     width: '100%',
   },
@@ -24,7 +22,8 @@ const useStyles = makeStyles((theme) => ({
     wordSpacing: '0px',
     paddingBottom: 5,
     [theme.breakpoints.down('md')]: {
-      fontSize: 18,
+      fontSize: 16,
+      width: 200,
     },
   },
   para: {
@@ -76,19 +75,25 @@ const useStyles = makeStyles((theme) => ({
       fontSize: 14,
     },
   },
+  link: {
+    color: theme.palette.market.textPrimary,
+    '&:hover': {
+      color: theme.palette.market.highlight,
+    },
+  },
   mainCard: {
     backgroundColor: 'white',
-    height: '100%',
+    height: 280,
     padding: 15,
-    borderRadius: 30,
+    borderRadius: 10,
     width: '100%',
     background: `linear-gradient(to right,#1C1656, #1C1656)`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     display: 'flex',
-    flexDirection: 'column',
-    justifyContent: 'flex-start',
-    alignItems: 'center',
+    flexDirection: 'row',
+    justifyContent: 'center',
+
     [theme.breakpoints.down('md')]: {
       flexDirection: 'column',
       justifyContent: 'start',
@@ -97,11 +102,12 @@ const useStyles = makeStyles((theme) => ({
   },
   nftCard: {
     backgroundColor: '#15134A',
-    width: 600,
+
+    height: 240,
+    width: 240,
     padding: 10,
     marginRight: 10,
     marginLeft: 10,
-    marginBottom: 20,
     borderRadius: 10,
   },
   bgImage: {
@@ -109,76 +115,51 @@ const useStyles = makeStyles((theme) => ({
     backgroundPosition: 'center',
     backgroundSize: 'cover',
     padding: 10,
-    height: 120,
-    width: 120,
-    borderRadius: '45%',
-    marginBottom: 20,
+    height: 160,
+    borderRadius: 10,
   },
-
+  bgImage2: {
+    backgroundImage: `url('https://miro.medium.com/max/2000/1*p44Lhxvf69Tz2ONl3Vfncw.png')`,
+    backgroundPosition: 'center',
+    backgroundSize: 'cover',
+    padding: 10,
+    height: 160,
+    borderRadius: 10,
+  },
   textBox: {
-    textAlign: 'center',
+    paddingTop: 10,
+    paddingLeft: 5,
   },
   cardText: {
     color: theme.palette.market.textPrimary,
-    fontWeight: 500,
+    fontWeight: 400,
     verticalAlign: 'baseline',
     letterSpacing: '-0.8px',
     paddingBottom: 0,
     fontSize: 16,
-    textAlign: 'center',
-
+    textAlign: 'left',
     [theme.breakpoints.down('md')]: {
       fontSize: 14,
     },
   },
 }));
 
-function Profile() {
+function FeaturedItems() {
   const classes = useStyles();
 
   return (
     <div className={classes.background}>
-      <div className="row">
-        <div className="col-md-12">
-          <Link to="/market" className={classes.link}>
-            <h2 className={classes.heading}>
-              <ArrowBack />
-              My Profile
-            </h2>
-          </Link>
-          <div className={classes.mainCard}>
-            <div>
-              <div className={classes.nftCard}>
-                <div className="d-flex flex-column justify-content-center">
-                  <div className="text-center">
-                    <img
-                      className={classes.bgImage}
-                      alt="profile"
-                      src="https://hiseye.org/wp-content/uploads/2021/03/CryptoKitty.jpg"
-                    />
-                    <div className={classes.textBox}>
-                      <h6 className={classes.cardText}>
-                        <strong>Carry Minati</strong>
-                      </h6>
-                      <h6 className={classes.cardText}>0x9D7117a07fca9F22911d379A9fd5118A5FA4F448</h6>
-                    </div>
-                  </div>
-                </div>
-                <div className="text-center mt-3">
-                  <Button className={classes.normalButton}>
-                    <Edit style={{ fontSize: 16 }} />
-                    Edit Profile
-                  </Button>
-                </div>
-              </div>
-            </div>
-            <div>
-              <ItemsList />
-            </div>{' '}
-          </div>
-        </div>
+      <Link to="/market">
+        {' '}
+        <h2 className={classes.heading}>
+          <ArrowBack style={{ marginRight: 10 }} />
+          Featured Items
+        </h2>
+      </Link>
+      <div>
+        <ItemsList />
       </div>
     </div>
   );
 }
-export default Profile;
+export default FeaturedItems;

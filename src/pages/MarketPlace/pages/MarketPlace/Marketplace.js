@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import MarketAppbar from '../../Common/Appbar';
-import TopCard from '../../Components/TopCard';
-import FeaturedItems from '../../Components/FeaturedItems';
-import TopArtist from '../../Components/TopArtist';
+import TopCard from './Components/TopCard';
+import ItemsSection from './Components/ItemsSection';
+import TopArtist from './Components/TopArtist';
 
 const useStyles = makeStyles((theme) => ({
   background: {
@@ -18,10 +17,9 @@ function Marketplace() {
 
   return (
     <div className={classes.background}>
-      <MarketAppbar />
       <section>
         <TopCard />
-        <FeaturedItems />
+        <ItemsSection />
         <TopArtist />
       </section>
     </div>

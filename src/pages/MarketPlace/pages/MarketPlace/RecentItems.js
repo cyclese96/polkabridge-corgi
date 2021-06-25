@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { Button } from '@material-ui/core';
+import { ArrowBack } from '@material-ui/icons';
+import ItemsList from '../../Components/ItemsList';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   background: {
     color: theme.palette.market.textPrimary,
+    backgroundColor: theme.palette.market.primary,
+    minHeight: '100vh',
     padding: 30,
     width: '100%',
   },
@@ -71,6 +75,12 @@ const useStyles = makeStyles((theme) => ({
       fontSize: 14,
     },
   },
+  link: {
+    color: theme.palette.market.textPrimary,
+    '&:hover': {
+      color: theme.palette.market.highlight,
+    },
+  },
   mainCard: {
     backgroundColor: 'white',
     height: 280,
@@ -134,88 +144,22 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function TopCard() {
+function RecentItems() {
   const classes = useStyles();
 
   return (
     <div className={classes.background}>
-      <div className="row">
-        <div className="col-md-6">
-          <div className="d-flex justify-content-between">
-            <div>
-              <h2 className={classes.heading}>Featured Items</h2>
-            </div>
-            <div className={classes.viewAll}>View All</div>
-          </div>
-          <div className={classes.mainCard}>
-            <div className={classes.nftCard}>
-              <div className={classes.bgImage}></div>
-              <div className={classes.textBox}>
-                <h6 className={classes.cardText}>Tommy Kill Hell</h6>
-                <h6>
-                  <strong>Carry Minati</strong>
-                </h6>
-              </div>
-            </div>
-            <div className={classes.nftCard}>
-              <div className={classes.bgImage}></div>
-              <div className={classes.textBox}>
-                <h6 className={classes.cardText}>Tommy Kill Hell</h6>
-                <h6>
-                  <strong>Carry Minati</strong>
-                </h6>
-              </div>
-            </div>
-            <div className={classes.nftCard}>
-              <div className={classes.bgImage}></div>
-              <div className={classes.textBox}>
-                <h6 className={classes.cardText}>Tommy Kill Hell</h6>
-                <h6>
-                  <strong>Carry Minati</strong>
-                </h6>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="col-md-6">
-          <div className="d-flex justify-content-between">
-            <div>
-              <h2 className={classes.heading}>Recently Added</h2>
-            </div>
-            <div className={classes.viewAll}>View All</div>
-          </div>
-          <div className={classes.mainCard}>
-            <div className={classes.nftCard}>
-              <div className={classes.bgImage2}></div>
-              <div className={classes.textBox}>
-                <h6 className={classes.cardText}>Tommy Kill Hell</h6>
-                <h6>
-                  <strong>Carry Minati</strong>
-                </h6>
-              </div>
-            </div>
-            <div className={classes.nftCard}>
-              <div className={classes.bgImage}></div>
-              <div className={classes.textBox}>
-                <h6 className={classes.cardText}>Tommy Kill Hell</h6>
-                <h6>
-                  <strong>Carry Minati</strong>
-                </h6>
-              </div>
-            </div>
-            <div className={classes.nftCard}>
-              <div className={classes.bgImage2}></div>
-              <div className={classes.textBox}>
-                <h6 className={classes.cardText}>Tommy Kill Hell</h6>
-                <h6>
-                  <strong>Carry Minati</strong>
-                </h6>
-              </div>
-            </div>
-          </div>
-        </div>
+      <Link to="/market">
+        {' '}
+        <h2 className={classes.heading}>
+          <ArrowBack style={{ marginRight: 10 }} />
+          Recent Items
+        </h2>
+      </Link>
+      <div>
+        <ItemsList />
       </div>
     </div>
   );
 }
-export default TopCard;
+export default RecentItems;

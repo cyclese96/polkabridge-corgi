@@ -15,7 +15,8 @@ import store from './store';
 import Marketplace from './pages/MarketPlace/pages/MarketPlace/Marketplace';
 import Profile from './pages/MarketPlace/pages/Profile/Profile';
 import MarketAppbar from './pages/MarketPlace/Common/Appbar';
-
+import RecentItems from './pages/MarketPlace/pages/MarketPlace/RecentItems';
+import FeaturedItems from './pages/MarketPlace/pages/MarketPlace/FeaturedItems';
 export default function App() {
   return (
     <Provider store={store}>
@@ -37,13 +38,26 @@ export default function App() {
             </Route>
             <Route exact path="/market">
               <Fragment>
+                <MarketAppbar />
                 <Marketplace />
               </Fragment>
             </Route>
-            <Route exact path="/profile">
+            <Route exact path="/market/profile">
               <Fragment>
                 <MarketAppbar />
                 <Profile />
+              </Fragment>
+            </Route>
+            <Route exact path="/market/recent">
+              <Fragment>
+                <MarketAppbar />
+                <RecentItems />
+              </Fragment>
+            </Route>
+            <Route exact path="/market/featured">
+              <Fragment>
+                <MarketAppbar />
+                <FeaturedItems />
               </Fragment>
             </Route>
             <Route exact path="/api/cirsupply">

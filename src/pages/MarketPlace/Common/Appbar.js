@@ -218,14 +218,16 @@ export default function MarketAppbar() {
       <AppBar position="static" className={classes.background}>
         <Toolbar className="d-flex justify-content-between ">
           <div className={classes.title}>
-            <div className="d-flex flex-row  justify-content-start align-items-center">
-              <div style={{ paddingTop: 5 }}>
-                <img src="corgi.png" alt="logo" height="55px" />{' '}
-              </div>{' '}
-              <div className={classes.logo}>
-                Corgib <span className={classes.highlight}>MarketPlace</span>
+            <Link to="/market">
+              <div className="d-flex flex-row  justify-content-start align-items-center">
+                <div style={{ paddingTop: 5 }}>
+                  <img src="/corgi.png" alt="logo" height="55px" />{' '}
+                </div>{' '}
+                <div className={classes.logo}>
+                  Corgib <span className={classes.highlight}>MarketPlace</span>
+                </div>
               </div>
-            </div>
+            </Link>
           </div>
           <div className="d-flex justify-content-end align-items-center">
             <Link to={'/market'}>
@@ -234,12 +236,12 @@ export default function MarketAppbar() {
               </Typography>
             </Link>
 
-            <Link to={'/profile'}>
+            <Link to={'/market/profile'}>
               <Typography className={classes.tabs} variant="body1">
                 Activities
               </Typography>
             </Link>
-            <Link to={'/profile'}>
+            <Link to={'/market/profile'}>
               <Typography className={classes.tabs} variant="body1">
                 Profile
               </Typography>
@@ -257,7 +259,7 @@ export default function MarketAppbar() {
           <div className={classes.sectionMobile}>
             <div className="d-flex flex-row  justify-content-start align-items-center">
               <div style={{ paddingTop: 5 }}>
-                <img src="corgi.png" alt="logo" height="55px" />{' '}
+                <img src="/corgi.png" alt="logo" height="55px" />{' '}
               </div>{' '}
               <div style={{ fontWeight: 600, color: '#e5e5e5', fontSize: 20, letterSpacing: '-1px', paddingTop: 5 }}>
                 Corgib <span className={classes.highlight}>MarketPlace</span>
