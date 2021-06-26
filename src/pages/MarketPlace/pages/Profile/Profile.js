@@ -96,8 +96,9 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   sectionCard1: {
-    marginTop: 20,
+    marginTop: -120,
     backgroundColor: '#15134A',
+    height: 550,
     width: '100%',
     marginRight: 10,
     marginLeft: 10,
@@ -106,7 +107,7 @@ const useStyles = makeStyles((theme) => ({
   },
   sectionCard2: {
     marginTop: 20,
-    backgroundColor: '#15134A',
+    // backgroundColor: '#15134A',
     width: '100%',
     padding: 10,
     marginRight: 10,
@@ -159,6 +160,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   cover: {
+    zIndex: 0,
     height: 240,
     width: '100%',
     borderTopLeftRadius: 10,
@@ -211,7 +213,7 @@ function Profile() {
             </div>
           </Link>
         </div>
-        <div className="row">
+        <div className="row container" style={{ zIndex: 1 }}>
           <div className="col-md-3">
             <div className={classes.sectionCard1}>
               <div className="d-flex flex-column justify-content-center" style={{ padding: 20 }}>
@@ -228,7 +230,8 @@ function Profile() {
                   <div className="mt-3">
                     <p className={classes.para}>
                       Computer engineer and an artist love to create beautiful NFTs. Wanderlust from Singapore expert in
-                      AI.
+                      AI. Computer engineer and an artist love to create beautiful NFTs. Wanderlust from Singapore
+                      expert in AI.
                     </p>
                   </div>
                 </div>
