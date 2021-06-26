@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   background: {
@@ -92,7 +93,10 @@ function TopCard() {
               </h4>
               <div className="d-flex justify-content-start">
                 <div className="text-center">
-                  <Button className={classes.actionButton}>Create NFT</Button>
+                  <Link to="/market/create">
+                    {' '}
+                    <Button className={classes.actionButton}>Create NFT</Button>
+                  </Link>{' '}
                 </div>
                 <div className="text-center">
                   <Button className={classes.normalButton}>Learn How</Button>

@@ -18,6 +18,7 @@ import MarketAppbar from './pages/MarketPlace/Common/Appbar';
 import RecentItems from './pages/MarketPlace/pages/MarketPlace/RecentItems';
 import FeaturedItems from './pages/MarketPlace/pages/MarketPlace/FeaturedItems';
 import ItemDetails from './pages/MarketPlace/pages/MarketPlace/ItemDetails';
+import CreateNFT from './pages/MarketPlace/pages/MarketPlace/CreateNFT';
 export default function App() {
   return (
     <Provider store={store}>
@@ -65,6 +66,12 @@ export default function App() {
               <Fragment>
                 <MarketAppbar />
                 <ItemDetails />
+              </Fragment>
+            </Route>
+            <Route exact path="/market/create">
+              <Fragment>
+                <MarketAppbar />
+                <CreateNFT />
               </Fragment>
             </Route>
             <Route exact path="/api/cirsupply">
