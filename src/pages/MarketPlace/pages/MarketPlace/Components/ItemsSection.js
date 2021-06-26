@@ -99,9 +99,8 @@ const useStyles = makeStyles((theme) => ({
   },
   nftCard: {
     backgroundColor: '#15134A',
-
     height: 240,
-    width: 240,
+    width: 200,
     padding: 10,
     marginRight: 10,
     marginLeft: 10,
@@ -159,33 +158,39 @@ function TopCard() {
             </div>
           </div>
           <div className={classes.mainCard}>
-            <div className={classes.nftCard}>
-              <div className={classes.bgImage}></div>
-              <div className={classes.textBox}>
-                <h6 className={classes.cardText}>Tommy Kill Hell</h6>
-                <h6>
-                  <strong>Carry Minati</strong>
-                </h6>
+            <Link to="/market/details" className={classes.link}>
+              <div className={classes.nftCard}>
+                <div className={classes.bgImage}></div>
+                <div className={classes.textBox}>
+                  <h6 className={classes.cardText}>Tommy Kill Hell</h6>
+                  <h6>
+                    <strong>Carry Minati</strong>
+                  </h6>
+                </div>
               </div>
-            </div>
-            <div className={classes.nftCard}>
-              <div className={classes.bgImage}></div>
-              <div className={classes.textBox}>
-                <h6 className={classes.cardText}>Tommy Kill Hell</h6>
-                <h6>
-                  <strong>Carry Minati</strong>
-                </h6>
+            </Link>
+            <Link to="/market/details" className={classes.link}>
+              <div className={classes.nftCard}>
+                <div className={classes.bgImage}></div>
+                <div className={classes.textBox}>
+                  <h6 className={classes.cardText}>Tommy Kill Hell</h6>
+                  <h6>
+                    <strong>Carry Minati</strong>
+                  </h6>
+                </div>
               </div>
-            </div>
-            <div className={classes.nftCard}>
-              <div className={classes.bgImage}></div>
-              <div className={classes.textBox}>
-                <h6 className={classes.cardText}>Tommy Kill Hell</h6>
-                <h6>
-                  <strong>Carry Minati</strong>
-                </h6>
+            </Link>
+            <Link to="/market/details" className={classes.link}>
+              <div className={classes.nftCard}>
+                <div className={classes.bgImage}></div>
+                <div className={classes.textBox}>
+                  <h6 className={classes.cardText}>Tommy Kill Hell</h6>
+                  <h6>
+                    <strong>Carry Minati</strong>
+                  </h6>
+                </div>
               </div>
-            </div>
+            </Link>
           </div>
         </div>
         <div className="col-md-6">
@@ -200,33 +205,39 @@ function TopCard() {
             </div>
           </div>
           <div className={classes.mainCard}>
-            <div className={classes.nftCard}>
-              <div className={classes.bgImage2}></div>
-              <div className={classes.textBox}>
-                <h6 className={classes.cardText}>Tommy Kill Hell</h6>
-                <h6>
-                  <strong>Carry Minati</strong>
-                </h6>
+            <Link to="/market/details" className={classes.link}>
+              <div className={classes.nftCard}>
+                <div className={classes.bgImage2}></div>
+                <div className={classes.textBox}>
+                  <h6 className={classes.cardText}>Tommy Kill Hell</h6>
+                  <h6>
+                    <strong>Carry Minati</strong>
+                  </h6>
+                </div>
               </div>
-            </div>
-            <div className={classes.nftCard}>
-              <div className={classes.bgImage}></div>
-              <div className={classes.textBox}>
-                <h6 className={classes.cardText}>Tommy Kill Hell</h6>
-                <h6>
-                  <strong>Carry Minati</strong>
-                </h6>
+            </Link>
+            <Link to="/market/details" className={classes.link}>
+              <div className={classes.nftCard}>
+                <div className={classes.bgImage}></div>
+                <div className={classes.textBox}>
+                  <h6 className={classes.cardText}>Tommy Kill Hell</h6>
+                  <h6>
+                    <strong>Carry Minati</strong>
+                  </h6>
+                </div>
               </div>
-            </div>
-            <div className={classes.nftCard}>
-              <div className={classes.bgImage2}></div>
-              <div className={classes.textBox}>
-                <h6 className={classes.cardText}>Tommy Kill Hell</h6>
-                <h6>
-                  <strong>Carry Minati</strong>
-                </h6>
+            </Link>
+            <Link to="/market/details" className={classes.link}>
+              <div className={classes.nftCard}>
+                <div className={classes.bgImage2}></div>
+                <div className={classes.textBox}>
+                  <h6 className={classes.cardText}>Tommy Kill Hell</h6>
+                  <h6>
+                    <strong>Carry Minati</strong>
+                  </h6>
+                </div>
               </div>
-            </div>
+            </Link>
           </div>
         </div>
       </div>

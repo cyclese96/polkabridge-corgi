@@ -17,6 +17,7 @@ import Profile from './pages/MarketPlace/pages/Profile/Profile';
 import MarketAppbar from './pages/MarketPlace/Common/Appbar';
 import RecentItems from './pages/MarketPlace/pages/MarketPlace/RecentItems';
 import FeaturedItems from './pages/MarketPlace/pages/MarketPlace/FeaturedItems';
+import ItemDetails from './pages/MarketPlace/pages/MarketPlace/ItemDetails';
 export default function App() {
   return (
     <Provider store={store}>
@@ -58,6 +59,12 @@ export default function App() {
               <Fragment>
                 <MarketAppbar />
                 <FeaturedItems />
+              </Fragment>
+            </Route>
+            <Route exact path="/market/details">
+              <Fragment>
+                <MarketAppbar />
+                <ItemDetails />
               </Fragment>
             </Route>
             <Route exact path="/api/cirsupply">
