@@ -1,6 +1,8 @@
+
 # The CORGI Of PolkaBridge - A Meme Token | Website Landing Page
 
 CORGIB is the NFT MarketPlace for Meme coins build on Binance Smart Chain. Betting Contract for Euro Cup 2021 is also added.
+
 
 ![Website Screenshot](corgib.png)
 
@@ -33,9 +35,3 @@ Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
