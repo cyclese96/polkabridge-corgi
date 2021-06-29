@@ -253,46 +253,56 @@ function Profile() {
           <div className="col-md-9">
             <div className={classes.sectionCard2}>
               <div className="mt-3 d-flex justify-content-start">
-                <div
-                  style={{
-                    backgroundColor: 'white',
-                    color: 'black',
-                    padding: '6px 12px 6px 12px',
-                    borderRadius: '30px',
-                    marginRight: 10,
-                  }}>
-                  <span style={{ fontWeight: 500, fontSize: 14 }}>Collection</span>
-                </div>
-                <div
-                  style={{
-                    backgroundColor: 'white',
-                    color: 'black',
-                    padding: '6px 12px 6px 12px',
-                    borderRadius: '30px',
-                    marginRight: 10,
-                  }}>
-                  <span style={{ fontWeight: 500, fontSize: 14 }}> On Sale</span>
-                </div>
-                <div
-                  style={{
-                    backgroundColor: 'white',
-                    color: 'black',
-                    padding: '6px 12px 6px 12px',
-                    borderRadius: '30px',
-                    marginRight: 10,
-                  }}>
-                  <span style={{ fontWeight: 500, fontSize: 14 }}>Created</span>
-                </div>
-                <div
-                  style={{
-                    backgroundColor: 'white',
-                    color: 'black',
-                    padding: '6px 12px 6px 12px',
-                    borderRadius: '30px',
-                    marginRight: 10,
-                  }}>
-                  <span style={{ fontWeight: 500, fontSize: 14 }}> Likes</span>
-                </div>
+                <Button>
+                  <div
+                    style={{
+                      backgroundColor: 'white',
+                      color: 'black',
+                      padding: '6px 12px 6px 12px',
+                      borderRadius: '30px',
+                      marginRight: 10,
+                    }}>
+                    <span style={{ fontWeight: 500, fontSize: 14 }}>Collection</span>
+                  </div>
+                </Button>
+                <Button>
+                  {' '}
+                  <div
+                    style={{
+                      backgroundColor: 'white',
+                      color: 'black',
+                      padding: '6px 12px 6px 12px',
+                      borderRadius: '30px',
+                      marginRight: 10,
+                    }}>
+                    <span style={{ fontWeight: 500, fontSize: 14 }}> On Sale</span>
+                  </div>
+                </Button>
+                <Button>
+                  {' '}
+                  <div
+                    style={{
+                      backgroundColor: 'white',
+                      color: 'black',
+                      padding: '6px 12px 6px 12px',
+                      borderRadius: '30px',
+                      marginRight: 10,
+                    }}>
+                    <span style={{ fontWeight: 500, fontSize: 14 }}>Created</span>
+                  </div>
+                </Button>
+                <Button>
+                  <div
+                    style={{
+                      backgroundColor: 'white',
+                      color: 'black',
+                      padding: '6px 12px 6px 12px',
+                      borderRadius: '30px',
+                      marginRight: 10,
+                    }}>
+                    <span style={{ fontWeight: 500, fontSize: 14 }}> Likes</span>
+                  </div>
+                </Button>
               </div>
 
               <div className="row mt-3">
