@@ -256,8 +256,14 @@ export default function Roadmap(props) {
 
                 <div className={classes.focusContainer} style={{ backgroundColor: '#fcfcfc' }}>
                   <h6 className={classes.title}>NFT MarketPlace</h6>
-                  <p className={classes.para}> Testnet (July)</p>
-                  <p className={classes.para}> Mainnet (August)</p>
+                  <p className={classes.para}>
+                    <ul>
+                      <li> Testnet (July)</li>
+                      <li> Mainnet (August)</li>
+
+                    </ul>
+                  </p>
+
                 </div>
 
               </div>
@@ -268,9 +274,14 @@ export default function Roadmap(props) {
 
                 <div className={classes.focusContainer} style={{ backgroundColor: '#fcfcfc' }}>
                   <h6 className={classes.title}>Future Development</h6>
-                  <p className={classes.para}> Layer-2</p>
-                  <p className={classes.para}> Polkadot Meme Token</p>
-                  <p className={classes.para}> Worldcup Event</p>
+                  <p className={classes.para}>
+                    <ul>
+                      <li> Layer-2</li>
+                      <li> Polkadot Meme Token</li>
+                      <li> Worldcup Event</li>
+                    </ul>
+                  </p>
+
                 </div>
 
               </div>
