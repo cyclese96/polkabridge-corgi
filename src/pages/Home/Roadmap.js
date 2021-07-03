@@ -158,7 +158,7 @@ export default function Roadmap(props) {
           CORGIB <strong className={classes.highlight}>RoadMap</strong>
         </h6>
 
-        <p className={classes.subheading}>Our CORGIB Walk (Q2/2021).</p>
+        <p className={classes.subheading}>Our CORGIB Walk 2021</p>
       </div>
       <Fade top>
         <div className="d-flex flex-column align-items-center">
@@ -255,10 +255,26 @@ export default function Roadmap(props) {
                 </div>
 
                 <div className={classes.focusContainer} style={{ backgroundColor: '#fcfcfc' }}>
-                  <h6 className={classes.title}>Testnet</h6>
-                  <p className={classes.para}>NFT MarketPlace Testnet.</p>
+                  <h6 className={classes.title}>NFT MarketPlace</h6>
+                  <p className={classes.para}> Testnet (July)</p>
+                  <p className={classes.para}> Mainnet (August)</p>
                 </div>
+
               </div>
+              <div className="d-flex justify-content-start">
+                <div className={classes.statusUndone}>
+                  <p style={{ marginLeft: -10 }}>•</p>
+                </div>
+
+                <div className={classes.focusContainer} style={{ backgroundColor: '#fcfcfc' }}>
+                  <h6 className={classes.title}>Future Development</h6>
+                  <p className={classes.para}> Layer-2</p>
+                  <p className={classes.para}> Polkadot Meme Token</p>
+                  <p className={classes.para}> Worldcup Event</p>
+                </div>
+
+              </div>
+
             </div>
           </div>
         </div>
