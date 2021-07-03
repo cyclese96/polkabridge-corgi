@@ -21,6 +21,12 @@ export const theme = createMuiTheme({
       textLight: '#212121',
       textDark: '#e5e5e5',
     },
+    market: {
+      primary: '#15134A',
+      textPrimary: '#ffffff',
+      textSecondary: '#414141',
+      highlight: 'rgba(89, 210, 188, 1)',
+    },
   },
   typography: {
     fontFamily: [
