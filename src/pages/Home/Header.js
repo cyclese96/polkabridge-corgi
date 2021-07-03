@@ -108,14 +108,22 @@ export default function Header() {
             </p>
             <div>
               <CustomButton
-                title={'Buy on PancakeSwap'}
+                title={'PancakeSwap'}
                 link={
                   'https://exchange.pancakeswap.finance/#/swap?outputCurrency=0x1cfd6813a59d7b90c41dd5990ed99c3bf2eb8f55'
                 }></CustomButton>
             </div>
+            <div>
+              <CustomButton
+                title={'Join Staking'}
+                link={
+                  'https://stake.polkabridge.org/'
+                }></CustomButton>
+            </div>
+
           </div>
         </div>
       </div>
-    </section>
+    </section >
   );
 }
